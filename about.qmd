@@ -11,8 +11,12 @@ This comes from the file `about.qmd`.
 This is a website for the final project for MA[46]15 Data Science with R by Team One.
 The members of this team are below.
 
-#Aini Zhou
-#Aleeza Shah
-#David Kulig
-#Haozhe Shu
-#Zihan Yang
+Aini Zhou
+
+Aleeza Shah
+
+David Kulig
+
+Haozhe Shu
+
+Zihan Yang
