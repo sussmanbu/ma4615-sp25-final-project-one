@@ -1,0 +1,24 @@
+---
+title: "Blog post 1: Dataset exploration"
+editor: visual
+author: ""
+date: "2025-02-26"
+date-modified: "2024-02-28"
+draft: FALSE
+---
+Report Card Graduation 2023-24 https://catalog.data.gov/dataset/report-card-graduation-2023-24-054a5
+
+This dataset provides a comprehensive view of K-12 education outcomes by tracking school year data, district and school identifiers, student demographics, dropout rates, transfer patterns, and graduation rates. Its broad scope across multiple schools and districts offers valuable insights into racial disparities in education, helping to uncover systemic inequities that impact student success. Collected from statewide school reporting systems, the data ensures compliance with federal and state education policies while highlighting variations in graduation rates among racial groups. Cleaning the data may involve addressing missing values, standardizing district and school names, and ensuring consistency in race/ethnicity classifications. Additionally, dropout rates over multiple years may need restructuring for better analysis. This dataset enables the exploration of critical questions, such as how graduation rates differ across racial groups within the same districts, which racial groups have the highest and lowest dropout rates over time, and whether racial disparities in graduation rates are more pronounced in certain states or districts.
+
+
+attendance rates in Connecticut
+https://catalog.data.gov/dataset/school-attendance-by-student-group-and-district-2021-2022
+
+This data set explores attendance rates in Connecticut during the 2021-2022 school year. It contains 12 columns and 2020 rows, some of which include attendance rates, the name of the school, and student groups. Data collection seems to have been done by each school individually likely to explore the effect COVID-19 had on the school attendance rates as it compares previous years to the ones in which school closures had a major impact. The student groups category includes students with disabilities, students suffering from homelessness, and students of different races. This could lead to problems with cleaning and formatting the data as these different groups are all included in the same column. Hopefully this data can be used to explore differences in attendance rates by race and maybe explore other factors in schools, for example need based factors by race. A challenge with this data set is it doesn’t provide much information behind attendance rates and demographic information of the student body. If it were possible to combine this information with test scores or some other academic factor it would likely be a much more intriguing data source to use.
+
+
+The NYC Department of Education's School Attendance and Chronic Absenteeism Data
+https://catalog.data.gov/dataset/2016-17-2020-21-school-end-of-year-attendance-and-chronic-absenteeism-data
+
+The NYC Department of Education's School Attendance and Chronic Absenteeism Data (2016-2021) provides insights into student attendance patterns over five school years, tracking total school days, absences, percentage attendance, and chronic absenteeism rates across 53,366 rows and 12 columns. Chronic absenteeism, defined as missing 10% or more of the school year, can indicate deeper academic struggles. Collected through annual school reports, this data helps educators and policymakers identify attendance trends and address factors affecting student success. Key questions for analysis include how attendance rates have changed over time, whether chronic absenteeism worsened during the COVID-19 pandemic, and which schools or grade levels face the greatest challenges. However, the dataset lacks background details like socioeconomic status or special education needs, limiting context for observed trends. Additionally, remote learning introduced inconsistencies in attendance tracking across years. Before analysis, data cleaning may involve filling in missing values, standardizing school names, and verifying percentage calculations. Despite these challenges, the dataset serves as a valuable foundation for understanding attendance patterns and developing strategies to keep students engaged in school.
+---
