@@ -6,7 +6,7 @@ date-modified: "2025-03-31"
 draft: FALSE
 ---
 
-  This week we explored our combined dataset more trying to understand different interactions that can be found in our data. The combined data set we had complied all different group types of students into a single column so to fix this we used pivot wider to expand the table with all of these different group types. However, an issue that arose with this dataset is the data isn't hanlded in such a way that would give values such as black females or homeless white males. Instead we can only see generilizations of the whole county which may make statistical modeling more challenging. Below is a table of 10 random rows in our dataset.
+  This week we explored our combined dataset more trying to understand different interactions that can be found in our data. The combined data set we had complied all different group types of students into a single column so to fix this we used pivot wider to expand the table with all of these different group types. However, an issue that arose with this dataset is the data isn't hanlded in such a way that would give values such as black females or homeless white males. Instead we can only see generilizations of the whole county which may make statistical modeling more challenging. Below is a table of 5 random rows in our dataset. 
 
 ```{r}
 suppressPackageStartupMessages(library(tidyverse))
