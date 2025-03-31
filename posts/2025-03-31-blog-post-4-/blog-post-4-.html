@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="">
+<meta name="dcterms.date" content="2025-03-31">
 
-<title>MA [46]15 Final Project</title>
+<title>Blog Post 4 – MA [46]15 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +22,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +102,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MA [46]15 Final Project</span>
     </a>
   </div>
@@ -149,19 +125,19 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./big_picture.html"> 
+    <a class="nav-link" href="../../big_picture.html"> 
 <span class="menu-text">Big Picture</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analysis.html"> 
+    <a class="nav-link" href="../../analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data.html"> 
+    <a class="nav-link" href="../../data.html"> 
 <span class="menu-text">Data</span></a>
   </li>  
 </ul>
@@ -174,270 +150,150 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">MA [46]15 Final Project</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">Blog Post 4</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 31, 2025</p>
+      </div>
+    </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">March 31, 2025</p>
+      </div>
+    </div>
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<p><img src="images/data-science.png" class="img-fluid"></p>
-<section id="final-project-due-may-5-2024-at-1159pm." class="level1">
-<h1>Final Project due May 5, 2024 at 11:59pm.</h1>
-<p>This comes from the <code>index.qmd</code> file.</p>
+<p>This week we explored our combined dataset more trying to understand different interactions that can be found in our data. The combined data set we had complied all different group types of students into a single column so to fix this we used pivot wider to expand the table with all of these different group types. However, an issue that arose with this dataset is the data isn’t hanlded in such a way that would give values such as black females or homeless white males. Instead we can only see generilizations of the whole county which may make statistical modeling more challenging. Below is a table of 10 random rows in our dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(tidyverse))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>combined_grad_data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset"</span>,<span class="st">"combined_grad_income_expanded.rds"</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>combined_grad_data<span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 56
+  SchoolYear OrganizationLevel County    StudentGroupType DAT         Cohort    
+  &lt;chr&gt;      &lt;chr&gt;             &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;     
+1 2023-24    County            Mason     LowIncome        Cross Group Five Year 
+2 2023-24    County            Snohomish Gender           No DAT      Four Year 
+3 2023-24    County            Asotin    504              Cross Group Four Year 
+4 2023-24    County            Clallam   ELL              Cross Group Five Year 
+5 2023-24    County            Clark     Race             No DAT      Seven Year
+  BeginningGrade9 TransferIn Year1Dropout Year2Dropout Year3Dropout Year4Dropout
+  &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;       
+1 NULL            NULL       NULL         NULL         NULL         NULL        
+2 4230            522        30           67           126          281         
+3 NULL            NULL       NULL         NULL         NULL         NULL        
+4 NULL            NULL       NULL         NULL         NULL         NULL        
+5 NULL            NULL       NULL         NULL         NULL         NULL        
+  Year5Dropout Year6Dropout Year7Dropout TransferOut FinalCohort Graduate
+  &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;   
+1 NULL         NULL         NULL         NULL        NULL        NULL    
+2 NULL         NULL         NULL         452         4300        3436    
+3 NULL         NULL         NULL         NULL        NULL        NULL    
+4 NULL         NULL         NULL         NULL        NULL        NULL    
+5 NULL         NULL         NULL         NULL        NULL        NULL    
+  continuing dropout GraduationRate  DataAsOf               county   
+  &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;           &lt;chr&gt;                  &lt;chr&gt;    
+1 NULL       NULL    0.885           11/27/2024 12:00:00 AM mason    
+2 360        504     0.7990697674418 11/27/2024 12:00:00 AM snohomish
+3 NULL       NULL    0.707           11/27/2024 12:00:00 AM asotin   
+4 NULL       NULL    0.7096          11/27/2024 12:00:00 AM clallam  
+5 NULL       NULL    0.8260869565217 11/27/2024 12:00:00 AM clark    
+  NAME                         median_income income_margin_error   Row
+  &lt;chr&gt;                        &lt;chr&gt;         &lt;chr&gt;               &lt;int&gt;
+1 Mason County, Washington     78359         4033                 1892
+2 Snohomish County, Washington 107982        1708                 1095
+3 Asotin County, Washington    69107         5408                  124
+4 Clallam County, Washington   67999         2005                  637
+5 Clark County, Washington     94948         1484                 2729
+  `Non Section 504` `Section 504` `All Students` `English Language Learners`
+  &lt;chr&gt;             &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;                      
+1 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;           &lt;NA&gt;                       
+2 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;           &lt;NA&gt;                       
+3 Non Section 504   &lt;NA&gt;          &lt;NA&gt;           &lt;NA&gt;                       
+4 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;           &lt;NA&gt;                       
+5 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;           &lt;NA&gt;                       
+  `Non-English Language Learners` `Foster Care` `Non-Foster Care` Female
+  &lt;chr&gt;                           &lt;chr&gt;         &lt;chr&gt;             &lt;chr&gt; 
+1 &lt;NA&gt;                            &lt;NA&gt;          &lt;NA&gt;              &lt;NA&gt;  
+2 &lt;NA&gt;                            &lt;NA&gt;          &lt;NA&gt;              &lt;NA&gt;  
+3 &lt;NA&gt;                            &lt;NA&gt;          &lt;NA&gt;              &lt;NA&gt;  
+4 Non-English Language Learners   &lt;NA&gt;          &lt;NA&gt;              &lt;NA&gt;  
+5 &lt;NA&gt;                            &lt;NA&gt;          &lt;NA&gt;              &lt;NA&gt;  
+  `Gender X` Male  `Highly Capable` `Non-Highly Capable` Homeless `Non-Homeless`
+  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;                &lt;chr&gt;    &lt;chr&gt;         
+1 &lt;NA&gt;       &lt;NA&gt;  &lt;NA&gt;             &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;          
+2 &lt;NA&gt;       Male  &lt;NA&gt;             &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;          
+3 &lt;NA&gt;       &lt;NA&gt;  &lt;NA&gt;             &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;          
+4 &lt;NA&gt;       &lt;NA&gt;  &lt;NA&gt;             &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;          
+5 &lt;NA&gt;       &lt;NA&gt;  &lt;NA&gt;             &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;          
+  `Low-Income` `Non-Low Income` Migrant `Non Migrant` `Military Parent`
+  &lt;chr&gt;        &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;            
+1 &lt;NA&gt;         Non-Low Income   &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             
+2 &lt;NA&gt;         &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             
+3 &lt;NA&gt;         &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             
+4 &lt;NA&gt;         &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             
+5 &lt;NA&gt;         &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             
+  `Non Military Parent` `American Indian/ Alaskan Native` Asian
+  &lt;chr&gt;                 &lt;chr&gt;                             &lt;chr&gt;
+1 &lt;NA&gt;                  &lt;NA&gt;                              &lt;NA&gt; 
+2 &lt;NA&gt;                  &lt;NA&gt;                              &lt;NA&gt; 
+3 &lt;NA&gt;                  &lt;NA&gt;                              &lt;NA&gt; 
+4 &lt;NA&gt;                  &lt;NA&gt;                              &lt;NA&gt; 
+5 &lt;NA&gt;                  &lt;NA&gt;                              &lt;NA&gt; 
+  `Black/ African American` `Hispanic/ Latino of any race(s)`
+  &lt;chr&gt;                     &lt;chr&gt;                            
+1 &lt;NA&gt;                      &lt;NA&gt;                             
+2 &lt;NA&gt;                      &lt;NA&gt;                             
+3 &lt;NA&gt;                      &lt;NA&gt;                             
+4 &lt;NA&gt;                      &lt;NA&gt;                             
+5 &lt;NA&gt;                      &lt;NA&gt;                             
+  `Native Hawaiian/ Other Pacific Islander` `Two or More Races` White
+  &lt;chr&gt;                                     &lt;chr&gt;               &lt;chr&gt;
+1 &lt;NA&gt;                                      &lt;NA&gt;                &lt;NA&gt; 
+2 &lt;NA&gt;                                      &lt;NA&gt;                &lt;NA&gt; 
+3 &lt;NA&gt;                                      &lt;NA&gt;                &lt;NA&gt; 
+4 &lt;NA&gt;                                      &lt;NA&gt;                &lt;NA&gt; 
+5 Native Hawaiian/ Other Pacific Islander   &lt;NA&gt;                &lt;NA&gt; 
+  `Students with Disabilities` `Students without Disabilities`
+  &lt;chr&gt;                        &lt;chr&gt;                          
+1 &lt;NA&gt;                         &lt;NA&gt;                           
+2 &lt;NA&gt;                         &lt;NA&gt;                           
+3 &lt;NA&gt;                         &lt;NA&gt;                           
+4 &lt;NA&gt;                         &lt;NA&gt;                           
+5 &lt;NA&gt;                         &lt;NA&gt;                           </code></pre>
+</div>
+</div>
+<p>For statsitcal modeling with our dataset it seems that a linear model would be ideal as graduation rate is a continous function so it would not make sense to use a logistic model. To start next week we want to explore this more, testing out different response variables such as graduation rate or household income. Predictor varialbes we are intesreted in exploring are race, presence of diability, and gender.</p>
 
 
 
-</section>
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1743393600000" data-listing-file-modified-sort="1743452507047" data-listing-date-modified-sort="1743393600000" data-listing-reading-time-sort="1" data-listing-word-count-sort="194">
-<div class="thumbnail">
-<p><a href="./posts/2025-03-31-blog-post-4-/blog-post-4-.html" class="no-external"></a></p><a href="./posts/2025-03-31-blog-post-4-/blog-post-4-.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2025-03-31-blog-post-4-/blog-post-4-.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-03-31-blog-post-4-/blog-post-4-.html" class="no-external">Blog Post 4</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2025-03-31-blog-post-4-/blog-post-4-.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2025-03-31-blog-post-4-/blog-post-4-.html" class="no-external">This week we explored our combined dataset more trying to understand different interactions that can be found in our data. The combined data set we had complied all…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-03-31-blog-post-4-/blog-post-4-.html" class="no-external">
-<div class="listing-date">
-Mar 31, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1742788800000" data-listing-file-modified-sort="1742874811103" data-listing-date-modified-sort="1742788800000" data-listing-reading-time-sort="1" data-listing-word-count-sort="189">
-<div class="thumbnail">
-<p><a href="./posts/2025-03-24-blog-post-3-/blog-post-3-.html" class="no-external"></a></p><a href="./posts/2025-03-24-blog-post-3-/blog-post-3-.html" class="no-external">
-<p class="card-img-top"><img src="posts/2025-03-24-blog-post-3-/plots/grad_trend_all_students.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2025-03-24-blog-post-3-/blog-post-3-.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-03-24-blog-post-3-/blog-post-3-.html" class="no-external">Blog Post 3</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2025-03-24-blog-post-3-/blog-post-3-.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2025-03-24-blog-post-3-/blog-post-3-.html" class="no-external">The combined dataset merges county-level graduation data with 2023 income data for the state of Washington. The education dataset includes variables such as graduation rate…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-03-24-blog-post-3-/blog-post-3-.html" class="no-external">
-<div class="listing-date">
-Mar 24, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1742184000000" data-listing-file-modified-sort="1742261366627" data-listing-date-modified-sort="1742184000000" data-listing-reading-time-sort="3" data-listing-word-count-sort="453">
-<div class="thumbnail">
-<p><a href="./posts/2025-03-17-blog-post-2/blog2.html" class="no-external"></a></p><a href="./posts/2025-03-17-blog-post-2/blog2.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2025-03-17-blog-post-2/blog2.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-03-17-blog-post-2/blog2.html" class="no-external">Blog Post 2</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2025-03-17-blog-post-2/blog2.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2025-03-17-blog-post-2/blog2.html" class="no-external">This dataset comes from the U.S. Department of Education. It originates from state and district-level education agencies that report graduation rates annually. One such…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-03-17-blog-post-2/blog2.html" class="no-external">
-<div class="listing-date">
-Mar 17, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1740978000000" data-listing-file-modified-sort="1741052107910" data-listing-date-modified-sort="1740978000000" data-listing-reading-time-sort="3" data-listing-word-count-sort="538">
-<div class="thumbnail">
-<p><a href="./posts/2025-03-03-blog-post-1-/blog-post-1-.html" class="no-external"></a></p><a href="./posts/2025-03-03-blog-post-1-/blog-post-1-.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2025-03-03-blog-post-1-/blog-post-1-.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-03-03-blog-post-1-/blog-post-1-.html" class="no-external">Blog Post 1</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2025-03-03-blog-post-1-/blog-post-1-.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2025-03-03-blog-post-1-/blog-post-1-.html" class="no-external">Report Card Graduation 2023-24 https://catalog.data.gov/dataset/report-card-graduation-2023-24-054a5</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-03-03-blog-post-1-/blog-post-1-.html" class="no-external">
-<div class="listing-date">
-Mar 3, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1728014400000" data-listing-file-modified-sort="1741051561671" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="232">
-<div class="thumbnail">
-<p><a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external"></a></p><a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external">General Tips</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external">Some small but important tips to follow. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external">
-<div class="listing-date">
-Oct 4, 2024
-</div>
-<div class="listing-author">
-Daniel Sussman
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="" data-listing-date-sort="1708923600000" data-listing-file-modified-sort="1741051561670" data-listing-date-modified-sort="1708923600000" data-listing-reading-time-sort="1" data-listing-word-count-sort="56">
-<div class="thumbnail">
-<p><a href="./posts/2023-12-20-examples/examples.html" class="no-external"></a></p><a href="./posts/2023-12-20-examples/examples.html" class="no-external">
-<p class="card-img-top"><img src="posts/2023-12-20-examples/examples_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2023-12-20-examples/examples.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external">Examples</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-
-</div>
-<div class="listing-description">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external">Here are some examples of changing the size of a figure.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external">
-<div class="listing-date">
-Feb 26, 2024
-</div>
-<div class="listing-author">
-Daniel Sussman
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="" data-listing-date-sort="1708664400000" data-listing-file-modified-sort="1741051561670" data-listing-date-modified-sort="1708664400000" data-listing-reading-time-sort="3" data-listing-word-count-sort="402">
-<div class="thumbnail">
-<p><a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external"></a></p><a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">Getting started</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-
-</div>
-<div class="listing-description">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">Directions to set up your website and create your first post. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">
-<div class="listing-date">
-Feb 23, 2024
-</div>
-<div class="listing-author">
-Daniel Sussman
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="" data-listing-date-sort="1708491600000" data-listing-file-modified-sort="1741051561669" data-listing-date-modified-sort="1708491600000" data-listing-reading-time-sort="3" data-listing-word-count-sort="404">
-<div class="thumbnail">
-<p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external"></a></p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">
-<p><img loading="lazy" src="./posts/2023-10-13-first-team-meeting/a-business-team-giving-fist-bump-in-agreement.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">First Team Meeting</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-
-</div>
-<div class="listing-description">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">This post details the steps you’ll take for your first team meeting. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">
-<div class="listing-date">
-Feb 21, 2024
-</div>
-<div class="listing-author">
-Daniel Sussman
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
