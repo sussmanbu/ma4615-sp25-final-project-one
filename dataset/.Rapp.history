@@ -1,1 +1,2 @@
 load("/Users/david/Desktop/MA 415/ma4615-sp25-final-project-one/dataset/state_grad_clean.rds")
+load("/Users/zihanyang/ma4615-sp25-final-project-one/dataset/combined_grad_income.rds")
