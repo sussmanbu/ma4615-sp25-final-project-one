@@ -28,7 +28,6 @@ massachusetts_district_data <- final_merged_no_charter |>
     SAT_Math_Mean_Score = Math,
     Student_Teacher_Ratio = `Student / Teacher Ratio`,
     Low_Income_Percent = `Low Income %.y`
-  ) |>
-  mutate(across(where(is.character), trimws))
+  ) 
 
 write_rds(massachusetts_district_data, file = here::here("dataset", "massachusetts_district_data.rds"))
