@@ -4,6 +4,7 @@ library(dplyr)
 final_merged_no_charter <- read_csv(here::here("dataset", "final_merged_no_charter.csv"))
 
 massachusetts_district_data <- final_merged_no_charter |>
+  filter(!str_detect(tolower(`District Name`), "technical|vocational|agricultural|virtual")) |>
   select(-`...1`, -`District Code_y`) |>
   rename(
     District_Code = `District Code_x`,
