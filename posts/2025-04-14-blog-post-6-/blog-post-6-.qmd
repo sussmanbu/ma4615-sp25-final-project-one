@@ -1,0 +1,9 @@
+---
+title: "Blog Post 6 "
+author: ""
+date: "2025-04-14"
+date-modified: "2025-04-14"
+draft: FALSE
+---
+
+This week we filtered the dataset we have, focusing on making sure we can fit it together with another dataset, hopefully census data. The main problem we faced was the district data included Charter Schools, Technical Schools, Vocational Schools, and Argricultural Schools. We had to remove all of these for two reasons, it would be difficult to locate all of these schools and merge them with their actual town data and two many of these schools admit students from around the state, mainly around their town. This may lead to students that aren't from the town being included in this dataset but not the census data. As a result of this issue we found it was best to just remove these schools and miss out on some data as we are really only looking at public school data. One thing to note is many of these schools had a more diverse student body so missing out on them will likely lead our data to be less intriguing but it's a sacrifice that has to be made to properly fit the two datasets together. 
