@@ -1,0 +1,8 @@
+---
+title: "Blog 6"
+author: "Team One"
+date: "2025-04-14"
+date-modified: "2025-04-14"
+draft: FALSE
+---
+Furthermore, we included income as an additional predictor, though this required extra steps since average income by school district wasn't directly available. To approximate it, we matched school districts to their corresponding counties and used U.S. Census county-level income data. Including income is important because it can help explain differences in educational outcomes. Students in lower-income areas may face barriers that impact access, resources, and performance. This variable further adds to our characteristics group, allowing us to better capture the structural and demographic factors influencing educational equity.
