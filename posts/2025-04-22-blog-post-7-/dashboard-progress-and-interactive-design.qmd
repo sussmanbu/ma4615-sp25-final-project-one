@@ -1,9 +1,12 @@
 ---
-title: "blog-post-7-"
-format: html
+title: "Dashboard Progress and Interactive Design"
+author: "Aleeza Shah"
+date: "2025-04-22"
+date-modified: "2025-04-22"
+draft: FALSE
 ---
 
-## **Blog Post 7: Dashboard Progress and Interactive Design**
+# Blog Post 7: Dashboard Progress and Interactive Design
 
 Over the past week, we’ve made significant strides on our interactive dashboard for the final project. The goal has been to move beyond static graphs and toward a Shiny application that invites users to explore patterns in Massachusetts graduation data. We've focused on enabling both broad trends and granular insights — two qualities we believe are central to an effective data visualization tool.
 
@@ -11,19 +14,21 @@ Over the past week, we’ve made significant strides on our interactive dashboar
 
 Our current Shiny dashboard includes five primary tabs:
 
-Graduation Overview: A line chart that tracks graduation rate trends across years for a selected district. This offers a high-level view of progress over time, which can help users contextualize local outcomes in historical terms.
+1.  Graduation Overview: A line chart that tracks graduation rate trends across years for a selected district. This offers a high-level view of progress over time, which can help users contextualize local outcomes in historical terms.
 
-Graduation vs. Dropout Rates: A bar chart contrasting the percentage of students who graduate with those who drop out in a given year. This dual view is useful for understanding not just how many succeed, but also where retention gaps may exist.
+2.  Graduation vs. Dropout Rates: A bar chart contrasting the percentage of students who graduate with those who drop out in a given year. This dual view is useful for understanding not just how many succeed, but also where retention gaps may exist.
 
-Income vs. Graduation: An exploratory scatterplot that shows how the proportion of low-income students relates to graduation rates, with filtering by year. This is a powerful tool for detecting equity disparities and long-term socioeconomic effects on academic success.
+3.  Income vs. Graduation: An exploratory scatterplot that shows how the proportion of low-income students relates to graduation rates, with filtering by year. This is a powerful tool for detecting equity disparities and long-term socioeconomic effects on academic success.
 
-Demographics: A dynamic bar chart that displays the demographic makeup of the selected district and year. By comparing different student groups, users can start to infer potential structural inequities.
+4.  Demographics: A dynamic bar chart that displays the demographic makeup of the selected district and year. By comparing different student groups, users can start to infer potential structural inequities.
 
-SAT Scores: A simple visualization of mean SAT Reading/Writing and Math scores, which we use to compare college readiness across districts and years.
+5.  SAT Scores: A simple visualization of mean SAT Reading/Writing and Math scores, which we use to compare college readiness across districts and years.
 
-![](images/clipboard-2714046486.png)
+![](images/clipboard-3142502979.png)
 
-![Above are some screenshots from the dashboard so far.](images/clipboard-2148581301.png){alt="Above are some screenshots from the dashboard so far."}
+![](images/clipboard-2930010374.png)
+
+Above are some screenshots from the dashboard so far.
 
 ### Design Philosophy:
 
