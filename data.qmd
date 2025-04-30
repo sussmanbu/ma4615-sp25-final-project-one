@@ -92,27 +92,6 @@ ggplot(race_distribution, aes(x = "", y = Percent, fill = Race)) +
 ```
 
 
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(tidyverse)
-
-statewide_trend <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
-  mutate(Low_Income_Percent = as.numeric(ifelse(Low_Income_Percent == "nill", NA, Low_Income_Percent))) |>
-  group_by(Year)|>
-  summarize(State_Avg_Low_Income = mean(Low_Income_Percent, na.rm = TRUE))
-
-ggplot(statewide_trend, aes(x = factor(Year), y = State_Avg_Low_Income)) +
-  geom_point(size = 3, color = "darkred") +
-  labs(
-    title = "Statewide Low Income % – Dot Plot by Year",
-    x = "Year",
-    y = "Low Income (%)"
-  ) +
-  theme_minimal()
-
-```
-
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 
@@ -134,5 +113,22 @@ ggplot(sex_distribution, aes(x = "", y = Percent, fill = Sex)) +
 
 ```
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
 
+statewide_trend <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
+  mutate(Low_Income_Percent = as.numeric(ifelse(Low_Income_Percent == "nill", NA, Low_Income_Percent))) |>
+  group_by(Year)|>
+  summarize(State_Avg_Low_Income = mean(Low_Income_Percent, na.rm = TRUE))
+
+ggplot(statewide_trend, aes(x = factor(Year), y = State_Avg_Low_Income)) +
+  geom_point(size = 3, color = "darkred") +
+  labs(
+    title = "Statewide Low Income % – Dot Plot by Year",
+    x = "Year",
+    y = "Low Income (%)"
+  ) +
+  theme_minimal()
+
+```
 
