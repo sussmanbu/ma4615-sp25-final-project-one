@@ -50,7 +50,7 @@ Some things to note, all charter, technical, vocational, agricultural, and virtu
 
 ##### 1. Percent Graduated over time in Hampden-Wilbraham
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 
 district_data <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
@@ -67,7 +67,7 @@ ggplot(district_data, aes(x = `Year`, y = `Percent_Graduated`, fill = `Percent_G
 
 ##### 2. Race Distribution in Massachusetts in 2022
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 
 race_distribution <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
@@ -96,7 +96,7 @@ ggplot(race_distribution, aes(x = "", y = Percent, fill = Race)) +
 
 ###### 3. Low Income Percent Over Time
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 
 statewide_trend <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
@@ -117,7 +117,7 @@ ggplot(statewide_trend, aes(x = factor(Year), y = State_Avg_Low_Income)) +
 
 ##### 4. Sex Distibution in Massachusetts in 2022
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 
 sex_distribution <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
