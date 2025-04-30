@@ -1,10 +1,12 @@
 library(readr)
 library(dplyr)
-
+library(tidyverse)
 final_merged_no_charter <- read_csv(here::here("dataset", "final_merged_no_charter.csv"))
 
 massachusetts_district_data <- final_merged_no_charter |>
-  filter(!str_detect(tolower(`District Name`), "technical|vocational|agricultural|virtual")) |>
+  filter(!str_detect(tolower(`District Name`), "technical|vocational|agricultural|virtual|voc|hmcs|agr|careers|tech")) |>
+  mutate(across(everything(), ~str_replace(., "nil", "0"))) |>
+  arrange(`District Name`, `Year`) |>
   select(-`...1`, -`District Code_y`) |>
   rename(
     District_Code = `District Code_x`,
@@ -28,7 +30,7 @@ massachusetts_district_data <- final_merged_no_charter |>
     SAT_Reading_Writing_Mean_Score = `Reading / Writing`,
     SAT_Math_Mean_Score = Math,
     Student_Teacher_Ratio = `Student / Teacher Ratio`,
-    Low_Income_Percent = `Low Income %.y`
-  ) 
-
+    Low_Income_Percent = `Low Income %.y`)
 write_rds(massachusetts_district_data, file = here::here("dataset", "massachusetts_district_data.rds"))
+
+
