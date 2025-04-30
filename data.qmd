@@ -48,7 +48,6 @@ Some things to note, all charter, technical, vocational, agricultural, and virtu
 
 #### Dataset Visualizations
 
-##### 1. Percent Graduated over time in Hampden-Wilbraham
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -65,7 +64,6 @@ ggplot(district_data, aes(x = `Year`, y = `Percent_Graduated`, fill = `Percent_G
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-##### 2. Race Distribution in Massachusetts in 2022
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -94,7 +92,6 @@ ggplot(race_distribution, aes(x = "", y = Percent, fill = Race)) +
 ```
 
 
-###### 3. Low Income Percent Over Time
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -115,7 +112,6 @@ ggplot(statewide_trend, aes(x = factor(Year), y = State_Avg_Low_Income)) +
 
 ```
 
-##### 4. Sex Distibution in Massachusetts in 2022
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
