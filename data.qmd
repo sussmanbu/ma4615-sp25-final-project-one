@@ -23,14 +23,14 @@ This dataset provided by the Massachusetts Deparment of Education and Secondary 
 
 The main variablesfocused on in this dataset were demographics of the student body. In total there are 24 unique variables, of these 
 
-- District Name: Name of each school district
-- Perecent_Graduated: Graduation rates for the given school district in each year
-- 2 Main Race variables: 
+- **District Name**: Name of each school district
+- **Perecent_Graduated**: Graduation rates for the given school district in each year
+- **2 Main Race variables**: 
   - Perecent_Black: Percentage of student body that identifies as being Black
   - Percent_White: Percentage of student body that identifies as being White
-- SAT_Reading_Writing_Mean_Score: Average Reading and Writing SAT score for school district in a given year
-- SAT_Math_Mean_Score: Average Math SAT score for school district in a given year
-- Low_Income_Percent: Indicates the proportion of students enrolled who come from economically disadvantaged backgrounds, based on state or federal criteria.
+- **SAT_Reading_Writing_Mean_Score**: Average Reading and Writing SAT score for school district in a given year
+- **SAT_Math_Mean_Score**: Average Math SAT score for school district in a given year
+- **Low_Income_Percent**: Indicates the proportion of students enrolled who come from economically disadvantaged backgrounds, based on state or federal criteria.
 
 #### Cleaning Processs
 
@@ -129,6 +129,38 @@ ggplot(statewide_trend, aes(x = factor(Year), y = State_Avg_Low_Income)) +
     y = "Low Income (%)"
   ) +
   theme_minimal()
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+massachusetts_district_data <- read_rds(here::here("dataset", "massachusetts_district_data.rds"))
+
+sat_scores_2022 <- massachusetts_district_data |>
+  filter(Year == 2022) |>
+  select(`District Name`, SAT_Math_Mean_Score) |>
+  drop_na(SAT_Math_Mean_Score) |>
+  filter(SAT_Math_Mean_Score != 0) |>
+  mutate(SAT_Math_Mean_Score = as.numeric(SAT_Math_Mean_Score),
+         `District Name` = factor(`District Name`))
+
+ggplot(sat_scores_2022, aes(x = `District Name`, y = SAT_Math_Mean_Score)) +
+  geom_line(group = 1, color = "blue") + 
+  geom_point(color = "red") + 
+  labs(title = "SAT Math Scores for Massachusetts in 2022",
+       x = "District",
+       y = "Mean SAT Math Score") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 3),  
+        axis.text.y = element_text(size = 12),  
+        axis.title.x = element_text(size = 12), 
+        axis.title.y = element_text(size = 12)) +
+  scale_y_continuous(labels = function(x) format(x, big.mark = ","))
+
+
+
+
 
 ```
 
