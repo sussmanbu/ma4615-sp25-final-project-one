@@ -8,79 +8,135 @@ editor:
     wrap: sentence
 ---
 
-![](images/data-import-cheatsheet-thumbs.png)
+![](images/Commencement2024 (1).jpg)
 
-This comes from the file `data.qmd`.
+## Datasources
 
-Your first steps in this project will be to find data to work on.
+### Dataset 1: Massachusetts District Data
 
-I recommend trying to find data that interests you and that you are knowledgeable about.
-A bad example would be if you have no interest in video games but your data set is about video games.
-I also recommend finding data that is related to current events, social justice, and other areas that have an impact.
+#### Source 
+[Link to dataset](https://profiles.doe.mass.edu/statereport/)
 
-Initially, you will study *one dataset* but later you will need to combine that data with another dataset.
-For this reason, I recommend finding data that has some date and/or location components.
-These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable.
-Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.
+This dataset provided by the Massachusetts Deparment of Education and Secondary Education offers comprehensive, state level education statistics. It includes data on student enrollment, academic performance, graduation rates, and demographics of the student body. It offers district-level information spanning 18 years (2006–2023). The data was complied guide educational imporvement and support policies and programs. To ensure consistency across this panel, we standardized district names and aligned year columns before merging graduation data with enrollment figures for each year. Additionally, SAT performance data was incorporated by matching district and year, with SAT scores appended only where districts already existed in the core panel. Empty cells were replaced zeros to maintain clarity during downstream processing.
 
-## What makes a good data set?
+#### Layout 
 
--   Data you are interested in and care about.
--   Data where there are a lot of potential questions that you can explore.
--   A data set that isn't completely cleaned already.
--   Multiple sources for data that you can combine.
--   Some type of time and/or location component.
+The main variablesfocused on in this dataset were demographics of the student body. In total there are 24 unique variables, of these 
 
-## Where to keep data?
+- District Name: Name of each school district
+- Perecent_Graduated: Graduation rates for the given school district in each year
+- 2 Main Race variables: 
+  - Perecent_Black: Percentage of student body that identifies as being Black
+  - Percent_White: Percentage of student body that identifies as being White
+- SAT_Reading_Writing_Mean_Score: Average Reading and Writing SAT score for school district in a given year
+- SAT_Math_Mean_Score: Average Math SAT score for school district in a given year
+- Low_Income_Percent: Indicates the proportion of students enrolled who come from economically disadvantaged backgrounds, based on state or federal criteria.
 
-Below 50mb: In `dataset` folder
+#### Cleaning Processs
 
-Above 50mb: In `dataset-ignore` folder which you will have to create manually.
-This folder will be ignored by `git` so you'll have to manually sync these files across your team.
+[Cleaning Script](/scripts/new_clean_data.R)
 
-### Sharing your data
+The code executes the following operations: 
 
-For small datasets (\<50mb), you can use the `dataset` folder that is tracked by github.
-Stage and commit the files just like you would any other file.
+1. Loads the data from `final_merged_no_charter.csv` located in the dataset directory.
+2. Removes all Technical, Vocational, Agricultural, and Virtual schools from the dataset.
+3. Rearranges the dataset to list schools by district alphabetically and by year.
+4. Recodes the variable names to be easier to understand and work with.
+5. Saves the cleaned dataset to `massachusetts_district_data.rds` in the dataset directory. 
 
-For larger datasets, you'll need to create a new folder in the project root directory named `dataset-ignore`.
-This will be ignored by git (based off the `.gitignore` file in the project root directory) which will help you avoid issues with Github's size limits.
-Your team will have to manually make sure the data files in `dataset-ignore` are synced across team members.
+Some things to note, all charter, technical, vocational, agricultural, and virtual schools were removed from the dataset. When combining this dataset with another it felt prudent to remove charter schools as people from outside the school district can attend these schools. Likewise other school types that weren't strictly public were removed to make the combination process more efficient. 
 
-Your [clean_data.R](/scripts/clean_data.R) file in the `scripts` folder is the file where you will import the raw data that you download, clean it, and write `.rds` file(s) (using `write_rds`) that you'll load in your analysis page.
-If desirable, you can have multiple scripts that produce different derived data sets, just make sure to link to them on this page.
+#### Dataset Visualizations
 
-You should never use absolute paths (eg. `/Users/danielsussman/path/to/project/` or `C:\MA415\\Final_Project\`).
-Instead, use the `here` function from the [`here` package](https://here.r-lib.org/articles/here.html) to avoid path problems.
+##### 1. Percent Graduated over time in Hampden-Wilbraham
 
-### Clean data script
+```{r echo=FALSE}
+library(tidyverse)
 
-The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them.
-This file might create a derivative data set that you then use for your subsequent analysis.
-Note that you don't need to run this script from every post/page.
-Instead, you can load in the results of this script, which will usually be `.rds` files.
-In your data page you'll describe how these results were created.
-If you have a very large data set, you might save smaller data sets that you can use for exploration purposes.
-To link to this file, you can use `[cleaning script](/scripts/clean_data.R)` wich appears as [cleaning script](/scripts/clean_data.R).
+district_data <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
+  filter(`District Name` == "hampden-wilbraham")
 
-------------------------------------------------------------------------
+ggplot(district_data, aes(x = `Year`, y = `Percent_Graduated`, fill = `Percent_Graduated`)) +
+  geom_bar(stat = "identity", width = 0.5, na.rm = TRUE) +  
+  labs(title = "Graduation Percentage in Hampden-Wilbraham", 
+       x = "Year", 
+       y = "Graduation Percentage") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
-## Rubric: On this page
+##### 2. Race Distribution in Massachusetts in 2022
 
-You will
+```{r echo=FALSE}
+library(tidyverse)
 
--   Describe where/how to find data.
-    -   You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.
-    -   Why was the data collected/curated? Who put it together? (This is important, if you don't know why it was collected then that might not be a good dataset to look at.
--   Describe the different data files used and what each variable means.
-    -   If you have many variables then only describe the most relevant ones, possibly grouping together variables that are similar, and summarize the rest.
-    -   Use figures or tables to help explain the data. For example, showing a histogram or bar chart for a particularly important variable can provide a quick overview of the values that variable tends to take.
--   Describe any cleaning you had to do for your data.
-    -   You *must* include a link to your `clean_data.R` file.
-    -   Rename variables and recode factors to make data more clear.
-    -   Also, describe any additional R packages you used outside of those covered in class.
-    -   Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.
-    -   Some repetition of what you do in your `clean_data.R` file is fine and encouraged if it helps explain what you did.
--   Organization, clarity, cleanliness of the page
-    -   Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
-    -   This page should be self-contained.
+race_distribution <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
+  filter(Year == 2022) |>
+  mutate(across(starts_with("Percent_"), ~as.numeric(ifelse(. == "nill", NA, .)))) |>
+  summarize(
+    American_Indian = mean(Percent_American_Indian, na.rm = TRUE),
+    Asian = mean(Percent_Asian, na.rm = TRUE),
+    Black = mean(Percent_Black, na.rm = TRUE),
+    Hispanic = mean(Percent_Hispanic, na.rm = TRUE),
+    Multi_Race = mean(Percent_Multi_Race, na.rm = TRUE),
+    Pacific_Islander = mean(Percent_Pacific_Islander, na.rm = TRUE),
+    White = mean(Percent_White, na.rm = TRUE)
+  ) |>
+  pivot_longer(cols = everything(), names_to = "Race", values_to = "Percent")
+
+ggplot(race_distribution, aes(x = "", y = Percent, fill = Race)) +
+  geom_col(width = 1) +
+  coord_polar("y") +
+  labs(title = "Race Distribution in Massachusetts (2022)") +
+  theme_void() +
+  theme(legend.position = "right")
+
+```
+
+
+###### 3. Low Income Percent Over Time
+
+```{r echo=FALSE}
+library(tidyverse)
+
+statewide_trend <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
+  mutate(Low_Income_Percent = as.numeric(ifelse(Low_Income_Percent == "nill", NA, Low_Income_Percent))) |>
+  group_by(Year)|>
+  summarize(State_Avg_Low_Income = mean(Low_Income_Percent, na.rm = TRUE))
+
+ggplot(statewide_trend, aes(x = factor(Year), y = State_Avg_Low_Income)) +
+  geom_point(size = 3, color = "darkred") +
+  labs(
+    title = "Statewide Low Income % – Dot Plot by Year",
+    x = "Year",
+    y = "Low Income (%)"
+  ) +
+  theme_minimal()
+
+```
+
+##### 4. Sex Distibution in Massachusetts in 2022
+
+```{r echo=FALSE}
+library(tidyverse)
+
+sex_distribution <- read_rds(here::here("dataset","massachusetts_district_data.rds")) |>
+  filter(Year == 2022) |>
+  mutate(across(starts_with("Percent_"), ~as.numeric(ifelse(. == "nill", NA, .)))) |>
+  summarize(
+    Female = mean(Percent_Female, na.rm = TRUE),
+    Male = mean(Percent_Male, na.rm = TRUE)
+  ) |>
+  pivot_longer(cols = everything(), names_to = "Sex", values_to = "Percent")
+
+ggplot(sex_distribution, aes(x = "", y = Percent, fill = Sex)) +
+  geom_col(width = 1) +
+  coord_polar("y") +
+  labs(title = "Sex Distribution in Massachusetts (2022)") +
+  theme_void() +
+  theme(legend.position = "right")
+
+```
+
+
+
