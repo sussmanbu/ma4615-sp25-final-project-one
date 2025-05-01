@@ -164,3 +164,9 @@ ggplot(statewide_trend, aes(x = factor(Year), y = State_Avg_Low_Income)) +
 
 ```
 
+### Dataset 2: Massachusetts Per Pupil Expenditure
+
+#### Source
+[Link to dataset](https://profiles.doe.mass.edu/statereport/ppx.aspx)
+
+This dataset provided by the 
