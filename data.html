@@ -169,34 +169,34 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="layout" class="level4">
 <h4 class="anchored" data-anchor-id="layout">Layout</h4>
-<p>The main variables focused on in this dataset were demographics of the student body. In total there are 24 unique variables, of these 7 are very infulential to our research.</p>
+<p>The main variables focused on in this dataset were demographics of the student body. In total, there are 24 unique variables, of which 7 are very influential to our research.</p>
 <ul>
 <li><strong>Year</strong>: Year</li>
 <li><strong>District Name</strong>: Name of each school district</li>
-<li><strong>Perecent_Graduated</strong>: Graduation rates for the given school district in each year</li>
+<li><strong>Percent_Graduated</strong>: Graduation rates for the given school district in each year</li>
 <li><strong>2 Main Race variables</strong>:
 <ul>
-<li>Perecent_Black: Percentage of student body that identifies as being Black</li>
-<li>Percent_White: Percentage of student body that identifies as being White</li>
+<li><strong>Percent_Black</strong>: Percentage of the student body that identifies as being Black</li>
+<li><strong>Percent_White</strong>: Percentage of the student body that identifies as being White</li>
 </ul></li>
-<li><strong>SAT_Reading_Writing_Mean_Score</strong>: Average Reading and Writing SAT score for school district in a given year</li>
-<li><strong>SAT_Math_Mean_Score</strong>: Average Math SAT score for school district in a given year</li>
+<li><strong>SAT_Reading_Writing_Mean_Score</strong>: Average Reading and Writing SAT score for the school district in a given year</li>
+<li><strong>SAT_Math_Mean_Score</strong>: Average Math SAT score for the school district in a given year</li>
 <li><strong>Low_Income_Percent</strong>: Indicates the proportion of students enrolled who come from economically disadvantaged backgrounds, based on state or federal criteria.</li>
 </ul>
 </section>
-<section id="cleaning-processs" class="level4">
-<h4 class="anchored" data-anchor-id="cleaning-processs">Cleaning Processs</h4>
+<section id="cleaning-process" class="level4">
+<h4 class="anchored" data-anchor-id="cleaning-process">Cleaning Process</h4>
 <p><a href="./scripts/dataset1_clean_data.R">Cleaning Script</a></p>
 <p>The code executes the following operations:</p>
 <ol type="1">
 <li>Loads the data from <code>final_merged_no_charter.csv</code> located in the dataset directory.</li>
 <li>Removes all Technical, Vocational, Agricultural, and Virtual schools from the dataset.</li>
-<li>Changed ‘nil’ values to 0</li>
+<li>Changes ‘nil’ values to 0.</li>
 <li>Rearranges the dataset to list schools by district alphabetically and by year.</li>
 <li>Recodes the variable names to be easier to understand and work with.</li>
 <li>Saves the cleaned dataset to <code>massachusetts_district_data.rds</code> in the dataset directory.</li>
 </ol>
-<p>Some things to note, all charter, technical, vocational, agricultural, and virtual schools were removed from the dataset. When combining this dataset with another it felt prudent to remove charter schools as people from outside the school district can attend these schools. Likewise other school types that weren’t strictly public were removed to make the combination process more efficient.</p>
+<p>Some things to note: All charter, technical, vocational, agricultural, and virtual schools were removed from the dataset. When combining this dataset with another, it felt prudent to remove charter schools, as people from outside the school district can attend these schools. Likewise, other school types that weren’t strictly public were removed to make the combination process more efficient.</p>
 </section>
 <section id="dataset-visualizations" class="level4">
 <h4 class="anchored" data-anchor-id="dataset-visualizations">Dataset Visualizations</h4>
@@ -256,22 +256,30 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="layout-1" class="level4">
 <h4 class="anchored" data-anchor-id="layout-1">Layout</h4>
-<p>This data set contains 9 variables of which 4 are influential to our study.</p>
-<p>-<strong>Year</strong>: Year -<strong>District Name</strong>: Name of each school district -<strong>Total_Expenditures</strong>: Total expenditures for each school district per year -<strong>Total_Expenditures_Per_Pupil</strong>: Total expenditures per student for each school district per year.</p>
+<p>This data set contains 9 variables, of which 4 are influential to our study.</p>
+<ul>
+<li><strong>Year</strong>: Year</li>
+<li><strong>District Name</strong>: Name of each school district</li>
+<li><strong>Total_Expenditures</strong>: Total expenditures for each school district per year</li>
+<li><strong>Total_Expenditures_Per_Pupil</strong>: Total expenditures per student for each school district per year.</li>
+</ul>
 </section>
-<section id="cleaning-processs-1" class="level4">
-<h4 class="anchored" data-anchor-id="cleaning-processs-1">Cleaning Processs</h4>
+<section id="cleaning-process-1" class="level4">
+<h4 class="anchored" data-anchor-id="cleaning-process-1">Cleaning Process</h4>
 <p><a href="./scripts/dataset2_clean_data.R">Cleaning Script</a></p>
 <p>The code executes the following operations:</p>
 <ol type="1">
-<li>Set up and locate files in the dataset directory, Filters to include only files with names like <code>PerPupilExpenditures_YYYY.rds</code>.</li>
-<li>Makes the first row the column names, then drops first row.</li>
+<li>Set up and locate files in the dataset directory, filters to include only files with names like <code>PerPupilExpenditures_YYYY.rds</code>.</li>
+<li>Makes the first row the column names, then drops the first row.</li>
 <li>Filters out Charter, Vocational, and Technical schools as well as state totals.</li>
-<li>Ensures a consistent layout for year.</li>
+<li>Ensures a consistent layout for the year.</li>
 <li>Renames columns for consistency with dataset 1.</li>
 <li>Saves the cleaned dataset to <code>PerPupilExpenditures_combined_filtered.rds</code> in the dataset directory.</li>
 </ol>
-<p>One thing to note is the datasets were individual per year and had to be combined into one larger dataset that had all years instead of being separate. #### Dataset Visualizations</p>
+<p>One thing to note is the datasets were individual per year and had to be combined into one larger dataset that had all years instead of being separate.</p>
+</section>
+<section id="dataset-visualizations-1" class="level4">
+<h4 class="anchored" data-anchor-id="dataset-visualizations-1">Dataset Visualizations</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -299,21 +307,21 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="merged-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="merged-dataset">Merged Dataset</h3>
-<p>The merged dataset combines all variables from <code>massachusets_district_data.rds</code> and <code>PerPupilExpenditures_combined_filtered.rds</code>.</p>
+<p>The merged dataset combines all variables from <code>massachusetts_district_data.rds</code> and <code>PerPupilExpenditures_combined_filtered.rds</code>.</p>
 <section id="merging-the-data" class="level4">
 <h4 class="anchored" data-anchor-id="merging-the-data">Merging the data</h4>
 <p><a href="./scripts/dataset_combined_clean_data.R">Merging Script</a></p>
-<p>The code executres the following operations:</p>
+<p>The code executes the following operations:</p>
 <ol type="1">
-<li>Loads the datasets <code>massachusets_district_data.rds</code> and <code>PerPupilExpenditures_combined_filtered.rds</code> from the dataset directory</li>
-<li>Cleans data in <code>massachusets_district_data.rds</code>Converts the “District Name” column to lowercase (tolower()) to ensure uniformity in case sensitivity. Converts the “Year” column to an integer (as.integer()) to make sure it’s in a proper numeric format for analysis.</li>
-<li>Cleans the <code>PerPupilExpenditures_combined_filtered.rds</code> to convert “District Name” to lower case and “Year” to be an integer.</li>
+<li>Loads the datasets <code>massachusetts_district_data.rds</code> and <code>PerPupilExpenditures_combined_filtered.rds</code> from the dataset directory.</li>
+<li>Cleans data in <code>massachusetts_district_data.rds</code>. Converts the “District Name” column to lowercase (tolower()) to ensure uniformity in case sensitivity. Converts the “Year” column to an integer (as.integer()) to make sure it’s in a proper numeric format for analysis.</li>
+<li>Cleans the <code>PerPupilExpenditures_combined_filtered.rds</code> to convert “District Name” to lowercase and “Year” to be an integer.</li>
 <li>Deletes one of the District Code columns.</li>
 <li>Merges the datasets and saves them to the dataset directory.</li>
 </ol>
 </section>
-<section id="data-visulizations" class="level4">
-<h4 class="anchored" data-anchor-id="data-visulizations">Data Visulizations</h4>
+<section id="data-visualizations" class="level4">
+<h4 class="anchored" data-anchor-id="data-visualizations">Data Visualizations</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div>
