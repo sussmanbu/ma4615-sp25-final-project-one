@@ -17,12 +17,13 @@ editor:
 #### Source 
 [Link to dataset](https://profiles.doe.mass.edu/statereport/)
 
-This dataset provided by the Massachusetts Deparment of Education and Secondary Education offers comprehensive, state level education statistics. It includes data on student enrollment, academic performance, graduation rates, and demographics of the student body. It offers district-level information spanning 18 years (2006–2023). The data was complied guide educational imporvement and support policies and programs. To ensure consistency across this panel, we standardized district names and aligned year columns before merging graduation data with enrollment figures for each year. Additionally, SAT performance data was incorporated by matching district and year, with SAT scores appended only where districts already existed in the core panel. Empty cells were replaced zeros to maintain clarity during downstream processing.
+This dataset, provided by the Massachusetts Department of Education and Secondary Education, offers comprehensive, state-level education statistics. It includes data on student enrollment, academic performance, graduation rates, and demographics of the student body. It offers district-level information spanning 18 years (2006–2023). The data was compiled to guide educational improvement and support policies and programs. To ensure consistency across this panel, we standardized district names and aligned year columns before merging graduation data with enrollment figures for each year. Additionally, SAT performance data was incorporated by matching district and year, with SAT scores appended only where districts already existed in the core panel. Empty cells were replaced with the placeholder “nil” to maintain clarity during downstream processing.
 
 #### Layout 
 
-The main variablesfocused on in this dataset were demographics of the student body. In total there are 24 unique variables, of these 
+The main variables focused on in this dataset were demographics of the student body. In total there are 24 unique variables, of these 7 are very infulential to our research. 
 
+- **Year**: Year 
 - **District Name**: Name of each school district
 - **Perecent_Graduated**: Graduation rates for the given school district in each year
 - **2 Main Race variables**: 
@@ -34,15 +35,16 @@ The main variablesfocused on in this dataset were demographics of the student bo
 
 #### Cleaning Processs
 
-[Cleaning Script](/scripts/new_clean_data.R)
+[Cleaning Script](/scripts/dataset1_clean_data.R)
 
 The code executes the following operations: 
 
 1. Loads the data from `final_merged_no_charter.csv` located in the dataset directory.
 2. Removes all Technical, Vocational, Agricultural, and Virtual schools from the dataset.
-3. Rearranges the dataset to list schools by district alphabetically and by year.
-4. Recodes the variable names to be easier to understand and work with.
-5. Saves the cleaned dataset to `massachusetts_district_data.rds` in the dataset directory. 
+3. Changed 'nil' values to 0 
+4. Rearranges the dataset to list schools by district alphabetically and by year.
+5. Recodes the variable names to be easier to understand and work with.
+6. Saves the cleaned dataset to `massachusetts_district_data.rds` in the dataset directory. 
 
 Some things to note, all charter, technical, vocational, agricultural, and virtual schools were removed from the dataset. When combining this dataset with another it felt prudent to remove charter schools as people from outside the school district can attend these schools. Likewise other school types that weren't strictly public were removed to make the combination process more efficient. 
 
@@ -169,4 +171,138 @@ ggplot(statewide_trend, aes(x = factor(Year), y = State_Avg_Low_Income)) +
 #### Source
 [Link to dataset](https://profiles.doe.mass.edu/statereport/ppx.aspx)
 
-This dataset provided by the 
+This dataset is also provided by the Massachusetts Department of Education and Secondary Education. It provides data and analysis related to per-pupil expenditures, the amount of money spent per student, across school districts in Massachusetts. Per-pupil expenditures are calculated by dividing a district's operating costs by its average pupil membership (FTEs), including in-district expenditures per pupil and total expenditures per pupil, which include in-district and out-of-district spending and enrollment. This data helps policymakers, educators, and the public compare spending patterns and evaluate how educational funds are allocated and used across the state.
+
+#### Layout
+
+This data set contains 9 variables of which 4 are influential to our study.
+
+-**Year**: Year
+-**District Name**: Name of each school district
+-**Total_Expenditures**: Total expenditures for each school district per year
+-**Total_Expenditures_Per_Pupil**: Total expenditures per student for each school district per year. 
+
+#### Cleaning Processs
+
+[Cleaning Script](/scripts/dataset2_clean_data.R)
+
+The code executes the following operations: 
+
+1. Set up and locate files in the dataset directory, Filters to include only files with names like `PerPupilExpenditures_YYYY.rds`.
+2. Makes the first row the column names, then drops first row.
+3. Filters out Charter, Vocational, and Technical schools as well as state totals.
+4. Ensures a consistent layout for year.
+5. Renames columns for consistency with dataset 1.
+6. Saves the cleaned dataset to `PerPupilExpenditures_combined_filtered.rds` in the dataset directory. 
+
+One thing to note is the datasets were individual per year and had to be combined into one larger dataset that had all years instead of being separate. 
+#### Dataset Visualizations
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+data <- readRDS(here::here("dataset", "PerPupilExpenditures_combined_filtered.rds"))
+cols_to_clean <- c("In_District_Expenditures", 
+                   "In_District_Expenditures_Per_Pupil", 
+                   "Total_Expenditures", 
+                   "Total_Expenditures_Per_Pupil")
+
+data <- data |>
+  mutate(across(all_of(cols_to_clean), ~ as.numeric(gsub("[^0-9.]", "", .))))
+
+data |>
+  group_by(Year) |>
+  summarise(avg_in_district_exp = mean(In_District_Expenditures, na.rm = TRUE)) |>
+  ggplot(aes(x = Year, y = avg_in_district_exp)) +
+  geom_line() +
+  geom_point() +
+  scale_y_continuous(labels = function(x) paste0("$", format(x, big.mark = ",", scientific = FALSE))) +
+  labs(title = "Average In-District Expenditures Over Time",
+       y = "Avg In-District Expenditures",
+       x = "Year")
+
+data |>
+  group_by(Year) |>
+  summarise(avg_exp_per_pupil = mean(In_District_Expenditures_Per_Pupil, na.rm = TRUE)) |>
+  ggplot(aes(x = Year, y = avg_exp_per_pupil)) +
+  geom_line(color = "darkgreen") +
+  geom_point() +
+  scale_y_continuous(labels = function(x) paste0("$", format(x, big.mark = ",", scientific = FALSE))) +
+  labs(title = "Average In-District Expenditures Per Pupil Over Time",
+       y = "Expenditures Per Pupil",
+       x = "Year")
+
+
+latest_year <- max(data$Year, na.rm = TRUE)
+
+data |>
+  filter(Year == latest_year) |> 
+  top_n(5, Total_Expenditures) |>
+  ggplot(aes(x = reorder(`District Name`, Total_Expenditures), y = Total_Expenditures)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  scale_y_continuous(labels = function(x) paste0("$", format(x, big.mark = ",", scientific = FALSE))) +
+  labs(title = paste("Top 5 Districts by Total Expenditures in", latest_year),
+       x = "District Name",
+       y = "Total Expenditures")
+
+```
+
+
+### Merged Dataset
+The merged dataset combines all variables from `massachusets_district_data.rds` and `PerPupilExpenditures_combined_filtered.rds`. 
+
+#### Merging the data
+
+[Merging Script](/scripts/dataset_combined_clean_data.R)
+
+The code executres the following operations: 
+
+1. Loads the datasets `massachusets_district_data.rds` and `PerPupilExpenditures_combined_filtered.rds` from the dataset directory
+2. Cleans data in `massachusets_district_data.rds`Converts the "District Name" column to lowercase (tolower()) to ensure uniformity in case sensitivity. Converts the "Year" column to an integer (as.integer()) to make sure it’s in a proper numeric format for analysis.
+3. Cleans the `PerPupilExpenditures_combined_filtered.rds` to convert "District Name" to lower case and "Year" to be an integer.
+4. Deletes one of the District Code columns. 
+4. Merges the datasets and saves them to the dataset directory.
+
+#### Data Visulizations
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+combined_data <- readRDS(here::here("dataset", "Combined_District_Data.rds"))
+
+ggplot(combined_data, aes(x = Total_Expenditures_Per_Pupil, y = Percent_Graduated)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(
+    title = "Graduation Rate vs. Total Expenditures Per Pupil",
+    x = "Total Expenditures Per Pupil ($)",
+    y = "Percent Graduated"
+  ) +
+  scale_x_continuous(labels = function(x) paste0("$", format(x, big.mark = ","))) +
+  theme_minimal()
+
+ggplot(combined_data, aes(x = Total_Expenditures_Per_Pupil, y = Percent_Black)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(
+    title = "Percent Black Students vs. Total Expenditures Per Pupil",
+    x = "Total Expenditures Per Pupil ($)",
+    y = "Percent Black Students"
+  ) +
+  scale_x_continuous(labels = function(x) paste0("$", format(x, big.mark = ","))) +
+  theme_minimal()
+
+ggplot(combined_data, aes(x = In_District_Expenditures, y = Low_Income_Percent)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(
+    title = "Percent Low-Income Students vs. In-District Expenditures",
+    x = "In-District Expenditures ($)",
+    y = "Percent Low-Income Students"
+  ) +
+  scale_x_continuous(labels = function(x) format(x, big.mark = ",", scientific = FALSE)) +
+  theme_minimal()
+
+```
+
