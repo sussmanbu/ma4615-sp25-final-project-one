@@ -21,19 +21,19 @@ This dataset, provided by the Massachusetts Department of Education and Secondar
 
 #### Layout 
 
-The main variables focused on in this dataset were demographics of the student body. In total there are 24 unique variables, of these 7 are very infulential to our research. 
+The main variables focused on in this dataset were demographics of the student body. In total, there are 24 unique variables, of which 7 are very influential to our research.
 
 - **Year**: Year 
 - **District Name**: Name of each school district
-- **Perecent_Graduated**: Graduation rates for the given school district in each year
+- **Percent_Graduated**: Graduation rates for the given school district in each year
 - **2 Main Race variables**: 
-  - Perecent_Black: Percentage of student body that identifies as being Black
-  - Percent_White: Percentage of student body that identifies as being White
-- **SAT_Reading_Writing_Mean_Score**: Average Reading and Writing SAT score for school district in a given year
-- **SAT_Math_Mean_Score**: Average Math SAT score for school district in a given year
+  - **Percent_Black**: Percentage of the student body that identifies as being Black
+  - **Percent_White**: Percentage of the student body that identifies as being White
+- **SAT_Reading_Writing_Mean_Score**: Average Reading and Writing SAT score for the school district in a given year
+- **SAT_Math_Mean_Score**: Average Math SAT score for the school district in a given year
 - **Low_Income_Percent**: Indicates the proportion of students enrolled who come from economically disadvantaged backgrounds, based on state or federal criteria.
 
-#### Cleaning Processs
+#### Cleaning Process
 
 [Cleaning Script](/scripts/dataset1_clean_data.R)
 
@@ -41,14 +41,15 @@ The code executes the following operations:
 
 1. Loads the data from `final_merged_no_charter.csv` located in the dataset directory.
 2. Removes all Technical, Vocational, Agricultural, and Virtual schools from the dataset.
-3. Changed 'nil' values to 0 
+3. Changes 'nil' values to 0.
 4. Rearranges the dataset to list schools by district alphabetically and by year.
 5. Recodes the variable names to be easier to understand and work with.
-6. Saves the cleaned dataset to `massachusetts_district_data.rds` in the dataset directory. 
+6. Saves the cleaned dataset to `massachusetts_district_data.rds` in the dataset directory.
 
-Some things to note, all charter, technical, vocational, agricultural, and virtual schools were removed from the dataset. When combining this dataset with another it felt prudent to remove charter schools as people from outside the school district can attend these schools. Likewise other school types that weren't strictly public were removed to make the combination process more efficient. 
+Some things to note: All charter, technical, vocational, agricultural, and virtual schools were removed from the dataset. When combining this dataset with another, it felt prudent to remove charter schools, as people from outside the school district can attend these schools. Likewise, other school types that weren't strictly public were removed to make the combination process more efficient.
 
 #### Dataset Visualizations
+
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -175,28 +176,30 @@ This dataset is also provided by the Massachusetts Department of Education and S
 
 #### Layout
 
-This data set contains 9 variables of which 4 are influential to our study.
+This data set contains 9 variables, of which 4 are influential to our study.
 
--**Year**: Year
--**District Name**: Name of each school district
--**Total_Expenditures**: Total expenditures for each school district per year
--**Total_Expenditures_Per_Pupil**: Total expenditures per student for each school district per year. 
+- **Year**: Year
+- **District Name**: Name of each school district
+- **Total_Expenditures**: Total expenditures for each school district per year
+- **Total_Expenditures_Per_Pupil**: Total expenditures per student for each school district per year. 
 
-#### Cleaning Processs
+#### Cleaning Process
 
 [Cleaning Script](/scripts/dataset2_clean_data.R)
 
 The code executes the following operations: 
 
-1. Set up and locate files in the dataset directory, Filters to include only files with names like `PerPupilExpenditures_YYYY.rds`.
-2. Makes the first row the column names, then drops first row.
+1. Set up and locate files in the dataset directory, filters to include only files with names like `PerPupilExpenditures_YYYY.rds`.
+2. Makes the first row the column names, then drops the first row.
 3. Filters out Charter, Vocational, and Technical schools as well as state totals.
-4. Ensures a consistent layout for year.
+4. Ensures a consistent layout for the year.
 5. Renames columns for consistency with dataset 1.
 6. Saves the cleaned dataset to `PerPupilExpenditures_combined_filtered.rds` in the dataset directory. 
 
-One thing to note is the datasets were individual per year and had to be combined into one larger dataset that had all years instead of being separate. 
+One thing to note is the datasets were individual per year and had to be combined into one larger dataset that had all years instead of being separate.
+
 #### Dataset Visualizations
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -250,21 +253,23 @@ data |>
 
 
 ### Merged Dataset
-The merged dataset combines all variables from `massachusets_district_data.rds` and `PerPupilExpenditures_combined_filtered.rds`. 
+
+The merged dataset combines all variables from `massachusetts_district_data.rds` and `PerPupilExpenditures_combined_filtered.rds`. 
 
 #### Merging the data
 
 [Merging Script](/scripts/dataset_combined_clean_data.R)
 
-The code executres the following operations: 
+The code executes the following operations: 
 
-1. Loads the datasets `massachusets_district_data.rds` and `PerPupilExpenditures_combined_filtered.rds` from the dataset directory
-2. Cleans data in `massachusets_district_data.rds`Converts the "District Name" column to lowercase (tolower()) to ensure uniformity in case sensitivity. Converts the "Year" column to an integer (as.integer()) to make sure it’s in a proper numeric format for analysis.
-3. Cleans the `PerPupilExpenditures_combined_filtered.rds` to convert "District Name" to lower case and "Year" to be an integer.
+1. Loads the datasets `massachusetts_district_data.rds` and `PerPupilExpenditures_combined_filtered.rds` from the dataset directory.
+2. Cleans data in `massachusetts_district_data.rds`. Converts the "District Name" column to lowercase (tolower()) to ensure uniformity in case sensitivity. Converts the "Year" column to an integer (as.integer()) to make sure it’s in a proper numeric format for analysis.
+3. Cleans the `PerPupilExpenditures_combined_filtered.rds` to convert "District Name" to lowercase and "Year" to be an integer.
 4. Deletes one of the District Code columns. 
-4. Merges the datasets and saves them to the dataset directory.
+5. Merges the datasets and saves them to the dataset directory.
 
-#### Data Visulizations
+#### Data Visualizations
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
