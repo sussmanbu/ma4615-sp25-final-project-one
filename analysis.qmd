@@ -20,6 +20,58 @@ The style of this paper should aim to be that of an academic paper.
 I don't expect this to be of publication quality but you should keep that aim in mind.
 Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
 
+
+## 1. General Information Analysis
+
+This section provides an overview of graduation rates and demographic characteristics across Massachusetts school districts.
+
+```{r}
+library(tidyverse)
+df <- readRDS("dataset/Combined_District_Data.rds")
+```
+
+This section provides an overview of graduation rates and demographic characteristics across Massachusetts school districts.
+
+This summary gives a snapshot of racial composition and graduation outcomes across the dataset.
+
+### 1.2 Distribution of Graduation Rates
+
+```{r}
+# More engaging: density with rug and gradient fill
+ggplot(df, aes(x = Percent_Graduated)) +
+  geom_density(fill = "skyblue", alpha = 0.6) +
+  geom_rug(color = "darkblue", alpha = 0.2) +
+  labs(
+    title = "Graduation Rate Distribution (Smoothed)",
+    x = "Graduation Rate (%)",
+    y = "Density"
+  )
+```
+
+### 1.3 Racial Composition by District
+
+```{r}
+df_long <- df %>%
+  select(starts_with("Percent_")) %>%
+  pivot_longer(cols = everything(), 
+               names_to = "Race", values_to = "Percent") %>%
+  mutate(Race = gsub("Percent_", "", Race)) %>%
+  filter(Race %in% c("White", "Black", "Hispanic", "Asian"))
+
+# Clean 4-group jitter plot
+ggplot(df_long, aes(x = Race, y = Percent, color = Race)) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  stat_summary(fun = median, geom = "crossbar", width = 0.5, color = "black") +
+  labs(
+    title = "Racial Composition Across Districts (Top 4 Groups)",
+    x = "Race Group",
+    y = "Percentage"
+  ) +
+  theme_minimal()
+```
+
+This analysis highlights the variation in racial makeup across Massachusetts school districts and how graduation rates are distributed.
+
 ## 2.1 Simple Regression Analysis: Investment in students
 
 A simple linear regression is used to estimate the association between total expenditures per pupil and graduation rates across Massachusetts school districts.
@@ -134,22 +186,20 @@ In Majority White districts, which comprise the majority of the sample (n = 3,41
 
 The t-statistics measure how far each coefficient lies from zero in terms of standard error units, and they confirm that the positive associations observed are unlikely to occur by chance. Although the strength of the effect varies by group, the direction is consistent, suggesting that increased education funding tends to support higher graduation outcomes across different demographic contexts. Larger effects in Majority Hispanic and Majority Black districts may reflect greater marginal benefits from additional investment in historically underserved areas.
 
+```
 ## 2.2 Simple Regression Analysis: Income and Graduation Rates
 
 A simple linear regression is used to estimate the association between median household income and graduation rates across Massachusetts school districts.
 
 ### 2.2.1 Scatterplot and Regression Line
 
-```{r}
-# Load data
+```
 df <- readRDS("dataset/Combined_District_Data.rds")
 
-# Summary of relevant variables
 summary(df[, c("Median_Household_Income", "Percent_Graduated")])
 ```
 
-```{r}
-# Scatterplot with regression line
+```
 ggplot(df, aes(x = Median_Household_Income, y = Percent_Graduated)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = FALSE, color = "blue") +
@@ -159,10 +209,9 @@ ggplot(df, aes(x = Median_Household_Income, y = Percent_Graduated)) +
     y = "Graduation Rate (%)"
   )
 ```
-
 ### 2.2.2 Linear Regression Model
 
-```{r}
+```
 model <- lm(Percent_Graduated ~ Median_Household_Income, data = df)
 model_summary <- summary(model)
 model_summary
@@ -184,7 +233,7 @@ Separate regression models are estimated for school districts grouped by the maj
 
 ### Assign Majority Race
 
-```{r}
+```
 df <- df %>%
   rowwise() %>%
   mutate(
@@ -206,16 +255,12 @@ df <- df %>%
     majority_race = paste("Majority", majority_race)
   )
 
-# Check group counts
+
 table(df$majority_race)
 ```
 
 ### Run Regressions by Group
-
-```{r}
-
-
-# Grouped regressions
+```
 group_models <- df %>%
   group_by(majority_race) %>%
   nest() %>%
@@ -225,13 +270,11 @@ group_models <- df %>%
     glance = map(model, glance)
   )
 
-# Show regression coefficients
 race_results <- group_models %>%
   select(majority_race, results) %>%
   unnest(results)
 race_results
 
-# Show model summaries (R², n, etc.)
 glance_results <- group_models %>%
   select(majority_race, glance) %>%
   unnest(glance)
@@ -257,7 +300,7 @@ In Majority Black districts, the estimated relationship is positive and signific
 In Majority White districts, the estimated relationship is also positive and statistically significant, with greater stability due to the larger number of observations.
 
 Across all groups, t-statistics suggest the coefficients are distinguishable from zero. While the magnitude varies, the direction of the association remains consistent. These results imply that increases in household income are generally associated with higher graduation outcomes, and that the strength of this effect may be greater in communities with more constrained economic conditions.
-
+```
 
 
 ## Note on Attribution
