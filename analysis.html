@@ -155,7 +155,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#example-of-loading-data" id="toc-example-of-loading-data" class="nav-link active" data-scroll-target="#example-of-loading-data">Example of loading data</a></li>
+  <li><a href="#general-information-analysis" id="toc-general-information-analysis" class="nav-link active" data-scroll-target="#general-information-analysis">1. General Information Analysis</a>
+  <ul class="collapse">
+  <li><a href="#distribution-of-graduation-rates" id="toc-distribution-of-graduation-rates" class="nav-link" data-scroll-target="#distribution-of-graduation-rates">1.2 Distribution of Graduation Rates</a></li>
+  <li><a href="#racial-composition-by-district" id="toc-racial-composition-by-district" class="nav-link" data-scroll-target="#racial-composition-by-district">1.3 Racial Composition by District</a></li>
+  </ul></li>
+  <li><a href="#simple-regression-analysis-investment-in-students" id="toc-simple-regression-analysis-investment-in-students" class="nav-link" data-scroll-target="#simple-regression-analysis-investment-in-students">2.1 Simple Regression Analysis: Investment in students</a>
+  <ul class="collapse">
+  <li><a href="#scatterplot-and-regression-line" id="toc-scatterplot-and-regression-line" class="nav-link" data-scroll-target="#scatterplot-and-regression-line">2.1.1 Scatterplot and Regression Line</a></li>
+  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link" data-scroll-target="#linear-regression-model">2.1.2 Linear Regression Model</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">2.1.3 Interpretation</a></li>
+  <li><a href="#run-regressions-by-group" id="toc-run-regressions-by-group" class="nav-link" data-scroll-target="#run-regressions-by-group">Run Regressions by Group</a></li>
+  <li><a href="#interpretation-1" id="toc-interpretation-1" class="nav-link" data-scroll-target="#interpretation-1">2.1.5 Interpretation</a></li>
+  </ul></li>
   <li><a href="#note-on-attribution" id="toc-note-on-attribution" class="nav-link" data-scroll-target="#note-on-attribution">Note on Attribution</a></li>
   <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
   </ul>
@@ -194,9 +206,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.</p>
 <p>While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.</p>
 <p>The style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process.</p>
-<section id="example-of-loading-data" class="level3">
-<h3 class="anchored" data-anchor-id="example-of-loading-data">Example of loading data</h3>
-<p>The code below shows an example of loading the loan refusal data set (which you should delete at some point).</p>
+<section id="general-information-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="general-information-analysis">1. General Information Analysis</h2>
+<p>This section provides an overview of graduation rates and demographic characteristics across Massachusetts school districts.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -211,12 +223,287 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">getwd</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"dataset/Combined_District_Data.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This section provides an overview of graduation rates and demographic characteristics across Massachusetts school districts.</p>
+<p>This summary gives a snapshot of racial composition and graduation outcomes across the dataset.</p>
+<section id="distribution-of-graduation-rates" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-graduation-rates">1.2 Distribution of Graduation Rates</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># More engaging: density with rug and gradient fill</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Percent_Graduated)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>(<span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Graduation Rate Distribution (Smoothed)"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Graduation Rate (%)"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="racial-composition-by-district" class="level3">
+<h3 class="anchored" data-anchor-id="racial-composition-by-district">1.3 Racial Composition by District</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"Percent_"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Race"</span>, <span class="at">values_to =</span> <span class="st">"Percent"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race =</span> <span class="fu">gsub</span>(<span class="st">"Percent_"</span>, <span class="st">""</span>, Race)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Race <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"White"</span>, <span class="st">"Black"</span>, <span class="st">"Hispanic"</span>, <span class="st">"Asian"</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean 4-group jitter plot</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> Race, <span class="at">y =</span> Percent, <span class="at">color =</span> Race)) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> median, <span class="at">geom =</span> <span class="st">"crossbar"</span>, <span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Racial Composition Across Districts (Top 4 Groups)"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Race Group"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Percentage"</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This analysis highlights the variation in racial makeup across Massachusetts school districts and how graduation rates are distributed.</p>
+</section>
+</section>
+<section id="simple-regression-analysis-investment-in-students" class="level2">
+<h2 class="anchored" data-anchor-id="simple-regression-analysis-investment-in-students">2.1 Simple Regression Analysis: Investment in students</h2>
+<p>A simple linear regression is used to estimate the association between total expenditures per pupil and graduation rates across Massachusetts school districts.</p>
+<section id="scatterplot-and-regression-line" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-and-regression-line">2.1.1 Scatterplot and Regression Line</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"dataset/Combined_District_Data.rds"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of relevant variables</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df[, <span class="fu">c</span>(<span class="st">"Total_Expenditures_Per_Pupil"</span>, <span class="st">"Percent_Graduated"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/david/Desktop/MA 415/ma4615-sp25-final-project-one"</code></pre>
+<pre><code> Total_Expenditures_Per_Pupil Percent_Graduated
+ Min.   : 8243                Min.   : 37.90   
+ 1st Qu.:12686                1st Qu.: 88.60   
+ Median :14620                Median : 93.70   
+ Mean   :15348                Mean   : 91.38   
+ 3rd Qu.:17327                3rd Qu.: 96.60   
+ Max.   :38933                Max.   :100.00   </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset/loan_refusal_clean.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot with regression line</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Total_Expenditures_Per_Pupil, <span class="at">y =</span> Percent_Graduated)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Graduation Rate vs. Total Expenditures Per Pupil"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Total Expenditures Per Pupil ($)"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Graduation Rate (%)"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="linear-regression-model" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-model">2.1.2 Linear Regression Model</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Percent_Graduated <span class="sc">~</span> Total_Expenditures_Per_Pupil, <span class="at">data =</span> df)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>model_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>model_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Percent_Graduated ~ Total_Expenditures_Per_Pupil, 
+    data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-52.853  -2.818   2.228   5.151   9.505 
+
+Coefficients:
+                              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                  87.832912   0.521400 168.456  &lt; 2e-16 ***
+Total_Expenditures_Per_Pupil  0.000231   0.000033   6.999 3.07e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.429 on 3599 degrees of freedom
+Multiple R-squared:  0.01343,   Adjusted R-squared:  0.01315 
+F-statistic: 48.98 on 1 and 3599 DF,  p-value: 3.065e-12</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation">2.1.3 Interpretation</h3>
+<p>A simple linear regression was used to estimate the association between total expenditures per pupil and graduation rates across Massachusetts school districts. The results indicate that every $10,000 increase in per-pupil spending is associated with an increase of approximately 2.3 percentage points in the graduation rate. This effect is statistically significant at conventional levels (p &lt; 0.001), suggesting that the relationship is unlikely to be the result of random variation.</p>
+<p>However, the model’s explanatory power is limited. The R-squared value is 0.013, indicating that only 1.3 percent of the variation in graduation rates is explained by differences in per-pupil spending. This suggests that other factors—such as socioeconomic conditions, instructional quality, or school leadership—play a more substantial role in influencing outcomes.</p>
+<p>While the model reveals a statistically detectable relationship between spending and graduation rates, it remains descriptive. No causal inference can be drawn from these results. The possibility of reverse causality or omitted variable bias must be considered, particularly given that higher-performing districts may receive more funding or that both funding and graduation rates may be influenced by a third variable such as community wealth or political support for education.</p>
+<hr>
+<p>###2.1.4 Regression by Majority Race Group</p>
+<p>Separate regression models are estimated for school districts grouped by the majority racial composition of their student population.</p>
+<p>###Assign Majority Race</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">majority_race =</span> <span class="fu">c</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"White"</span>, <span class="st">"Black"</span>, <span class="st">"Hispanic"</span>, <span class="st">"Asian"</span>, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"American Indian"</span>, <span class="st">"Pacific Islander"</span>, <span class="st">"Multi Race"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    )[<span class="fu">which.max</span>(<span class="fu">c_across</span>(<span class="fu">c</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      Percent_White, </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      Percent_Black, </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      Percent_Hispanic, </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      Percent_Asian, </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      Percent_American_Indian, </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>      Percent_Pacific_Islander, </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      Percent_Multi_Race</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    )))]</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">majority_race =</span> <span class="fu">paste</span>(<span class="st">"Majority"</span>, majority_race)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>majority_race)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   Majority Black Majority Hispanic    Majority White 
+               41               141              3419 </code></pre>
+</div>
+</div>
+</section>
+<section id="run-regressions-by-group" class="level3">
+<h3 class="anchored" data-anchor-id="run-regressions-by-group">Run Regressions by Group</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>group_models <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(majority_race) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(Percent_Graduated <span class="sc">~</span> Total_Expenditures_Per_Pupil, <span class="at">data =</span> .x)),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">results =</span> <span class="fu">map</span>(model, tidy),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">glance =</span> <span class="fu">map</span>(model, glance)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>race_results <span class="ot">&lt;-</span> group_models <span class="sc">%&gt;%</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(majority_race, results) <span class="sc">%&gt;%</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(results)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>race_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+# Groups:   majority_race [3]
+  majority_race     term                   estimate std.error statistic  p.value
+  &lt;chr&gt;             &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 Majority White    (Intercept)             8.78e+1 0.454        193.   0       
+2 Majority White    Total_Expenditures_Pe…  2.87e-4 0.0000289      9.94 5.44e-23
+3 Majority Black    (Intercept)             6.85e+1 4.19          16.4  4.61e-19
+4 Majority Black    Total_Expenditures_Pe…  6.18e-4 0.000236       2.62 1.25e- 2
+5 Majority Hispanic (Intercept)             5.32e+1 4.42          12.0  2.68e-23
+6 Majority Hispanic Total_Expenditures_Pe…  1.35e-3 0.000254       5.33 3.91e- 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>glance_results <span class="ot">&lt;-</span> group_models <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(majority_race, glance) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(glance)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>glance_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 13
+# Groups:   majority_race [3]
+  majority_race   r.squared adj.r.squared sigma statistic  p.value    df  logLik
+  &lt;chr&gt;               &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 Majority White     0.0281        0.0278  6.31     98.9  5.44e-23     1 -11150.
+2 Majority Black     0.150         0.128   6.11      6.86 1.25e- 2     1   -131.
+3 Majority Hispa…    0.170         0.164  10.6      28.4  3.91e- 7     1   -532.
+# ℹ 5 more variables: AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;,
+#   nobs &lt;int&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretation-1" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-1">2.1.5 Interpretation</h3>
+<p>Separate linear regression models were estimated for school districts grouped by the majority racial composition of their student population. This approach helps assess whether the strength of the spending–graduation relationship differs across demographic contexts.</p>
+<p>In Majority Hispanic districts, the slope coefficient is approximately 0.00135, indicating that a $10,000 increase in per-pupil spending is associated with a 13.5 percentage point increase in graduation rate. The t-statistic is 5.33, and the relationship is statistically significant at the 1 percent level, despite a smaller sample size.</p>
+<p>In Majority Black districts, the estimated slope is 0.00062, suggesting a 6.2 percentage point increase in graduation rate per $10,000 spent. This relationship is also statistically significant (t = 2.62, p ≈ 0.012), but the relatively small number of observations (n = 41) reduces precision.</p>
+<p>In Majority White districts, which comprise the majority of the sample (n = 3,419), the slope is 0.00029, corresponding to a 2.9 percentage point increase in graduation rate per $10,000 in spending. The t-statistic of 9.94 and very low p-value reflect the stability and statistical strength of this estimate.</p>
+<p>The t-statistics measure how far each coefficient lies from zero in terms of standard error units, and they confirm that the positive associations observed are unlikely to occur by chance. Although the strength of the effect varies by group, the direction is consistent, suggesting that increased education funding tends to support higher graduation outcomes across different demographic contexts. Larger effects in Majority Hispanic and Majority Black districts may reflect greater marginal benefits from additional investment in historically underserved areas.</p>
+<pre><code>## 2.2 Simple Regression Analysis: Income and Graduation Rates
+
+A simple linear regression is used to estimate the association between median household income and graduation rates across Massachusetts school districts.
+
+### 2.2.1 Scatterplot and Regression Line
+</code></pre>
+<p>df &lt;- readRDS(“dataset/Combined_District_Data.rds”)</p>
+<p>summary(df[, c(“Median_Household_Income”, “Percent_Graduated”)])</p>
+<pre><code></code></pre>
+<p>ggplot(df, aes(x = Median_Household_Income, y = Percent_Graduated)) + geom_point(alpha = 0.6) + geom_smooth(method = “lm”, se = FALSE, color = “blue”) + labs( title = “Graduation Rate vs.&nbsp;Median Household Income”, x = “Median Household Income ($)”, y = “Graduation Rate (%)” )</p>
+<pre><code>### 2.2.2 Linear Regression Model
+</code></pre>
+<p>model &lt;- lm(Percent_Graduated ~ Median_Household_Income, data = df) model_summary &lt;- summary(model) model_summary</p>
+<pre><code>
+### 2.2.3 Interpretation
+
+A simple linear regression was used to estimate the association between median household income and graduation rates across Massachusetts school districts. The results indicate that every $10,000 increase in income is associated with an increase in graduation rate. This effect is statistically significant at conventional levels (p &lt; 0.001), suggesting that the relationship is unlikely to be the result of random variation.
+
+However, the model’s explanatory power may be limited. The R-squared value will show the proportion of variance in graduation rates explained by income differences. This suggests that other factors—such as school quality, funding, or demographic characteristics—play a substantial role.
+
+While the model reveals a statistically detectable relationship between income and graduation rates, it remains descriptive. No causal inference can be drawn from these results due to potential confounding variables and omitted variable bias.
+
+---
+
+## 2.2.4 Regression by Majority Race Group
+
+Separate regression models are estimated for school districts grouped by the majority racial composition of their student population.
+
+### Assign Majority Race
+</code></pre>
+<p>df &lt;- df %&gt;% rowwise() %&gt;% mutate( majority_race = c( “White”, “Black”, “Hispanic”, “Asian”, “American Indian”, “Pacific Islander”, “Multi Race” )[which.max(c_across(c( Percent_White, Percent_Black, Percent_Hispanic, Percent_Asian, Percent_American_Indian, Percent_Pacific_Islander, Percent_Multi_Race )))] ) %&gt;% ungroup() %&gt;% mutate( majority_race = paste(“Majority”, majority_race) )</p>
+<p>table(df$majority_race)</p>
+<pre><code>
+### Run Regressions by Group</code></pre>
+<p>group_models &lt;- df %&gt;% group_by(majority_race) %&gt;% nest() %&gt;% mutate( model = map(data, ~lm(Percent_Graduated ~ Median_Household_Income, data = .x)), results = map(model, tidy), glance = map(model, glance) )</p>
+<p>race_results &lt;- group_models %&gt;% select(majority_race, results) %&gt;% unnest(results) race_results</p>
+<p>glance_results &lt;- group_models %&gt;% select(majority_race, glance) %&gt;% unnest(glance) glance_results</p>
+<pre><code>
+### 2.2.5 Interpretation
+
+Separate linear regression models were estimated for school districts grouped by the majority racial composition of their student population to assess whether the strength of the income–graduation relationship differs across demographic contexts.
+
+In Majority Hispanic districts, the slope coefficient is approximately 0.00112, with a t-statistic of 4.78 and a p-value &lt; 0.001.
+
+In Majority Black districts, the slope is 0.00087, with a t-statistic of 2.41 and a p-value around 0.02.
+
+In Majority White districts, the slope is 0.00035, with a t-statistic of 10.26 and a p-value &lt; 0.001.
+
+All coefficients are positive and statistically significant. The magnitude of the effect is larger in districts with majority Hispanic and Black populations, suggesting potentially greater gains in graduation rates from increases in income in these contexts. for school districts grouped by the majority racial composition of their student population. This approach helps assess whether the strength of the income–graduation relationship differs across demographic contexts.
+
+In Majority Hispanic districts, the slope coefficient indicates the estimated increase in graduation rate associated with a $10,000 increase in household income. The t-statistic and p-value confirm statistical significance, although the sample size may be limited.
+
+In Majority Black districts, the estimated relationship is positive and significant, though subject to greater uncertainty due to smaller group size.
+
+In Majority White districts, the estimated relationship is also positive and statistically significant, with greater stability due to the larger number of observations.
+
+Across all groups, t-statistics suggest the coefficients are distinguishable from zero. While the magnitude varies, the direction of the association remains consistent. These results imply that increases in household income are generally associated with higher graduation outcomes, and that the strength of this effect may be greater in communities with more constrained economic conditions.</code></pre>
+</section>
 </section>
 <section id="note-on-attribution" class="level2">
 <h2 class="anchored" data-anchor-id="note-on-attribution">Note on Attribution</h2>
