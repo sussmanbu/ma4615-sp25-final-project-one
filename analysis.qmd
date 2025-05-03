@@ -118,11 +118,11 @@ While the model reveals a statistically detectable relationship between spending
 
 ---
 
-###2.1.4 Regression by Majority Race Group
+### 2.1.4 Regression by Majority Race Group
 
 Separate regression models are estimated for school districts grouped by the majority racial composition of their student population.
 
-###Assign Majority Race
+### Assign Majority Race
 
 ```{r}
 df <- df %>%
