@@ -145,6 +145,16 @@ kable(tidy(model_multiple), caption = "Multiple Regression Results", digits = 4)
 
 ## 4.3 Log-Log Regression: Elasticity Interpretation
 
+<<<<<<< HEAD
+=======
+---
+
+### 2.1.4 Regression by Majority Race Group
+
+Separate regression models are estimated for school districts grouped by the majority racial composition of their student population.
+
+### Assign Majority Race
+>>>>>>> 4beac66f2b985238dbcb8ba98a6e599942711c16
 
 ```{r}
 #| echo: false
