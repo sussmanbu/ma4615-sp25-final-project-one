@@ -9,6 +9,164 @@ filters:
 
 ![](images/The_Big_Picture_2.jpeg)
 
+### Introduction
+
+Massachusetts is often praised as a national leader in education. With some of the highest graduation rates and standardized test scores in the country, it’s easy to assume the system is working well for everyone. But a closer look raises an important question: **who is actually benefiting from this success?**
+
+Behind the state's reputation for academic excellence lie long-standing structural disparities. Race, geography, and income continue to shape student experiences across districts. This project uses state-level education data to explore how those disparities appear in measurable outcomes like graduation rates and support services. The goal is not to undermine Massachusetts' accomplishments, but to examine **whether excellence is equitably shared.**
+
+
+
+This visualization highlights persistent disparities in graduation outcomes across districts categorized by their majority racial composition. It adds additional context to the findings discussed in the big picture section.
+
+### Why This Topic Matters
+
+Education is one of the most powerful tools for mobility in the United States. When educational access and success differ by race, it reinforces inequality across generations. Although Massachusetts has made significant strides in public schooling, historical legacies of segregation, unequal funding, and uneven access to support persist.
+
+Understanding these patterns is crucial for shaping policy that doesn’t just raise averages, but improves outcomes for all students — especially those historically underserved. If racial gaps remain hidden beneath strong overall performance, meaningful progress toward educational equity becomes harder to achieve.
+
+### Thesis
+
+Massachusetts leads the nation in public education — but not all students benefit equally. Using school-level data from 2006 to 2013, this project investigates whether racial disparities exist in graduation rates, access to support services, and demographic concentration. The findings suggest that while the state excels on average, structural inequalities continue to influence who has access to educational success.
+
+### Reflections and Reading Connections
+
+Historical efforts to confront inequality — such as Boston’s busing crisis in the 1970s — have left visible marks on today’s school landscape. The readings we explored highlighted how policy changes, such as desegregation orders or shifts in funding formulas, often produced unintended consequences. These lessons remind us that achieving equity requires more than good intentions. It demands data-driven strategies that respond to racial and geographic differences within systems.
+
+This visualization highlights persistent disparities in graduation outcomes across districts categorized by their majority racial composition. It adds additional context to the findings discussed in the big picture section.
+
+### Future Action
+
+The data shows that increasing funding alone may not be enough. Districts with majority Hispanic or Black populations appear to gain more from marginal increases in spending or income — suggesting that targeted investments could be more impactful than uniform approaches. Future research should explore how resources are allocated across districts and whether programs focused on multilingual learners and students with disabilities are equitably distributed.
+
+From a policy perspective, equity audits at the district level, more transparent reporting, and flexible funding that prioritizes need over uniformity could help close the gaps revealed in this project.
+
+
+### Interactive
+
+Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
+
+```markdown
+<!--
+```{r}
+#| eval: false
+#| standalone: true
+#| viewerHeight: 640 # You will have to adjust this to fit everything
+
+#df <- readRDS("dataset/Combined_District_Data.rds")
+
+#library(shiny)
+#library(tidyverse)
+#options("readr.edition" = 1) # keep this to ensure you can download the data
+
+
+# Define UI for app that draws a histogram ----
+#ui <- fluidPage(
+
+  # App title ----
+  #titlePanel("Hello Shiny!"),
+
+  # Sidebar layout with input and output definitions ----
+  #verticalLayout(
+      # Input: Slider for the number of bins ----
+     # sliderInput(inputId = "bins",
+                 # label = "Number of bins:",
+                 # min = 1,
+                 # max = 50,
+                 # value = 30),
+
+      # Output: Histogram ----
+      #plotOutput(outputId = "distPlot")
+
+  )
+)
+
+# Define server logic required to draw a histogram ----
+#server <- function(input, output) {
+  # The URL below has to point to a dataset on your github pages website
+  # I recommend creating a small-ish rds file that has only the data relevant to 
+  # the interactive.
+  #data <- read_rds("https://sussmanbu.github.io/ma4615-final-project-quarto/dataset_for_shiny/combined_regional_data.rds")
+  
+ # output$distPlot <- renderPlot({
+    #ggplot(data, aes(x = refusal_rate)) +
+      #geom_histogram(bins = input$bins + 1)
+
+  })
+
+}
+
+# Create Shiny app ----
+shinyApp(ui = ui, server = server)
+```
+-->
+
+To get the shinylive-r working.
+ 
+1. Make sure your shiny app works as a regular r chunk.
+2. Make sure that the chunk is completely self-contained. Meaning all packages and data are loaded inside that chunk. It can't rely on any other chunks.
+3. For the data that you are using for shiny, copy the rds file or any other files into the scripts folder, and then publish your website.
+4. Where you load in your data, change it to use a URL to the data set which will now be on your website. Something like read_rds("https://sussmanbu.github.io/ma-4615-fa24-final-project-group-a/scripts/dataset_for_shiny.rds")
+5. Check that the chunk still works as a regular r chunk.
+6. Change it to a shinylive-r chunk.
+7. Commit and publish your work.
+
+I recommend keeping the data used for the shiny interactive relatively small, though this isn't completely necessary.
+
+---
+
+
+
+
+## Rubric: On this page
+
+
+* Title
+  * Your big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.
+* Clarity of Explanation
+  * You should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don't go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.
+  * Each figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.
+* Creativity
+  * Do your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.
+* Interactive component
+  * Quality and ease of use of the interactive components.
+Is it clear what can be explored using your interactive components?
+Does it enhance and reinforce your conclusions?
+* This page should be self-contained.
+  
+**Note**: This page should have no code visible, i.e. use `#| echo: FALSE`.  
+
+
+
+
+## Rubric: Other components
+
+### Video Recording
+
+Make a video recording (probably using Zoom) demonstrating your interactive components.
+You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA.
+This video should be no longer than 4 minutes.
+Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website.
+This can be presented by any subset of the team members.
+
+
+### Rest of the Site
+
+Finally, here are important things to keep in mind for the rest of the site. 
+
+The main title of your page is informative.
+Each post has an author/description/informative title.
+All lab required posts are present.
+Each page (including the home page) has a nice featured image associated with it.
+Your about page is up to date and clean.
+You have removed the generic posts from the initial site template.
+
+
+
+
+
+
+
 This comes from the file `big_picture.qmd`.
 
 Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn't assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.
@@ -31,22 +189,22 @@ Your Big Data page should also include a small interactive dashboard. The dashbo
 #| viewerHeight: 640 # You will have to adjust this to fit everything
 
 
-library(shiny)
-library(tidyverse)
-options("readr.edition" = 1) # keep this to ensure you can download the data
+#library(shiny)
+#library(tidyverse)
+#options("readr.edition" = 1) # keep this to ensure you can download the data
 
 
 # Define UI for app that draws a histogram ----
-ui <- fluidPage(
+#ui <- fluidPage(
 
   # App title ----
-  titlePanel("Hello Shiny!"),
+  #titlePanel("Hello Shiny!"),
 
-  # Sidebar layout with input and output definitions ----
+ Sidebar layout with input and output definitions ----
   verticalLayout(
       # Input: Slider for the number of bins ----
-      sliderInput(inputId = "bins",
-                  label = "Number of bins:",
+      #sliderInput(inputId = "bins",
+                 label = "Number of bins:",
                   min = 1,
                   max = 50,
                   value = 30),

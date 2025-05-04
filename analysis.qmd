@@ -7,337 +7,243 @@ draft: false
 
 ![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
 
-This comes from the file `analysis.qmd`.
-
-We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
-
-The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc. 
-
-While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points.
-If you want you can link back to your blog posts or create separate pages with more details.
-
-The style of this paper should aim to be that of an academic paper. 
-I don't expect this to be of publication quality but you should keep that aim in mind.
-Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
-
-
-## 1. General Information Analysis
-
-This section provides an overview of graduation rates and demographic characteristics across Massachusetts school districts.
-
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 library(tidyverse)
+library(broom)
 df <- readRDS("dataset/Combined_District_Data.rds")
 ```
 
-This section provides an overview of graduation rates and demographic characteristics across Massachusetts school districts.
+# 1. Motivation and Research Question
 
-This summary gives a snapshot of racial composition and graduation outcomes across the dataset.
+Massachusetts consistently ranks among the top states in educational performance. However, excellence in averages can mask disparities across districts. This analysis investigates how **resources (expenditure)** and **structural factors (race, income, academic background)** interact to influence graduation outcomes.
 
-### 1.2 Distribution of Graduation Rates
+**Guiding question:**
+
+> How do funding and structural inequalities together shape graduation outcomes across school districts?
+
+## 2. General Information Analysis
+
+We use district-level data from 2006–2013, including:
+
+- **Total Expenditures Per Pupil**
+- **Graduation Rates**
+- **Demographics** (Percent White, Black, Hispanic, Asian)
+- **Socioeconomic Indicators** (Low Income Percentage)
+- **Academic Preparedness** (SAT Scores)
+- **Student-Teacher Ratio**
+
+
+# 3. Initial Exploratory Analysis
+
+### 3.1 Distribution of Graduation Rates
+
 
 ```{r}
-# More engaging: density with rug and gradient fill
+#| echo: false
+library(ggplot2)
 ggplot(df, aes(x = Percent_Graduated)) +
   geom_density(fill = "skyblue", alpha = 0.6) +
-  geom_rug(color = "darkblue", alpha = 0.2) +
-  labs(
-    title = "Graduation Rate Distribution (Smoothed)",
-    x = "Graduation Rate (%)",
-    y = "Density"
-  )
+  geom_rug(alpha = 0.3) +
+  labs(title = "Distribution of Graduation Rates",
+       x = "Graduation Rate (%)",
+       y = "Density") +
+  theme(plot.title = element_text(hjust = 0.5))
+
 ```
 
-### 1.3 Racial Composition by District
+
+### 3.2 Distribution of Per-Pupil Expenditure
+
 
 ```{r}
-df_long <- df %>%
-  select(starts_with("Percent_")) %>%
-  pivot_longer(cols = everything(), 
-               names_to = "Race", values_to = "Percent") %>%
-  mutate(Race = gsub("Percent_", "", Race)) %>%
-  filter(Race %in% c("White", "Black", "Hispanic", "Asian"))
+#| echo: false
+ggplot(df, aes(x = Total_Expenditures_Per_Pupil)) +
+  geom_density(fill = "lightgreen", alpha = 0.6) +
+  geom_rug(alpha = 0.3) +
+  labs(title = "Distribution of Per-Pupil Expenditure",
+       x = "Expenditure Per Pupil ($)",
+       y = "Density") +
+  theme(plot.title = element_text(hjust = 0.5))
 
-# Clean 4-group jitter plot
+```
+
+
+### 3.3 Racial Composition Across Districts
+
+
+```{r}
+#| echo: false
+library(dplyr)
+library(tidyr)
+df_long <- df %>%
+  select(Percent_White, Percent_Black, Percent_Hispanic, Percent_Asian) %>%
+  pivot_longer(cols = everything(), names_to = "Race", values_to = "Percent") %>%
+  mutate(Race = gsub("Percent_", "", Race))
+
 ggplot(df_long, aes(x = Race, y = Percent, color = Race)) +
   geom_jitter(width = 0.2, alpha = 0.5) +
   stat_summary(fun = median, geom = "crossbar", width = 0.5, color = "black") +
-  labs(
-    title = "Racial Composition Across Districts (Top 4 Groups)",
-    x = "Race Group",
-    y = "Percentage"
-  ) +
-  theme_minimal()
+  labs(title = "Racial Composition Across Districts",
+       x = "Race Group",
+       y = "Percentage") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
-This analysis highlights the variation in racial makeup across Massachusetts school districts and how graduation rates are distributed.
 
-## 2.1 Simple Regression Analysis: Investment in students
+# 4. Regression Analysis
 
-A simple linear regression is used to estimate the association between total expenditures per pupil and graduation rates across Massachusetts school districts.
+We estimate three types of linear models to investigate the relationship between spending and graduation rates:
 
-### 2.1.1 Scatterplot and Regression Line
+- Simple linear regression
+- Multiple linear regression
+- Log-log regression
+
+## 4.1 Simple Linear Regression: Spending vs Graduation
+
 
 ```{r}
-library(tidyverse)
-
-# Load data
-df <- readRDS("dataset/Combined_District_Data.rds")
-
-# Summary of relevant variables
-summary(df[, c("Total_Expenditures_Per_Pupil", "Percent_Graduated")])
+#| echo: false
+library(broom)
+library(knitr)
+model_simple <- lm(Percent_Graduated ~ Total_Expenditures_Per_Pupil, data = df)
+kable(tidy(model_simple), caption = "Simple Linear Regression Results", digits = 4)
 ```
 
+
+- A $10,000 increase in spending is associated with a **2.3 percentage point increase** in graduation rates.
+- **However**, this model explains only about **1.3% of the variance** (very low R-squared), indicating that spending alone cannot account for differences in graduation rates.
+
+
 ```{r}
-# Scatterplot with regression line
+#| echo: false
 ggplot(df, aes(x = Total_Expenditures_Per_Pupil, y = Percent_Graduated)) +
-  geom_point(alpha = 0.6) +
-  geom_smooth(method = "lm", se = FALSE, color = "blue") +
-  labs(
-    title = "Graduation Rate vs. Total Expenditures Per Pupil",
-    x = "Total Expenditures Per Pupil ($)",
-    y = "Graduation Rate (%)"
-  )
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", color = "blue", se = FALSE) +
+  labs(title = "Graduation Rate vs. Per-Pupil Expenditure",
+       x = "Per-Pupil Expenditure ($)",
+       y = "Graduation Rate (%)") +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
-### 2.1.2 Linear Regression Model
+
+## 4.2 Multiple Linear Regression: Adding Controls
 
 ```{r}
-model <- lm(Percent_Graduated ~ Total_Expenditures_Per_Pupil, data = df)
-model_summary <- summary(model)
-model_summary
+#| echo: false
+model_multiple <- lm(Percent_Graduated ~ Total_Expenditures_Per_Pupil + Percent_White + Percent_Black + Percent_Hispanic + Percent_Asian + Percent_Female + Student_Teacher_Ratio + Low_Income_Percent + SAT_Reading_Writing_Mean_Score + SAT_Math_Mean_Score, data = df)
+kable(tidy(model_multiple), caption = "Multiple Regression Results", digits = 4)
 ```
 
-### 2.1.3 Interpretation
 
-A simple linear regression was used to estimate the association between total expenditures per pupil and graduation rates across Massachusetts school districts. The results indicate that every $10,000 increase in per-pupil spending is associated with an increase of approximately 2.3 percentage points in the graduation rate. This effect is statistically significant at conventional levels (p < 0.001), suggesting that the relationship is unlikely to be the result of random variation.
+- After controlling for race, income, academic preparedness, and class size, **model fit improves dramatically** (R² ~ 67%).
+- Racial composition, income, and SAT scores are strong additional predictors.
 
-However, the model’s explanatory power is limited. The R-squared value is 0.013, indicating that only 1.3 percent of the variation in graduation rates is explained by differences in per-pupil spending. This suggests that other factors—such as socioeconomic conditions, instructional quality, or school leadership—play a more substantial role in influencing outcomes.
 
-While the model reveals a statistically detectable relationship between spending and graduation rates, it remains descriptive. No causal inference can be drawn from these results. The possibility of reverse causality or omitted variable bias must be considered, particularly given that higher-performing districts may receive more funding or that both funding and graduation rates may be influenced by a third variable such as community wealth or political support for education.
+## 4.3 Log-Log Regression: Elasticity Interpretation
 
----
-
-###2.1.4 Regression by Majority Race Group
-
-Separate regression models are estimated for school districts grouped by the majority racial composition of their student population.
-
-###Assign Majority Race
 
 ```{r}
+#| echo: false
+df <- df %>% mutate(log_expenditure = log(Total_Expenditures_Per_Pupil),
+                    log_graduated = log(Percent_Graduated))
+model_loglog <- lm(log_graduated ~ log_expenditure + Percent_White + Percent_Black + Percent_Hispanic + Percent_Asian + Percent_Female + Student_Teacher_Ratio + Low_Income_Percent + SAT_Reading_Writing_Mean_Score + SAT_Math_Mean_Score, data = df)
+kable(tidy(model_loglog), caption = "Log-Log Regression Results", digits = 4)
+```
+
+
+- Results are consistent.
+- Interpretation: A **1% increase** in spending predicts a **small % increase** in graduation rates.
+
+
+## 4.4 Model Comparison
+```{r}
+#| echo: false
+library(broom)
+
+model_metrics <- tibble(
+  Model = c("Simple Regression", "Multiple Regression", "Log-Log Regression"),
+  R_Squared = c(summary(model_simple)$r.squared, summary(model_multiple)$r.squared, summary(model_loglog)$r.squared),
+  Adjusted_R_Squared = c(summary(model_simple)$adj.r.squared, summary(model_multiple)$adj.r.squared, summary(model_loglog)$adj.r.squared),
+  AIC = c(AIC(model_simple), AIC(model_multiple), AIC(model_loglog)),
+  BIC = c(BIC(model_simple), BIC(model_multiple), BIC(model_loglog)),
+  RMSE = c(sqrt(mean(model_simple$residuals^2)),
+           sqrt(mean(model_multiple$residuals^2)),
+           sqrt(mean(model_loglog$residuals^2)))
+)
+
+kable(model_metrics, caption = "Comprehensive Model Comparison", digits = 4)
+
+```
+
+The three models differ substantially in their explanatory power and efficiency:
+
+Simple Linear Regression:
+This model shows a very low R-squared (~1.3%), indicating that per-pupil expenditure alone explains very little of the variation in graduation rates. While the coefficient is statistically significant, the model’s predictive ability is poor.
+
+Multiple Linear Regression:
+After adding controls for race, income, SAT scores, and other district characteristics, the R-squared increases substantially (~67%). This suggests that educational outcomes are driven by a broader range of factors beyond spending. However, the increase in model complexity must be weighed against the risk of overfitting.
+
+Log-Log Regression:
+The log-log model achieves a slightly lower R-squared (~64%) compared to the multiple linear model but still captures a strong relationship. Log-transforming the data stabilizes variance and reduces the influence of extreme values. Additionally, interpreting elasticities (percentage changes) can provide more policy-relevant insights.
+
+Comparing AIC and BIC values also favors the multiple linear model, indicating a better fit with reasonable complexity.
+RMSE is lowest for the multiple regression, confirming better predictive accuracy.
+
+In short, while simple models highlight basic associations, richer models reveal that multiple factors — especially demographics and socioeconomic status — jointly shape graduation outcomes.
+
+# 5. Subgroup Analysis: Racial Composition
+
+
+To explore if the relationship between funding and outcomes differs across racial groups, we estimated models separately by majority racial composition.
+
+```{r}
+#| echo: false
+library(purrr)
+
 df <- df %>%
   rowwise() %>%
-  mutate(
-    majority_race = c(
-      "White", "Black", "Hispanic", "Asian", 
-      "American Indian", "Pacific Islander", "Multi Race"
-    )[which.max(c_across(c(
-      Percent_White, 
-      Percent_Black, 
-      Percent_Hispanic, 
-      Percent_Asian, 
-      Percent_American_Indian, 
-      Percent_Pacific_Islander, 
-      Percent_Multi_Race
-    )))]
-  ) %>%
+  mutate(majority_race = c("White", "Black", "Hispanic", "Asian", "American Indian", "Pacific Islander", "Multi Race")[which.max(c_across(c(Percent_White, Percent_Black, Percent_Hispanic, Percent_Asian, Percent_American_Indian, Percent_Pacific_Islander, Percent_Multi_Race)))]) %>%
   ungroup() %>%
-  mutate(
-    majority_race = paste("Majority", majority_race)
-  )
-
-table(df$majority_race)
-```
-
-### Run Regressions by Group
-
-```{r}
-library(broom)
+  mutate(majority_race = paste("Majority", majority_race))
 
 group_models <- df %>%
   group_by(majority_race) %>%
   nest() %>%
   mutate(
     model = map(data, ~lm(Percent_Graduated ~ Total_Expenditures_Per_Pupil, data = .x)),
-    results = map(model, tidy),
-    glance = map(model, glance)
+    results = map(model, tidy)
   )
 
 race_results <- group_models %>%
   select(majority_race, results) %>%
   unnest(results)
-race_results
 
-glance_results <- group_models %>%
-  select(majority_race, glance) %>%
-  unnest(glance)
-glance_results
-```
-
-### 2.1.5 Interpretation
-
-Separate linear regression models were estimated for school districts grouped by the majority racial composition of their student population. This approach helps assess whether the strength of the spending–graduation relationship differs across demographic contexts.
-
-In Majority Hispanic districts, the slope coefficient is approximately 0.00135, indicating that a $10,000 increase in per-pupil spending is associated with a 13.5 percentage point increase in graduation rate. The t-statistic is 5.33, and the relationship is statistically significant at the 1 percent level, despite a smaller sample size.
-
-In Majority Black districts, the estimated slope is 0.00062, suggesting a 6.2 percentage point increase in graduation rate per $10,000 spent. This relationship is also statistically significant (t = 2.62, p ≈ 0.012), but the relatively small number of observations (n = 41) reduces precision.
-
-In Majority White districts, which comprise the majority of the sample (n = 3,419), the slope is 0.00029, corresponding to a 2.9 percentage point increase in graduation rate per $10,000 in spending. The t-statistic of 9.94 and very low p-value reflect the stability and statistical strength of this estimate.
-
-The t-statistics measure how far each coefficient lies from zero in terms of standard error units, and they confirm that the positive associations observed are unlikely to occur by chance. Although the strength of the effect varies by group, the direction is consistent, suggesting that increased education funding tends to support higher graduation outcomes across different demographic contexts. Larger effects in Majority Hispanic and Majority Black districts may reflect greater marginal benefits from additional investment in historically underserved areas.
-
-```
-## 2.2 Simple Regression Analysis: Income and Graduation Rates
-
-A simple linear regression is used to estimate the association between median household income and graduation rates across Massachusetts school districts.
-
-### 2.2.1 Scatterplot and Regression Line
-
-```
-df <- readRDS("dataset/Combined_District_Data.rds")
-
-summary(df[, c("Median_Household_Income", "Percent_Graduated")])
-```
-
-```
-ggplot(df, aes(x = Median_Household_Income, y = Percent_Graduated)) +
-  geom_point(alpha = 0.6) +
-  geom_smooth(method = "lm", se = FALSE, color = "blue") +
-  labs(
-    title = "Graduation Rate vs. Median Household Income",
-    x = "Median Household Income ($)",
-    y = "Graduation Rate (%)"
-  )
-```
-### 2.2.2 Linear Regression Model
-
-```
-model <- lm(Percent_Graduated ~ Median_Household_Income, data = df)
-model_summary <- summary(model)
-model_summary
-```
-
-### 2.2.3 Interpretation
-
-A simple linear regression was used to estimate the association between median household income and graduation rates across Massachusetts school districts. The results indicate that every $10,000 increase in income is associated with an increase in graduation rate. This effect is statistically significant at conventional levels (p < 0.001), suggesting that the relationship is unlikely to be the result of random variation.
-
-However, the model’s explanatory power may be limited. The R-squared value will show the proportion of variance in graduation rates explained by income differences. This suggests that other factors—such as school quality, funding, or demographic characteristics—play a substantial role.
-
-While the model reveals a statistically detectable relationship between income and graduation rates, it remains descriptive. No causal inference can be drawn from these results due to potential confounding variables and omitted variable bias.
-
----
-
-## 2.2.4 Regression by Majority Race Group
-
-Separate regression models are estimated for school districts grouped by the majority racial composition of their student population.
-
-### Assign Majority Race
-
-```
-df <- df %>%
-  rowwise() %>%
-  mutate(
-    majority_race = c(
-      "White", "Black", "Hispanic", "Asian", 
-      "American Indian", "Pacific Islander", "Multi Race"
-    )[which.max(c_across(c(
-      Percent_White, 
-      Percent_Black, 
-      Percent_Hispanic, 
-      Percent_Asian, 
-      Percent_American_Indian, 
-      Percent_Pacific_Islander, 
-      Percent_Multi_Race
-    )))]
-  ) %>%
-  ungroup() %>%
-  mutate(
-    majority_race = paste("Majority", majority_race)
-  )
-
-
-table(df$majority_race)
-```
-
-### Run Regressions by Group
-```
-group_models <- df %>%
-  group_by(majority_race) %>%
-  nest() %>%
-  mutate(
-    model = map(data, ~lm(Percent_Graduated ~ Median_Household_Income, data = .x)),
-    results = map(model, tidy),
-    glance = map(model, glance)
-  )
-
-race_results <- group_models %>%
-  select(majority_race, results) %>%
-  unnest(results)
-race_results
-
-glance_results <- group_models %>%
-  select(majority_race, glance) %>%
-  unnest(glance)
-glance_results
-```
-
-### 2.2.5 Interpretation
-
-Separate linear regression models were estimated for school districts grouped by the majority racial composition of their student population to assess whether the strength of the income–graduation relationship differs across demographic contexts.
-
-In Majority Hispanic districts, the slope coefficient is approximately 0.00112, with a t-statistic of 4.78 and a p-value < 0.001.
-
-In Majority Black districts, the slope is 0.00087, with a t-statistic of 2.41 and a p-value around 0.02.
-
-In Majority White districts, the slope is 0.00035, with a t-statistic of 10.26 and a p-value < 0.001.
-
-All coefficients are positive and statistically significant. The magnitude of the effect is larger in districts with majority Hispanic and Black populations, suggesting potentially greater gains in graduation rates from increases in income in these contexts. for school districts grouped by the majority racial composition of their student population. This approach helps assess whether the strength of the income–graduation relationship differs across demographic contexts.
-
-In Majority Hispanic districts, the slope coefficient indicates the estimated increase in graduation rate associated with a $10,000 increase in household income. The t-statistic and p-value confirm statistical significance, although the sample size may be limited.
-
-In Majority Black districts, the estimated relationship is positive and significant, though subject to greater uncertainty due to smaller group size.
-
-In Majority White districts, the estimated relationship is also positive and statistically significant, with greater stability due to the larger number of observations.
-
-Across all groups, t-statistics suggest the coefficients are distinguishable from zero. While the magnitude varies, the direction of the association remains consistent. These results imply that increases in household income are generally associated with higher graduation outcomes, and that the strength of this effect may be greater in communities with more constrained economic conditions.
+kable(race_results, caption = "Subgroup Regression Results by Race", digits = 4)
 ```
 
 
-## Note on Attribution
+### Key Findings:
+- **Majority Hispanic districts:** Strongest positive relationship between spending and graduation.
+- **Majority Black districts:** Moderate positive relationship.
+- **Majority White districts:** Positive but smaller magnitude.
 
-In general, you should try to provide links to relevant resources, especially those that helped you. You don't have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don't need a formal citation.
+> ➔ Targeted funding could have greater returns in historically underserved communities.
 
-If you are directly quoting from a source, please make that clear. You can show long quotes using `>` like this
 
-```         
-> To be or not to be.
-```
+# 5. Limitations
 
-> To be or not to be.
+- **Causality:** Observational data limits causal inference.
+- **Omitted Variables:** Factors like school leadership and parental involvement are not included.
+- **Measurement Error:** Graduation rates and expenditures may be reported with inaccuracies.
+- **Cross-Sectional Data:** No dynamic effects are captured.
 
-------------------------------------------------------------------------
+# 6. Conclusion
 
-## Rubric: On this page
+Spending is positively associated with graduation outcomes, with stronger effects in minority-majority districts. However, many factors beyond funding shape educational success. Future research should adopt causal designs and investigate targeted interventions.
 
-You will
 
--   Introduce what motivates your Data Analysis (DA)
-    -   Which variables and relationships are you most interested in?
-    -   What questions are you interested in answering?
-    -   Provide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.
--   Modeling and Inference
-    -   The page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.
-    -   Explain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)
-    -   Describe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.
--   Explain the flaws and limitations of your analysis
-    -   Are there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?
--   Clarity Figures
-    -   Are your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?
-    -   Each figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)
-    -   Default `lm` output and plots are typically not acceptable.
--   Clarity of Explanations
-    -   How well do you explain each figure/result?
-    -   Do you provide interpretations that suggest further analysis or explanations for observed phenomenon?
--   Organization and cleanliness.
-    -   Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.
-    -   This page should be self-contained, i.e. provide a description of the relevant data.
+
