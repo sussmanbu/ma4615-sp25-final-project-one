@@ -179,7 +179,7 @@ kable(model_metrics, caption = "Comprehensive Model Comparison", digits = 4)
 
 ```
 
-The three models differ substantially in their explanatory power and efficiency:
+-The three models differ substantially in their explanatory power and efficiency:
 
 Simple Linear Regression:
 This model shows a very low R-squared (~1.3%), indicating that per-pupil expenditure alone explains very little of the variation in graduation rates. While the coefficient is statistically significant, the model’s predictive ability is poor.
