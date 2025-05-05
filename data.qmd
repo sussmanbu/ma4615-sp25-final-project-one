@@ -312,7 +312,7 @@ ggplot(combined_data, aes(x = In_District_Expenditures, y = Low_Income_Percent))
 ```
 
 
-#### Additional Libraries used for Analysis
+### Additional Libraries used for Analysis
 
 1. kableExtra: Enhances knitr’s kable() function, allowing for the creation of complex tables to present regression model summaries.
 2. boom: cCnverts statistical model objects into tidy data frames, making it easier to summarize, visualize, and report model results using the tidyverse workflow.
