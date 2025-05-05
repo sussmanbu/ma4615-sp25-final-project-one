@@ -11,12 +11,18 @@ This comes from the file `about.qmd`.
 This is a website for the final project for MA[46]15 Data Science with R by Team One.
 The members of this team are below.
 
-Aini Zhou
+## **Aini Zhou**
 
-Aleeza Shah
+## **Aleeza Shah**
 
-David Kulig
+## **David Kulig**
 
-Haozhe Shu
+My name is David Kulig and I'm majoring in Econ and Math
 
-Zihan Yang
+Email: dkulig@bu.edu
+
+Github: [https://github.com/davidkulig](https://github.com/davidkulig)  
+
+## **Haozhe Shu**
+
+## **Zihan Yang**
