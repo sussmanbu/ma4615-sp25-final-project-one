@@ -74,7 +74,7 @@
     "href": "about.html#haozhe-shu",
     "title": "About",
     "section": "Haozhe Shu",
-    "text": "Haozhe Shu"
+    "text": "Haozhe Shu\nMy name is Haozhe Shu and I’m majoring Econ\nEmail: shz@bu.edu\nGithub: https://github.com/haozheshu333"
   },
   {
     "objectID": "about.html#zihan-yang",
@@ -193,14 +193,14 @@
     "href": "analysis.html#limitations",
     "title": "Analysis",
     "section": "7. Limitations",
-    "text": "7. Limitations\nWhile the results are insightful, several limitations should be noted:\n\nObservational Data: Causal inference cannot be definitively claimed; unobserved confounders may influence results.\nData Period: The analysis covers 2006–2013; more recent trends are not captured.\nOmitted Variables: Factors such as school leadership quality, curriculum rigor, or community support are not included.\nSimplified Racial Categorization: Majority race grouping may oversimplify the diversity within districts.\n\nFuture research could expand with more granular, longitudinal, and qualitative data."
+    "text": "7. Limitations\nSeveral limitations of this project should be acknowledged:\n\nObservational Data and Causality:\nAll models are based on observational data. While associations are identified, causal relationships cannot be definitively established due to the potential for unobserved confounding variables.\nData Timeframe (2008–2023):\nAlthough the data covers a long span, it does not fully capture the potential impacts of recent major events, such as the COVID-19 pandemic and subsequent shifts in educational policy.\nOmitted Variables:\nKey factors like school leadership quality, community engagement, extracurricular offerings, and localized policy initiatives were not included, which could influence graduation outcomes.\nSimplified Racial Groupings:\nGrouping districts by majority race provides broad patterns but may overlook important nuances within racially diverse or multi-ethnic districts.\n\n\nFuture Work:\nFuture research could strengthen these findings by incorporating longitudinal tracking, qualitative measures, and updated post-pandemic datasets to better understand evolving educational disparities."
   },
   {
     "objectID": "analysis.html#conclusion",
     "href": "analysis.html#conclusion",
     "title": "Analysis",
     "section": "8. Conclusion",
-    "text": "8. Conclusion\nThis project underscores that graduation outcomes are not determined by funding levels alone. Instead, they reflect the intertwined effects of economic disadvantage, racial composition, and structural resource disparities.\nOur best-performing model — multiple regression with an interaction term — highlights that the benefit of educational investment depends critically on the existing social and economic context.\nMeaningful educational equity efforts must therefore combine adequate funding with targeted interventions that address the broader social determinants of student success."
+    "text": "8. Conclusion\nThis project provides three key insights into the factors shaping graduation outcomes across Massachusetts districts:\n\nFunding Matters, But Is Not Sufficient:\nWhile per-pupil spending has a positive association with graduation rates, its explanatory power alone is limited. More money without addressing other barriers will not close achievement gaps.\nEconomic and Demographic Context Are Critical:\nLow-income concentration and racial composition significantly influence graduation rates. Districts serving historically underserved communities face systemic challenges beyond funding alone.\nInteracting Factors Compound Inequality:\nOur best-performing model — the multiple regression with an interaction term — demonstrates that the impact of funding varies by socioeconomic context. Investments yield different results depending on who the students are and the challenges they face.\n\n\nPolicy Implication:\nAchieving meaningful educational equity requires more than increasing budgets.\nIt demands targeted interventions that recognize and address the structural disadvantages embedded within communities.\n:::"
   },
   {
     "objectID": "data.html#datasources",
