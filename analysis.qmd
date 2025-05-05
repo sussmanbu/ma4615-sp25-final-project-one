@@ -189,7 +189,7 @@ ggplot(df_long, aes(x = Percent)) +
 > In this analysis, “Minority Students” are defined as the combined percentage of individuals identifying as Black, Hispanic, Asian, Multi-Race, American Indian, or Pacific Islander within each district.  
 > The total minority percentage is calculated by summing the proportions of these six groups.
 
-The scatter plot examines the relationship between minority student percentages and per-pupil expenditure across Massachusetts districts from 2006 to 2013.
+The scatter plot examines the relationship between minority student percentages and per-pupil expenditure across Massachusetts districts from 2008 to 2023.
 
 While a slight positive trend exists, the relationship is **weak and highly scattered**.  
 Most districts have low minority percentages (below 30%), and expenditure levels vary widely across all minority levels.  
@@ -215,7 +215,7 @@ ggplot(Combined_District_Data, aes(x = Percent_Minority, y = Total_Expenditures_
   geom_smooth(method = "lm", se = TRUE, color = "darkred", linewidth = 1) +
   labs(
     title = "Relationship Between Minority Composition and Per-Pupil Expenditure",
-    subtitle = "Each point represents a district (2006–2013)",
+    subtitle = "Each point represents a district (2008–2023)",
     x = "Percent Minority Students (%)",
     y = "Total Expenditures Per Pupil (USD)"
   ) +
