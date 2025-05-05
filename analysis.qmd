@@ -236,11 +236,18 @@ ggplot(Combined_District_Data, aes(x = Percent_Minority, y = Total_Expenditures_
 
 # 4. Regression Analysis
 
-We estimate three types of linear models to investigate the relationship between spending and graduation rates:
 
-- Simple linear regression
-- Multiple linear regression
-- Log-log regression
+In this project, we systematically built and compared four different regression models:
+
+- A **Simple Linear Regression** between per-pupil expenditure and graduation rates.
+- A **Simple Linear Regression** between low-income percentage and graduation rates.
+- A **Multiple Regression** incorporating expenditure, socioeconomic status, racial demographics, student-teacher ratios, and cohort size.
+- A **Multiple Regression with an Interaction Term** between expenditure and low-income percentage.
+
+Each step progressively added complexity to better capture the structural inequalities shaping graduation outcomes across Massachusetts school districts.
+
+---
+
 
 ## 4.1 Simple Linear Regression: Spending vs Graduation
 
@@ -527,76 +534,225 @@ kable(group_results_lowincome[, c("majority_race", "r.squared", "p.value")],
   kable_styling(full_width = F)
 ```
 
-## 4.3 Log-Log Regression: Elasticity Interpretation
+## 4.3 Multiple Regression: Comprehensive Model
 
+
+A multiple linear regression is used to estimate the association between several district characteristics and graduation rates across Massachusetts.
+
+
+### 4.3.1 Multiple Regression Model
+
+
+```{r}
+#| echo: false
+#| warning: false
+options(scipen = 999)
+library(tidyverse)
+library(broom)
+library(knitr)
+library(kableExtra)
+
+# Load data
+df <- readRDS("dataset/Combined_District_Data.rds")
+
+# Build multiple regression model
+model_multiple <- lm(Percent_Graduated ~ Total_Expenditures_Per_Pupil + Low_Income_Percent + 
+                       Percent_White + Percent_Black + Percent_Hispanic + Percent_Asian + 
+                       Percent_American_Indian + Percent_Pacific_Islander + Percent_Multi_Race +
+                       Student_Teacher_Ratio + Cohort_Size, data = df)
+
+model_multiple_result <- tidy(model_multiple)
+model_multiple_summary <- glance(model_multiple)
+
+# Format p-values
+model_multiple_result <- model_multiple_result %>%
+  mutate(p.value = ifelse(p.value < 0.01, "<0.01", round(p.value, 4)))
+
+model_multiple_summary <- model_multiple_summary %>%
+  mutate(p.value = ifelse(p.value < 0.01, "<0.01", round(p.value, 4)))
+
+# Output tables
+kable(model_multiple_result, caption = "Multiple Regression Coefficients", digits = 4, format.args = list(scientific = FALSE)) %>%
+  kable_styling(full_width = F)
+
+kable(model_multiple_summary[, c("r.squared", "adj.r.squared", "p.value")],
+      caption = "Model Summary Statistics (Multiple Regression)", digits = 4, format.args = list(scientific = FALSE)) %>%
+  kable_styling(full_width = F)
+```
+
+
+::: {.blockquote}
+**Interpretation:**
+
+The multiple regression model explains approximately **66.6%** of the variance in graduation rates, a substantial improvement compared to simpler models. 
+
+Key insights:
+
+- **Higher per-pupil expenditure** is positively associated with graduation outcomes (p < 0.01).
+- **Higher low-income student concentration** is strongly associated with **lower graduation rates**.
+- **Racial composition** matters: higher proportions of **Black** and **Hispanic** students correlate with lower graduation rates, reinforcing the Big Picture theme of structural inequalities.
+- **Student-teacher ratio** is positively related to graduation rates, potentially capturing differences in district resource allocation efficiency.
+- **Cohort size** shows a slight negative association.
+
+These results underscore that funding alone is insufficient; both socioeconomic disadvantage and racial demographics significantly shape educational outcomes, consistent with the broader structural inequality framework.
+:::
+
+
+## 4.4 Multiple Regression with Interaction Term
+
+
+To better understand how funding interacts with district poverty levels, we introduce an **interaction term** between **per-pupil expenditure** and **low-income percentage**. This allows us to assess whether the effect of spending varies across districts with different socioeconomic compositions, further connecting to our Big Picture theme of structural inequality.
+
+
+```{r}
+#| echo: false
+#| warning: false
+# Build model with interaction between expenditure and low-income percent
+model_interaction <- lm(Percent_Graduated ~ Total_Expenditures_Per_Pupil * Low_Income_Percent +
+                          Percent_White + Percent_Black + Percent_Hispanic + Percent_Asian + 
+                          Percent_American_Indian + Percent_Pacific_Islander + Percent_Multi_Race +
+                          Student_Teacher_Ratio + Cohort_Size, data = df)
+
+model_interaction_result <- tidy(model_interaction)
+model_interaction_summary <- glance(model_interaction)
+
+# Format p-values
+model_interaction_result <- model_interaction_result %>%
+  mutate(p.value = ifelse(p.value < 0.01, "<0.01", round(p.value, 4)))
+
+model_interaction_summary <- model_interaction_summary %>%
+  mutate(p.value = ifelse(p.value < 0.01, "<0.01", round(p.value, 4)))
+
+# Output tables
+kable(model_interaction_result, caption = "Multiple Regression Coefficients with Interaction", digits = 4, format.args = list(scientific = FALSE)) %>%
+  kable_styling(full_width = F)
+
+kable(model_interaction_summary[, c("r.squared", "adj.r.squared", "p.value")],
+      caption = "Model Summary Statistics (With Interaction)", digits = 4, format.args = list(scientific = FALSE)) %>%
+  kable_styling(full_width = F)
+
+```
+
+
+::: {.blockquote}
+**Interpretation:**
+
+The interaction model explains approximately **68.0%** of the variance in graduation rates, slightly improving model fit compared to the standard multiple regression.
+
+Key insights:
+
+- The **interaction term** between per-pupil expenditure and low-income percent is **positive and significant** (p < 0.01), suggesting that additional spending has a **larger positive effect** in districts with higher poverty levels.
+- **Low-income concentration** remains strongly negatively associated with graduation rates.
+- The main effect of **spending** becomes slightly negative when not accounting for interaction, reflecting nuanced dynamics.
+- Other patterns regarding race and class size remain broadly consistent.
+
+This highlights that **targeted investments** in high-poverty districts may yield **disproportionately larger benefits** for graduation outcomes, aligning closely with our Big Picture focus on addressing structural inequities.
+:::
+
+
+## 4.5 Model Comparison
+
+
+We compare the performance of the four models to determine the best fit.
+
+
+```{r}
+#| echo: false
+#| warning: false
+library(tibble)
+
+# Build simple model separately (Total_Expenditures_Per_Pupil only)
+model_simple <- lm(Percent_Graduated ~ Total_Expenditures_Per_Pupil, data = df)
+
+# Build low-income model separately (Low_Income_Percent only)
+model_lowincome <- lm(Percent_Graduated ~ Low_Income_Percent, data = df)
+
+# Collect model metrics
+model_metrics <- tibble(
+  Model = c("Simple Regression (Spending Only)", "Simple Regression (Low-Income Only)", 
+            "Multiple Regression", "Multiple Regression + Interaction"),
+  R_Squared = c(summary(model_simple)$r.squared, 
+                summary(model_lowincome)$r.squared,
+                summary(model_multiple)$r.squared, 
+                summary(model_interaction)$r.squared),
+  Adjusted_R_Squared = c(summary(model_simple)$adj.r.squared, 
+                         summary(model_lowincome)$adj.r.squared,
+                         summary(model_multiple)$adj.r.squared, 
+                         summary(model_interaction)$adj.r.squared),
+  AIC = c(AIC(model_simple), AIC(model_lowincome), AIC(model_multiple), AIC(model_interaction)),
+  BIC = c(BIC(model_simple), BIC(model_lowincome), BIC(model_multiple), BIC(model_interaction)),
+  RMSE = c(
+    sqrt(mean(model_simple$residuals^2)),
+    sqrt(mean(model_lowincome$residuals^2)),
+    sqrt(mean(model_multiple$residuals^2)),
+    sqrt(mean(model_interaction$residuals^2))
+  )
+)
+
+# Display model comparison table
+kable(model_metrics, caption = "Model Comparison Summary", digits = 4, format.args = list(scientific = FALSE)) %>%
+  kable_styling(full_width = F)
+```
+
+
+::: {.blockquote}
+- **Simple Regression (Spending Only):**  
+  Explains only **1.3%** of the variation in graduation rates (**R² = 0.0134**). Per-pupil spending alone is a weak predictor.
+
+- **Simple Regression (Low-Income Only):**  
+  Shows significant improvement (**R² = 0.6145**), indicating that socioeconomic disadvantage is a major driver of graduation outcomes.
+
+- **Multiple Regression:**  
+  Adding race, student-teacher ratio, and cohort size further boosts explanatory power (**R² = 0.6666**), reflecting the influence of multiple district characteristics.
+
+- **Multiple Regression + Interaction Term:**  
+  The best-performing model with **highest R² (0.6804)**, **lowest AIC**, and **lowest RMSE**. It captures the fact that **spending effects differ by poverty concentration**, offering the most nuanced understanding.
 
 ---
 
+**Final Model Selection:**  
+The **Multiple Regression with Interaction Term** is selected as the final model. It best balances model fit, complexity, and practical interpretability, and aligns with the broader finding that educational outcomes are shaped by an intersection of funding and socioeconomic context.
+:::
 
 
-```{r}
-#| echo: false
-df <- df %>% mutate(log_expenditure = log(Total_Expenditures_Per_Pupil),
-                    log_graduated = log(Percent_Graduated))
-model_loglog <- lm(log_graduated ~ log_expenditure + Percent_White + Percent_Black + Percent_Hispanic + Percent_Asian + Percent_Female + Student_Teacher_Ratio + Low_Income_Percent + SAT_Reading_Writing_Mean_Score + SAT_Math_Mean_Score, data = df)
-kable(tidy(model_loglog), caption = "Log-Log Regression Results", digits = 4)
-```
+### 5. Reflection on Data and Big Picture Alignment
+
+This analysis directly supports our Big Picture research question: 
+
+> **How do funding and structural inequalities together shape graduation outcomes across school districts?**
+
+The findings reveal that:
+
+- Funding **alone** explains very little.
+- **Socioeconomic disadvantage** (low-income percentage) is a much stronger predictor.
+- **Structural factors** such as race, cohort size, and class size further influence graduation outcomes.
+- **The interaction between funding and poverty** matters — indicating that investments may have different impacts depending on district demographics.
+
+Thus, achieving educational equity requires not just more spending, but **targeted strategies that address broader systemic disparities**.
 
 
-- Results are consistent.
-- Interpretation: A **1% increase** in spending predicts a **small % increase** in graduation rates.
+### 6. Limitations
 
 
-## 4.4 Model Comparison
-```{r}
-#| echo: false
-#| eval: false
+While the results are insightful, several limitations should be noted:
 
-library(broom)
+- **Observational Data:** Causal inference cannot be definitively claimed; unobserved confounders may influence results.
+- **Data Period:** The analysis covers 2006–2013; more recent trends are not captured.
+- **Omitted Variables:** Factors such as school leadership quality, curriculum rigor, or community support are not included.
+- **Simplified Racial Categorization:** Majority race grouping may oversimplify the diversity within districts.
 
-model_metrics <- tibble(
-  Model = c("Simple Regression", "Multiple Regression", "Log-Log Regression"),
-  R_Squared = c(summary(model_spending)$r.squared, summary(model_multiple)$r.squared, summary(model_loglog)$r.squared),
-  Adjusted_R_Squared = c(summary(model_spending)$adj.r.squared, summary(model_multiple)$adj.r.squared, summary(model_loglog)$adj.r.squared),
-  AIC = c(AIC(model_spending), AIC(model_multiple), AIC(model_loglog)),
-  BIC = c(BIC(model_spending), BIC(model_multiple), BIC(model_loglog)),
-  RMSE = c(sqrt(mean(model_spending$residuals^2)),
-           sqrt(mean(model_multiple$residuals^2)),
-           sqrt(mean(model_loglog$residuals^2)))
-)
-
-kable(model_metrics, caption = "Comprehensive Model Comparison", digits = 4)
-
-```
-
--The three models differ substantially in their explanatory power and efficiency:
-
-Simple Linear Regression:
-This model shows a very low R-squared (~1.3%), indicating that per-pupil expenditure alone explains very little of the variation in graduation rates. While the coefficient is statistically significant, the model’s predictive ability is poor.
-
-Multiple Linear Regression:
-After adding controls for race, income, SAT scores, and other district characteristics, the R-squared increases substantially (~67%). This suggests that educational outcomes are driven by a broader range of factors beyond spending. However, the increase in model complexity must be weighed against the risk of overfitting.
-
-Log-Log Regression:
-The log-log model achieves a slightly lower R-squared (~64%) compared to the multiple linear model but still captures a strong relationship. Log-transforming the data stabilizes variance and reduces the influence of extreme values. Additionally, interpreting elasticities (percentage changes) can provide more policy-relevant insights.
-
-Comparing AIC and BIC values also favors the multiple linear model, indicating a better fit with reasonable complexity.
-RMSE is lowest for the multiple regression, confirming better predictive accuracy.
-
-In short, while simple models highlight basic associations, richer models reveal that multiple factors — especially demographics and socioeconomic status — jointly shape graduation outcomes.
+Future research could expand with more granular, longitudinal, and qualitative data.
 
 
+### 7 Conclusion
 
-# 5. Limitations
 
-- **Causality:** Observational data limits causal inference.
-- **Omitted Variables:** Factors like school leadership and parental involvement are not included.
-- **Measurement Error:** Graduation rates and expenditures may be reported with inaccuracies.
-- **Cross-Sectional Data:** No dynamic effects are captured.
+This project underscores that graduation outcomes are not determined by funding levels alone. 
+Instead, they reflect the intertwined effects of **economic disadvantage**, **racial composition**, and **structural resource disparities**.
 
-# 6. Conclusion
+Our best-performing model — multiple regression with an interaction term — highlights that the benefit of educational investment depends critically on the existing social and economic context.
 
-Spending is positively associated with graduation outcomes, with stronger effects in minority-majority districts. However, many factors beyond funding shape educational success. Future research should adopt causal designs and investigate targeted interventions.
+Meaningful educational equity efforts must therefore **combine adequate funding with targeted interventions** that address the broader social determinants of student success.
 
 
 
