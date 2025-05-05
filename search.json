@@ -53,7 +53,7 @@
     "href": "about.html#aini-zhou",
     "title": "About",
     "section": "Aini Zhou",
-    "text": "Aini Zhou"
+    "text": "Aini Zhou\nMy name is David Kulig and I’m majoring in Econ and Math\nEmail: anzhou@bu.edu\nGithub: https://github.com/Victoria1117"
   },
   {
     "objectID": "about.html#aleeza-shah",
@@ -74,7 +74,7 @@
     "href": "about.html#haozhe-shu",
     "title": "About",
     "section": "Haozhe Shu",
-    "text": "Haozhe Shu\nMy name is Haozhe Shu and I’m majoring Econ\nEmail: shz@bu.edu\nGithub: https://github.com/haozheshu333"
+    "text": "Haozhe Shu"
   },
   {
     "objectID": "about.html#zihan-yang",
@@ -193,14 +193,14 @@
     "href": "analysis.html#limitations",
     "title": "Analysis",
     "section": "7. Limitations",
-    "text": "7. Limitations\nSeveral limitations of this project should be acknowledged:\n\nObservational Data and Causality:\nAll models are based on observational data. While associations are identified, causal relationships cannot be definitively established due to the potential for unobserved confounding variables.\nData Timeframe (2008–2023):\nAlthough the data covers a long span, it does not fully capture the potential impacts of recent major events, such as the COVID-19 pandemic and subsequent shifts in educational policy.\nOmitted Variables:\nKey factors like school leadership quality, community engagement, extracurricular offerings, and localized policy initiatives were not included, which could influence graduation outcomes.\nSimplified Racial Groupings:\nGrouping districts by majority race provides broad patterns but may overlook important nuances within racially diverse or multi-ethnic districts.\n\n\nFuture Work:\nFuture research could strengthen these findings by incorporating longitudinal tracking, qualitative measures, and updated post-pandemic datasets to better understand evolving educational disparities."
+    "text": "7. Limitations\nWhile the results are insightful, several limitations should be noted:\n\n3.8 Limitations\nThis analysis offers valuable insight into educational disparities, but several key limitations should be acknowledged:\n\nCausality Cannot Be Inferred: The analysis relies on observational data, so it can identify associations but cannot establish cause-and-effect relationships. For instance, higher spending may correlate with better outcomes, but this does not confirm that spending causes those improvements.\nOmitted Variables: Important factors such as parental involvement, school leadership, teacher quality, or community support are not included in the models. These missing variables could influence both graduation rates and district characteristics, introducing bias.\nDistrict-Level Aggregation: The use of district-wide averages may obscure within-district inequalities. Schools within the same district can have vastly different resources or student outcomes, especially in diverse urban areas.\nSimplified Race Categorization: Classifying districts by “majority race” can oversimplify complex demographic dynamics and may mask variation within multiracial districts or among smaller subgroups.\n\nFrom a policy perspective, equity audits at the district level, more transparent reporting, and flexible funding that prioritizes need over uniformity could help close the gaps revealed in this project."
   },
   {
     "objectID": "analysis.html#conclusion",
     "href": "analysis.html#conclusion",
     "title": "Analysis",
     "section": "8. Conclusion",
-    "text": "8. Conclusion\nThis project provides three key insights into the factors shaping graduation outcomes across Massachusetts districts:\n\nFunding Matters, But Is Not Sufficient:\nWhile per-pupil spending has a positive association with graduation rates, its explanatory power alone is limited. More money without addressing other barriers will not close achievement gaps.\nEconomic and Demographic Context Are Critical:\nLow-income concentration and racial composition significantly influence graduation rates. Districts serving historically underserved communities face systemic challenges beyond funding alone.\nInteracting Factors Compound Inequality:\nOur best-performing model — the multiple regression with an interaction term — demonstrates that the impact of funding varies by socioeconomic context. Investments yield different results depending on who the students are and the challenges they face.\n\n\nPolicy Implication:\nAchieving meaningful educational equity requires more than increasing budgets.\nIt demands targeted interventions that recognize and address the structural disadvantages embedded within communities.\n:::"
+    "text": "8. Conclusion\nThis project underscores that graduation outcomes are not determined by funding levels alone. Instead, they reflect the intertwined effects of economic disadvantage, racial composition, and structural resource disparities.\nOur best-performing model — multiple regression with an interaction term — highlights that the benefit of educational investment depends critically on the existing social and economic context.\nMeaningful educational equity efforts must therefore combine adequate funding with targeted interventions that address the broader social determinants of student success."
   },
   {
     "objectID": "data.html#datasources",

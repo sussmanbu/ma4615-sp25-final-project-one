@@ -157,7 +157,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison">5. Model Comparison</a>
   <ul class="collapse">
   <li><a href="#reflection-on-data-and-big-picture-alignment" id="toc-reflection-on-data-and-big-picture-alignment" class="nav-link" data-scroll-target="#reflection-on-data-and-big-picture-alignment">6. Reflection on Data and Big Picture Alignment</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">7. Limitations</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">7. Limitations</a>
+  <ul class="collapse">
+  <li><a href="#limitations-1" id="toc-limitations-1" class="nav-link" data-scroll-target="#limitations-1">3.8 Limitations</a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">8. Conclusion</a></li>
   </ul></li>
   </ul>
@@ -1024,37 +1027,24 @@ The <strong>Multiple Regression with Interaction Term</strong> is selected as th
 </section>
 <section id="limitations" class="level2">
 <h2 class="anchored" data-anchor-id="limitations">7. Limitations</h2>
-<p>Several limitations of this project should be acknowledged:</p>
+<p>While the results are insightful, several limitations should be noted:</p>
+<section id="limitations-1" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-1">3.8 Limitations</h3>
+<p>This analysis offers valuable insight into educational disparities, but several key limitations should be acknowledged:</p>
 <ul>
-<li><p><strong>Observational Data and Causality:</strong><br>
-All models are based on observational data. While associations are identified, causal relationships cannot be definitively established due to the potential for unobserved confounding variables.</p></li>
-<li><p><strong>Data Timeframe (2008–2023):</strong><br>
-Although the data covers a long span, it does not fully capture the potential impacts of recent major events, such as the COVID-19 pandemic and subsequent shifts in educational policy.</p></li>
-<li><p><strong>Omitted Variables:</strong><br>
-Key factors like school leadership quality, community engagement, extracurricular offerings, and localized policy initiatives were not included, which could influence graduation outcomes.</p></li>
-<li><p><strong>Simplified Racial Groupings:</strong><br>
-Grouping districts by majority race provides broad patterns but may overlook important nuances within racially diverse or multi-ethnic districts.</p></li>
+<li><p><strong>Causality Cannot Be Inferred</strong>: The analysis relies on observational data, so it can identify associations but cannot establish cause-and-effect relationships. For instance, higher spending may correlate with better outcomes, but this does not confirm that spending causes those improvements.</p></li>
+<li><p><strong>Omitted Variables</strong>: Important factors such as parental involvement, school leadership, teacher quality, or community support are not included in the models. These missing variables could influence both graduation rates and district characteristics, introducing bias.</p></li>
+<li><p><strong>District-Level Aggregation</strong>: The use of district-wide averages may obscure within-district inequalities. Schools within the same district can have vastly different resources or student outcomes, especially in diverse urban areas.</p></li>
+<li><p><strong>Simplified Race Categorization</strong>: Classifying districts by “majority race” can oversimplify complex demographic dynamics and may mask variation within multiracial districts or among smaller subgroups.</p></li>
 </ul>
-<hr>
-<p><strong>Future Work:</strong><br>
-Future research could strengthen these findings by incorporating longitudinal tracking, qualitative measures, and updated post-pandemic datasets to better understand evolving educational disparities.</p>
+<p>From a policy perspective, equity audits at the district level, more transparent reporting, and flexible funding that prioritizes need over uniformity could help close the gaps revealed in this project.</p>
+</section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">8. Conclusion</h2>
-<p>This project provides three key insights into the factors shaping graduation outcomes across Massachusetts districts:</p>
-<ul>
-<li><p><strong>Funding Matters, But Is Not Sufficient:</strong><br>
-While per-pupil spending has a positive association with graduation rates, its explanatory power alone is limited. More money without addressing other barriers will not close achievement gaps.</p></li>
-<li><p><strong>Economic and Demographic Context Are Critical:</strong><br>
-Low-income concentration and racial composition significantly influence graduation rates. Districts serving historically underserved communities face systemic challenges beyond funding alone.</p></li>
-<li><p><strong>Interacting Factors Compound Inequality:</strong><br>
-Our best-performing model — the multiple regression with an interaction term — demonstrates that <strong>the impact of funding varies by socioeconomic context</strong>. Investments yield different results depending on who the students are and the challenges they face.</p></li>
-</ul>
-<hr>
-<p><strong>Policy Implication:</strong><br>
-Achieving meaningful educational equity requires more than increasing budgets.<br>
-It demands <strong>targeted interventions</strong> that recognize and address the <strong>structural disadvantages</strong> embedded within communities.</p>
-<p>:::</p>
+<p>This project underscores that graduation outcomes are not determined by funding levels alone. Instead, they reflect the intertwined effects of <strong>economic disadvantage</strong>, <strong>racial composition</strong>, and <strong>structural resource disparities</strong>.</p>
+<p>Our best-performing model — multiple regression with an interaction term — highlights that the benefit of educational investment depends critically on the existing social and economic context.</p>
+<p>Meaningful educational equity efforts must therefore <strong>combine adequate funding with targeted interventions</strong> that address the broader social determinants of student success.</p>
 
 
 </section>
