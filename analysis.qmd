@@ -92,9 +92,8 @@ Per-pupil expenditure averages around \$15,348, but districts differ substantial
 On average, about 19.4% of students are from minority backgrounds and 32.7% are low-income, reflecting persistent socioeconomic diversity that may influence outcomes.
 
 
-# 3. Initial Exploratory Analysis
 
-### 3.1 Distribution of Graduation Rates
+### 2.1 Distribution of Graduation Rates
 
 
 Although Massachusetts districts generally exhibit **high graduation rates**, the right-skewed distribution suggests that a **small subset of districts consistently underperform**.  
@@ -122,7 +121,7 @@ ggplot(Combined_District_Data, aes(x = Percent_Graduated)) +
 
 
 
-### 3.2 Distribution of Per-Pupil Expenditure
+### 2.2 Distribution of Per-Pupil Expenditure
 
 
 The distribution of per-pupil expenditure shows **substantial variation**, with most districts spending moderately but some spending considerably more.  
@@ -150,7 +149,7 @@ ggplot(Combined_District_Data, aes(x = Total_Expenditures_Per_Pupil)) +
 > **Funding disparities** likely play a key role in graduation gaps, but **expenditure alone may not fully address deeper structural inequalities**.
 
 
-### 3.3 Racial Composition Across Districts
+### 2.3 Racial Composition Across Districts
 
 
 The racial composition across Massachusetts districts shows a **high concentration of White students**, with most districts having a **predominantly White population**.  
@@ -183,7 +182,7 @@ ggplot(df_long, aes(x = Percent)) +
 > The **racial imbalance** across districts suggests persistent **segregation and structural inequalities**. Districts with higher minority populations may face systemic challenges that affect graduation outcomes and resource allocation.
 
 
-### 3.4 Minority Composition vs. Per-Pupil Expenditure
+### 2.4 Minority Composition vs. Per-Pupil Expenditure
 
 
 > **Definition of Minority Students:**  
@@ -234,7 +233,7 @@ ggplot(Combined_District_Data, aes(x = Percent_Minority, y = Total_Expenditures_
 > The observed variation implies that **other systemic factors** — such as **poverty concentration, urbanization, historical segregation patterns, and political resource allocation** — likely play more significant roles in shaping funding inequities across districts.
 
 
-# 4. Regression Analysis
+# 3. Regression Analysis
 
 
 In this project, we systematically built and compared four different regression models:
@@ -249,13 +248,13 @@ Each step progressively added complexity to better capture the structural inequa
 ---
 
 
-## 4.1 Simple Linear Regression: Spending vs Graduation
+## 3.1 Simple Linear Regression: Spending vs Graduation
 
 
 A simple linear regression estimates the association between total expenditures per pupil and graduation rates across Massachusetts districts.
 
 
-### 4.1.1 Scatterplot and Regression Line
+### 3.1.1 Scatterplot and Regression Line
 
 
 ```{r}
@@ -269,8 +268,8 @@ df <- readRDS("dataset/Combined_District_Data.rds")
 
 # Create scatterplot
 ggplot(df, aes(x = Total_Expenditures_Per_Pupil, y = Percent_Graduated)) +
-  geom_jitter(width = 500, height = 1, alpha = 0.4, color = "darkblue") +
-  geom_smooth(method = "lm", se = FALSE, color = "red", size = 1) +
+  geom_jitter(width = 500, height = 1, alpha = 0.4, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "darkred", size = 1) +
   labs(
     title = "Graduation Rate vs. Per-Pupil Expenditure",
     subtitle = "Higher spending slightly correlates with higher graduation rates",
@@ -293,7 +292,7 @@ ggplot(df, aes(x = Total_Expenditures_Per_Pupil, y = Percent_Graduated)) +
 - **Graduation rates are heavily concentrated between 85%–100%**, suggesting that **factors beyond spending** likely drive performance.
 :::
 
-### 4.1.2 Linear Regression Model
+### 3.1.2 Linear Regression Model
 
 
 ```{r}
@@ -320,7 +319,7 @@ kable(model_spending_summary[, c("r.squared", "adj.r.squared", "p.value")],
 ```
 
 
-::: {.callout-note}
+::: {.blockquote}
 **Interpretation:**
 
 - The **intercept (87.83)** indicates that districts with zero reported per-pupil expenditure would have a predicted graduation rate of about **87.8%**, although such extrapolation is not practically meaningful.
@@ -332,12 +331,12 @@ kable(model_spending_summary[, c("r.squared", "adj.r.squared", "p.value")],
 
 
 
-### 4.1.3 Regression by Majority Race Group
+### 3.1.3 Regression by Majority Race Group
 
 Separate regression models are estimated for school districts grouped by their majority racial composition to assess whether the impact of spending differs across demographic contexts.
 
 
-::: {.callout-note}
+::: {.blockquote}
 Only Majority White, Black, and Hispanic groups are shown here due to sufficient sample sizes. Other groups are omitted to ensure stable regression estimates.
 :::
 
@@ -397,12 +396,12 @@ These results imply that **increased spending may have a greater marginal impact
 :::
 
 
-## 4.2 Simple Regression: Low-Income Percentage and Graduation Rates
+## 3.2 Simple Regression: Low-Income Percentage and Graduation Rates
 
 A simple linear regression estimates the association between the percentage of low-income students and graduation rates across Massachusetts districts.
 
 
-### 4.2.1 Scatterplot and Regression Line
+### 3.2.1 Scatterplot and Regression Line
 
 
 ```{r}
@@ -416,8 +415,8 @@ df <- readRDS("dataset/Combined_District_Data.rds")
 
 # Create scatterplot
 ggplot(df, aes(x = Low_Income_Percent, y = Percent_Graduated)) +
-  geom_jitter(width = 2, height = 1, alpha = 0.4, color = "darkgreen") +
-  geom_smooth(method = "lm", se = FALSE, color = "red", size = 1) +
+  geom_jitter(width = 2, height = 1, alpha = 0.4, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "darkred", size = 1) +
   labs(
     title = "Graduation Rate vs. Low-Income Student Percentage",
     subtitle = "Higher low-income concentration correlates with lower graduation rates",
@@ -441,7 +440,7 @@ The relationship appears stronger than in the previous spending model, with a cl
 :::
 
 
-### 4.2.2 Linear Regression Model
+### 3.2.2 Linear Regression Model
 
 
 ```{r}
@@ -478,7 +477,7 @@ The regression analysis shows a strong negative relationship between the percent
 :::
 
 
-### 4.2.3 Regression by Majority Race Group
+### 3.2.3 Regression by Majority Race Group
 
 
 ```{r}
@@ -534,13 +533,13 @@ kable(group_results_lowincome[, c("majority_race", "r.squared", "p.value")],
   kable_styling(full_width = F)
 ```
 
-## 4.3 Multiple Regression: Comprehensive Model
+## 4. Multiple Regression: Comprehensive Model
 
 
 A multiple linear regression is used to estimate the association between several district characteristics and graduation rates across Massachusetts.
 
 
-### 4.3.1 Multiple Regression Model
+## 4.1 Multiple Regression Model
 
 
 ```{r}
@@ -598,7 +597,7 @@ These results underscore that funding alone is insufficient; both socioeconomic 
 :::
 
 
-## 4.4 Multiple Regression with Interaction Term
+## 4.2 Multiple Regression with Interaction Term
 
 
 To better understand how funding interacts with district poverty levels, we introduce an **interaction term** between **per-pupil expenditure** and **low-income percentage**. This allows us to assess whether the effect of spending varies across districts with different socioeconomic compositions, further connecting to our Big Picture theme of structural inequality.
@@ -650,7 +649,7 @@ This highlights that **targeted investments** in high-poverty districts may yiel
 :::
 
 
-## 4.5 Model Comparison
+# 5. Model Comparison
 
 
 We compare the performance of the four models to determine the best fit.
@@ -715,7 +714,7 @@ The **Multiple Regression with Interaction Term** is selected as the final model
 :::
 
 
-### 5. Reflection on Data and Big Picture Alignment
+## 6. Reflection on Data and Big Picture Alignment
 
 This analysis directly supports our Big Picture research question: 
 
@@ -731,7 +730,7 @@ The findings reveal that:
 Thus, achieving educational equity requires not just more spending, but **targeted strategies that address broader systemic disparities**.
 
 
-### 6. Limitations
+## 7. Limitations
 
 
 While the results are insightful, several limitations should be noted:
@@ -744,7 +743,7 @@ While the results are insightful, several limitations should be noted:
 Future research could expand with more granular, longitudinal, and qualitative data.
 
 
-### 7 Conclusion
+## 8. Conclusion
 
 
 This project underscores that graduation outcomes are not determined by funding levels alone. 
