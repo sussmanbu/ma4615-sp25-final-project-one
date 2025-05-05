@@ -11,7 +11,9 @@ page-layout: full
 title-block-banner: true
 ---
 
-![](images/data-science.png)
+### **Who Graduates? Exploring Inequities in Massachusetts Education**
+
+![](https://images.stockcake.com/public/3/a/3/3a360a3a-57c6-477c-a439-ec06493d3559_large/graduation-cap-rain-stockcake.jpg)
 
 # Final Project due May 5, 2024 at 11:59pm.
 

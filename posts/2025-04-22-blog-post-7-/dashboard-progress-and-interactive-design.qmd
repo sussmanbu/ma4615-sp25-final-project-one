@@ -1,6 +1,6 @@
 ---
-title: "Dashboard Progress and Interactive Design"
-author: "Aleeza Shah"
+title: "Blog Post 7"
+author: ""
 date: "2025-04-22"
 date-modified: "2025-04-22"
 draft: FALSE
