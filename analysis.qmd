@@ -734,25 +734,51 @@ Thus, achieving educational equity requires not just more spending, but **target
 ### 6. Limitations
 
 
-While the results are insightful, several limitations should be noted:
+Several limitations of this project should be acknowledged:
 
-- **Observational Data:** Causal inference cannot be definitively claimed; unobserved confounders may influence results.
-- **Data Period:** The analysis covers 2006–2013; more recent trends are not captured.
-- **Omitted Variables:** Factors such as school leadership quality, curriculum rigor, or community support are not included.
-- **Simplified Racial Categorization:** Majority race grouping may oversimplify the diversity within districts.
+- **Observational Data and Causality:**  
+  All models are based on observational data. While associations are identified, causal relationships cannot be definitively established due to the potential for unobserved confounding variables.
 
-Future research could expand with more granular, longitudinal, and qualitative data.
+- **Data Timeframe (2008–2023):**  
+  Although the data covers a long span, it does not fully capture the potential impacts of recent major events, such as the COVID-19 pandemic and subsequent shifts in educational policy.
+
+- **Omitted Variables:**  
+  Key factors like school leadership quality, community engagement, extracurricular offerings, and localized policy initiatives were not included, which could influence graduation outcomes.
+
+- **Simplified Racial Groupings:**  
+  Grouping districts by majority race provides broad patterns but may overlook important nuances within racially diverse or multi-ethnic districts.
+
+
+---
+
+
+**Future Work:**  
+Future research could strengthen these findings by incorporating longitudinal tracking, qualitative measures, and updated post-pandemic datasets to better understand evolving educational disparities.
 
 
 ### 7 Conclusion
 
 
-This project underscores that graduation outcomes are not determined by funding levels alone. 
-Instead, they reflect the intertwined effects of **economic disadvantage**, **racial composition**, and **structural resource disparities**.
+This project provides three key insights into the factors shaping graduation outcomes across Massachusetts districts:
 
-Our best-performing model — multiple regression with an interaction term — highlights that the benefit of educational investment depends critically on the existing social and economic context.
+- **Funding Matters, But Is Not Sufficient:**  
+  While per-pupil spending has a positive association with graduation rates, its explanatory power alone is limited. More money without addressing other barriers will not close achievement gaps.
 
-Meaningful educational equity efforts must therefore **combine adequate funding with targeted interventions** that address the broader social determinants of student success.
+- **Economic and Demographic Context Are Critical:**  
+  Low-income concentration and racial composition significantly influence graduation rates. Districts serving historically underserved communities face systemic challenges beyond funding alone.
+
+- **Interacting Factors Compound Inequality:**  
+  Our best-performing model — the multiple regression with an interaction term — demonstrates that **the impact of funding varies by socioeconomic context**. Investments yield different results depending on who the students are and the challenges they face.
+
+---
+
+**Policy Implication:**  
+Achieving meaningful educational equity requires more than increasing budgets.  
+It demands **targeted interventions** that recognize and address the **structural disadvantages** embedded within communities.
+
+:::
+
+
 
 
 
