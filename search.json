@@ -81,7 +81,7 @@
     "href": "about.html#zihan-yang",
     "title": "About",
     "section": "Zihan Yang",
-    "text": "Zihan Yang\nMy name is Zihan Yang, and I’m najoring in Econ and Advertising.\nEmail: yangzh@bu.edu\nGithub: https://github.com/yangzh1234"
+    "text": "Zihan Yang\nMy name is Zihan Yang, and I’majoring in Econ and Advertising.\nEmail: yangzh@bu.edu\nGithub: https://github.com/yangzh1234"
   },
   {
     "objectID": "index.html",
@@ -200,7 +200,7 @@
     "href": "analysis.html#conclusion",
     "title": "Analysis",
     "section": "8. Conclusion",
-    "text": "8. Conclusion\nThis project provides three key insights into the factors shaping graduation outcomes across Massachusetts districts:\n\nFunding Matters, But Is Not Sufficient:\nWhile per-pupil spending has a positive association with graduation rates, its explanatory power alone is limited. More money without addressing other barriers will not close achievement gaps.\nEconomic and Demographic Context Are Critical:\nLow-income concentration and racial composition significantly influence graduation rates. Districts serving historically underserved communities face systemic challenges beyond funding alone.\nInteracting Factors Compound Inequality:\nOur best-performing model — the multiple regression with an interaction term — demonstrates that the impact of funding varies by socioeconomic context. Investments yield different results depending on who the students are and the challenges they face.\n\n\nPolicy Implication:\nAchieving meaningful educational equity requires more than increasing budgets.\nIt demands targeted interventions that recognize and address the structural disadvantages embedded within communities.\n:::"
+    "text": "8. Conclusion\nThis project provides three key insights into the factors shaping graduation outcomes across Massachusetts districts:\n\nFunding Matters, But Is Not Sufficient:\nWhile per-pupil spending has a positive association with graduation rates, its explanatory power alone is limited. More money without addressing other barriers will not close achievement gaps.\nEconomic and Demographic Context Are Critical:\nLow-income concentration and racial composition significantly influence graduation rates. Districts serving historically underserved communities face systemic challenges beyond funding alone.\nInteracting Factors Compound Inequality:\nOur best-performing model — the multiple regression with an interaction term — demonstrates that the impact of funding varies by socioeconomic context. Investments yield different results depending on who the students are and the challenges they face.\n\n\nPolicy Implication:\nAchieving meaningful educational equity requires more than increasing budgets.\nIt demands targeted interventions that recognize and address the structural disadvantages embedded within communities."
   },
   {
     "objectID": "data.html#datasources",
