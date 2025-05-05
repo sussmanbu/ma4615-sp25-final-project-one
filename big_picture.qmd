@@ -1,13 +1,13 @@
 ---
-title: "Big Picture"
-description: "A 538/Upshot style article about the data."
+title: "Does Excellence Equal Equity?"
+description: "Exploring the Relationship Between Academic Success and Race inside Massachusetts Public Schools."
 toc: true
 draft: FALSE
 filters:
   - shinylive
 ---
 
-![](images/The_Big_Picture_2.jpeg)
+![](https://www.sdfoundation.org/wp-content/uploads/2021/05/sdfnews_2021-05_equity1.png)
 
 ### Introduction
 
@@ -27,7 +27,7 @@ Understanding these patterns is crucial for shaping policy that doesn’t just r
 
 ### Thesis
 
-Massachusetts leads the nation in public education — but not all students benefit equally. Using school-level data from 2006 to 2013, this project investigates whether racial disparities exist in graduation rates, access to support services, and demographic concentration. The findings suggest that while the state excels on average, structural inequalities continue to influence who has access to educational success.
+Massachusetts leads the nation in public education — but not all students benefit equally. Using school-level data from 2006 to 2023, this project investigates whether racial disparities exist in graduation rates, access to support services, and demographic concentration. The findings suggest that while the state excels on average, structural inequalities continue to influence who has access to educational success.
 
 ### Reflections and Reading Connections
 

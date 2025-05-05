@@ -1,7 +1,11 @@
 ---
-title: "blog8"
-format: html
+title: "Blog Post 8"
+author: ""
+date: "2025-04-29"
+date-modified: "2025-04-29"
+draft: FALSE
 ---
+This week we started to finish our big picture tab: 
 
 Title:
 Does Excellence Equal Equity? A Look Inside Massachusetts Public Schools
@@ -24,4 +28,4 @@ To carry out this analysis, we employ multiple regression techniques that allow 
 
 Ultimately, by examining both academic outcomes and access to support services with careful statistical methods, we hope to provide a more nuanced picture of equity in Massachusetts public education—highlighting not only the state’s successes but also the persistent challenges that must be addressed if true educational equity is to be realized.
 
-
+We already completed our shiny tables and had to change course on our second dataset switching to something that was focused on school districts instead of county data as it was much harder to work with the census data as a whole. We think this will allow our data to be more informative and also easier to combine as before it was quite a struggle. Most of the polishing we've worked on is adjusting pictures and making sure there are no spelling mistakes throughout the project 
