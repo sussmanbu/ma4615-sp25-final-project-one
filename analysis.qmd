@@ -5,7 +5,7 @@ toc: true
 draft: false
 ---
 
-![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
+![](https://t3.ftcdn.net/jpg/02/66/18/34/360_F_266183414_AF4yAeMvb4katnh1CAPhvhmmOjl0kpVk.jpg)
 
 ```{r}
 #| echo: false
