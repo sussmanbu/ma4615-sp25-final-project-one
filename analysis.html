@@ -67,6 +67,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -123,27 +125,41 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#motivation-and-research-question" id="toc-motivation-and-research-question" class="nav-link active" data-scroll-target="#motivation-and-research-question">1. Motivation and Research Question</a>
   <ul class="collapse">
-  <li><a href="#general-information-analysis" id="toc-general-information-analysis" class="nav-link" data-scroll-target="#general-information-analysis">2. General Information Analysis</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
+  <li><a href="#guiding-question" id="toc-guiding-question" class="nav-link" data-scroll-target="#guiding-question">Guiding Question</a></li>
   </ul></li>
-  <li><a href="#initial-exploratory-analysis" id="toc-initial-exploratory-analysis" class="nav-link" data-scroll-target="#initial-exploratory-analysis">3. Initial Exploratory Analysis</a>
+  <li><a href="#general-information-analysis" id="toc-general-information-analysis" class="nav-link" data-scroll-target="#general-information-analysis">2. General Information Analysis</a>
   <ul class="collapse">
-  <li><a href="#distribution-of-graduation-rates" id="toc-distribution-of-graduation-rates" class="nav-link" data-scroll-target="#distribution-of-graduation-rates">3.1 Distribution of Graduation Rates</a></li>
-  <li><a href="#distribution-of-per-pupil-expenditure" id="toc-distribution-of-per-pupil-expenditure" class="nav-link" data-scroll-target="#distribution-of-per-pupil-expenditure">3.2 Distribution of Per-Pupil Expenditure</a></li>
-  <li><a href="#racial-composition-across-districts" id="toc-racial-composition-across-districts" class="nav-link" data-scroll-target="#racial-composition-across-districts">3.3 Racial Composition Across Districts</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a></li>
+  <li><a href="#distribution-of-graduation-rates" id="toc-distribution-of-graduation-rates" class="nav-link" data-scroll-target="#distribution-of-graduation-rates">2.1 Distribution of Graduation Rates</a></li>
+  <li><a href="#distribution-of-per-pupil-expenditure" id="toc-distribution-of-per-pupil-expenditure" class="nav-link" data-scroll-target="#distribution-of-per-pupil-expenditure">2.2 Distribution of Per-Pupil Expenditure</a></li>
+  <li><a href="#racial-composition-across-districts" id="toc-racial-composition-across-districts" class="nav-link" data-scroll-target="#racial-composition-across-districts">2.3 Racial Composition Across Districts</a></li>
+  <li><a href="#minority-composition-vs.-per-pupil-expenditure" id="toc-minority-composition-vs.-per-pupil-expenditure" class="nav-link" data-scroll-target="#minority-composition-vs.-per-pupil-expenditure">2.4 Minority Composition vs.&nbsp;Per-Pupil Expenditure</a></li>
   </ul></li>
-  <li><a href="#regression-analysis" id="toc-regression-analysis" class="nav-link" data-scroll-target="#regression-analysis">4. Regression Analysis</a>
+  <li><a href="#regression-analysis" id="toc-regression-analysis" class="nav-link" data-scroll-target="#regression-analysis">3. Regression Analysis</a>
   <ul class="collapse">
-  <li><a href="#simple-linear-regression-spending-vs-graduation" id="toc-simple-linear-regression-spending-vs-graduation" class="nav-link" data-scroll-target="#simple-linear-regression-spending-vs-graduation">4.1 Simple Linear Regression: Spending vs Graduation</a></li>
-  <li><a href="#multiple-linear-regression-adding-controls" id="toc-multiple-linear-regression-adding-controls" class="nav-link" data-scroll-target="#multiple-linear-regression-adding-controls">4.2 Multiple Linear Regression: Adding Controls</a></li>
-  <li><a href="#log-log-regression-elasticity-interpretation" id="toc-log-log-regression-elasticity-interpretation" class="nav-link" data-scroll-target="#log-log-regression-elasticity-interpretation">4.3 Log-Log Regression: Elasticity Interpretation</a></li>
-  <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison">4.4 Model Comparison</a></li>
-  </ul></li>
-  <li><a href="#subgroup-analysis-racial-composition" id="toc-subgroup-analysis-racial-composition" class="nav-link" data-scroll-target="#subgroup-analysis-racial-composition">5. Subgroup Analysis: Racial Composition</a>
+  <li><a href="#simple-linear-regression-spending-vs-graduation" id="toc-simple-linear-regression-spending-vs-graduation" class="nav-link" data-scroll-target="#simple-linear-regression-spending-vs-graduation">3.1 Simple Linear Regression: Spending vs Graduation</a>
   <ul class="collapse">
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings:</a></li>
+  <li><a href="#scatterplot-and-regression-line" id="toc-scatterplot-and-regression-line" class="nav-link" data-scroll-target="#scatterplot-and-regression-line">3.1.1 Scatterplot and Regression Line</a></li>
+  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link" data-scroll-target="#linear-regression-model">3.1.2 Linear Regression Model</a></li>
+  <li><a href="#regression-by-majority-race-group" id="toc-regression-by-majority-race-group" class="nav-link" data-scroll-target="#regression-by-majority-race-group">3.1.3 Regression by Majority Race Group</a></li>
   </ul></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">5. Limitations</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">6. Conclusion</a></li>
+  <li><a href="#simple-regression-low-income-percentage-and-graduation-rates" id="toc-simple-regression-low-income-percentage-and-graduation-rates" class="nav-link" data-scroll-target="#simple-regression-low-income-percentage-and-graduation-rates">3.2 Simple Regression: Low-Income Percentage and Graduation Rates</a>
+  <ul class="collapse">
+  <li><a href="#scatterplot-and-regression-line-1" id="toc-scatterplot-and-regression-line-1" class="nav-link" data-scroll-target="#scatterplot-and-regression-line-1">3.2.1 Scatterplot and Regression Line</a></li>
+  <li><a href="#linear-regression-model-1" id="toc-linear-regression-model-1" class="nav-link" data-scroll-target="#linear-regression-model-1">3.2.2 Linear Regression Model</a></li>
+  <li><a href="#regression-by-majority-race-group-1" id="toc-regression-by-majority-race-group-1" class="nav-link" data-scroll-target="#regression-by-majority-race-group-1">3.2.3 Regression by Majority Race Group</a></li>
+  </ul></li>
+  <li><a href="#multiple-regression-comprehensive-model" id="toc-multiple-regression-comprehensive-model" class="nav-link" data-scroll-target="#multiple-regression-comprehensive-model">4. Multiple Regression: Comprehensive Model</a></li>
+  <li><a href="#multiple-regression-model" id="toc-multiple-regression-model" class="nav-link" data-scroll-target="#multiple-regression-model">4.1 Multiple Regression Model</a></li>
+  <li><a href="#multiple-regression-with-interaction-term" id="toc-multiple-regression-with-interaction-term" class="nav-link" data-scroll-target="#multiple-regression-with-interaction-term">4.2 Multiple Regression with Interaction Term</a></li>
+  </ul></li>
+  <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison">5. Model Comparison</a>
+  <ul class="collapse">
+  <li><a href="#reflection-on-data-and-big-picture-alignment" id="toc-reflection-on-data-and-big-picture-alignment" class="nav-link" data-scroll-target="#reflection-on-data-and-big-picture-alignment">6. Reflection on Data and Big Picture Alignment</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">7. Limitations</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">8. Conclusion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -177,40 +193,100 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="https://t3.ftcdn.net/jpg/02/66/18/34/360_F_266183414_AF4yAeMvb4katnh1CAPhvhmmOjl0kpVk.jpg" class="img-fluid"></p>
 <section id="motivation-and-research-question" class="level1">
 <h1>1. Motivation and Research Question</h1>
-<p>Massachusetts consistently ranks among the top states in educational performance. However, excellence in averages can mask disparities across districts. This analysis investigates how <strong>resources (expenditure)</strong> and <strong>structural factors (race, income, academic background)</strong> interact to influence graduation outcomes.</p>
-<p><strong>Guiding question:</strong></p>
-<blockquote class="blockquote">
-<p>How do funding and structural inequalities together shape graduation outcomes across school districts?</p>
-</blockquote>
-<section id="general-information-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="general-information-analysis">2. General Information Analysis</h2>
-<p>We use district-level data from 2006–2013, including:</p>
+<p>Educational outcomes are significantly influenced by a complex interplay of racial demographics, socioeconomic factors, and financial investments. In Massachusetts, public school districts exhibit varied graduation rates and SAT performances.</p>
+<section id="research-questions" class="level3">
+<h3 class="anchored" data-anchor-id="research-questions">Research Questions</h3>
 <ul>
-<li><strong>Total Expenditures Per Pupil</strong></li>
-<li><strong>Graduation Rates</strong></li>
-<li><strong>Demographics</strong></li>
-<li><strong>Socioeconomic Indicators</strong> (Low Income Percentage)</li>
-<li><strong>Academic Preparedness</strong> (SAT Scores)</li>
-<li><strong>Student-Teacher Ratio</strong></li>
+<li>How do financial investments per student correlate with graduation rates?</li>
+<li>How do racial composition and income levels affect educational outcomes?</li>
+<li>What models best explain the observed variations?</li>
 </ul>
 </section>
+<section id="guiding-question" class="level3">
+<h3 class="anchored" data-anchor-id="guiding-question">Guiding Question</h3>
+<blockquote class="blockquote">
+<p><strong>How do funding and structural inequalities together shape graduation outcomes across school districts?</strong></p>
+</blockquote>
 </section>
-<section id="initial-exploratory-analysis" class="level1">
-<h1>3. Initial Exploratory Analysis</h1>
-<section id="distribution-of-graduation-rates" class="level3">
-<h3 class="anchored" data-anchor-id="distribution-of-graduation-rates">3.1 Distribution of Graduation Rates</h3>
+</section>
+<section id="general-information-analysis" class="level1">
+<h1>2. General Information Analysis</h1>
+<section id="summary-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics">Summary Statistics</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<table class="caption-top table table-sm table-striped small">
+<caption>Summary Statistics of Key Variables</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Graduation</td>
+<td style="text-align: left;">Avg Graduation Rate (%)</td>
+<td style="text-align: right;">91.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Graduation</td>
+<td style="text-align: left;">SD Graduation Rate (%)</td>
+<td style="text-align: right;">7.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Expenditure</td>
+<td style="text-align: left;">Avg Expenditure per Pupil (USD)</td>
+<td style="text-align: right;">15348.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Expenditure</td>
+<td style="text-align: left;">SD Expenditure (USD)</td>
+<td style="text-align: right;">3752.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Demographics</td>
+<td style="text-align: left;">Avg % Minority Students</td>
+<td style="text-align: right;">19.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Demographics</td>
+<td style="text-align: left;">Avg % Low-Income Students</td>
+<td style="text-align: right;">32.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Resources</td>
+<td style="text-align: left;">Avg Student-Teacher Ratio</td>
+<td style="text-align: right;">11.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Resources</td>
+<td style="text-align: left;">SD Student-Teacher Ratio</td>
+<td style="text-align: right;">1.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Size</td>
+<td style="text-align: left;">Avg Cohort Size</td>
+<td style="text-align: right;">247.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Size</td>
+<td style="text-align: left;">SD Cohort Size</td>
+<td style="text-align: right;">280.6</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<p><strong>Observation</strong>: Across Massachusetts districts, the average graduation rate is high (91.4%), though notable variation remains.<br>
+Per-pupil expenditure averages around $15,348, but districts differ substantially in resources and demographics.<br>
+On average, about 19.4% of students are from minority backgrounds and 32.7% are low-income, reflecting persistent socioeconomic diversity that may influence outcomes.</p>
 </section>
-<section id="distribution-of-per-pupil-expenditure" class="level3">
-<h3 class="anchored" data-anchor-id="distribution-of-per-pupil-expenditure">3.2 Distribution of Per-Pupil Expenditure</h3>
+<section id="distribution-of-graduation-rates" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-graduation-rates">2.1 Distribution of Graduation Rates</h3>
+<p>Although Massachusetts districts generally exhibit <strong>high graduation rates</strong>, the right-skewed distribution suggests that a <strong>small subset of districts consistently underperform</strong>.<br>
+This highlights that <strong>structural inequalities</strong> persist despite overall strong outcomes.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -220,9 +296,15 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
+<p><strong>Big Picture Implication:</strong><br>
+Even with an overall high graduation rate, <strong>not all districts benefit equally</strong>, suggesting that systemic factors such as <strong>racial and economic disparities</strong> continue to impact student success.</p>
+</blockquote>
 </section>
-<section id="racial-composition-across-districts" class="level3">
-<h3 class="anchored" data-anchor-id="racial-composition-across-districts">3.3 Racial Composition Across Districts</h3>
+<section id="distribution-of-per-pupil-expenditure" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-per-pupil-expenditure">2.2 Distribution of Per-Pupil Expenditure</h3>
+<p>The distribution of per-pupil expenditure shows <strong>substantial variation</strong>, with most districts spending moderately but some spending considerably more.<br>
+This reflects <strong>unequal financial investment</strong> across districts, reinforcing the connection between <strong>resource allocation</strong> and graduation outcomes.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -232,58 +314,41 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
+<p><strong>Big Picture Implication:</strong><br>
+<strong>Funding disparities</strong> likely play a key role in graduation gaps, but <strong>expenditure alone may not fully address deeper structural inequalities</strong>.</p>
+</blockquote>
 </section>
-</section>
-<section id="regression-analysis" class="level1">
-<h1>4. Regression Analysis</h1>
-<p>We estimate three types of linear models to investigate the relationship between spending and graduation rates:</p>
-<ul>
-<li>Simple linear regression</li>
-<li>Multiple linear regression</li>
-<li>Log-log regression</li>
-</ul>
-<section id="simple-linear-regression-spending-vs-graduation" class="level2">
-<h2 class="anchored" data-anchor-id="simple-linear-regression-spending-vs-graduation">4.1 Simple Linear Regression: Spending vs Graduation</h2>
+<section id="racial-composition-across-districts" class="level3">
+<h3 class="anchored" data-anchor-id="racial-composition-across-districts">2.3 Racial Composition Across Districts</h3>
+<p>The racial composition across Massachusetts districts shows a <strong>high concentration of White students</strong>, with most districts having a <strong>predominantly White population</strong>.<br>
+In contrast, the percentages of Asian, Black, and Hispanic students are generally low, with most districts having <strong>less than 10%</strong> representation for these groups.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Simple Linear Regression Results</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">term</th>
-<th style="text-align: right;">estimate</th>
-<th style="text-align: right;">std.error</th>
-<th style="text-align: right;">statistic</th>
-<th style="text-align: right;">p.value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">87.8329</td>
-<td style="text-align: right;">0.5214</td>
-<td style="text-align: right;">168.4560</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Total_Expenditures_Per_Pupil</td>
-<td style="text-align: right;">0.0002</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">6.9988</td>
-<td style="text-align: right;">0</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<ul>
-<li>A $10,000 increase in spending is associated with a <strong>2.3 percentage point increase</strong> in graduation rates.</li>
-<li><strong>However</strong>, this model explains only about <strong>1.3% of the variance</strong> (very low R-squared), indicating that spending alone cannot account for differences in graduation rates.</li>
-</ul>
+</div>
+<blockquote class="blockquote">
+<p><strong>Big Picture Implication:</strong><br>
+The <strong>racial imbalance</strong> across districts suggests persistent <strong>segregation and structural inequalities</strong>. Districts with higher minority populations may face systemic challenges that affect graduation outcomes and resource allocation.</p>
+</blockquote>
+</section>
+<section id="minority-composition-vs.-per-pupil-expenditure" class="level3">
+<h3 class="anchored" data-anchor-id="minority-composition-vs.-per-pupil-expenditure">2.4 Minority Composition vs.&nbsp;Per-Pupil Expenditure</h3>
+<blockquote class="blockquote">
+<p><strong>Definition of Minority Students:</strong><br>
+In this analysis, “Minority Students” are defined as the combined percentage of individuals identifying as Black, Hispanic, Asian, Multi-Race, American Indian, or Pacific Islander within each district.<br>
+The total minority percentage is calculated by summing the proportions of these six groups.</p>
+</blockquote>
+<p>The scatter plot examines the relationship between minority student percentages and per-pupil expenditure across Massachusetts districts from 2006 to 2013.</p>
+<p>While a slight positive trend exists, the relationship is <strong>weak and highly scattered</strong>.<br>
+Most districts have low minority percentages (below 30%), and expenditure levels vary widely across all minority levels.<br>
+This indicates that <strong>minority composition alone does not explain funding disparities</strong>.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -292,253 +357,605 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
+<p><strong>Big Picture Implication:</strong><br>
+While racial composition is an important dimension of structural inequality, it does not fully explain disparities in school funding.<br>
+The observed variation implies that <strong>other systemic factors</strong> — such as <strong>poverty concentration, urbanization, historical segregation patterns, and political resource allocation</strong> — likely play more significant roles in shaping funding inequities across districts.</p>
+</blockquote>
 </section>
-<section id="multiple-linear-regression-adding-controls" class="level2">
-<h2 class="anchored" data-anchor-id="multiple-linear-regression-adding-controls">4.2 Multiple Linear Regression: Adding Controls</h2>
+</section>
+<section id="regression-analysis" class="level1">
+<h1>3. Regression Analysis</h1>
+<p>In this project, we systematically built and compared four different regression models:</p>
+<ul>
+<li>A <strong>Simple Linear Regression</strong> between per-pupil expenditure and graduation rates.</li>
+<li>A <strong>Simple Linear Regression</strong> between low-income percentage and graduation rates.</li>
+<li>A <strong>Multiple Regression</strong> incorporating expenditure, socioeconomic status, racial demographics, student-teacher ratios, and cohort size.</li>
+<li>A <strong>Multiple Regression with an Interaction Term</strong> between expenditure and low-income percentage.</li>
+</ul>
+<p>Each step progressively added complexity to better capture the structural inequalities shaping graduation outcomes across Massachusetts school districts.</p>
+<hr>
+<section id="simple-linear-regression-spending-vs-graduation" class="level2">
+<h2 class="anchored" data-anchor-id="simple-linear-regression-spending-vs-graduation">3.1 Simple Linear Regression: Spending vs Graduation</h2>
+<p>A simple linear regression estimates the association between total expenditures per pupil and graduation rates across Massachusetts districts.</p>
+<section id="scatterplot-and-regression-line" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-and-regression-line">3.1.1 Scatterplot and Regression Line</h3>
 <div class="cell">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Multiple Regression Results</caption>
-<colgroup>
-<col style="width: 45%">
-<col style="width: 13%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 11%">
-</colgroup>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="blockquote">
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li><strong>Higher per-pupil spending is positively associated</strong> with graduation rates.</li>
+<li>However, <strong>the relationship appears weak and dispersed</strong>, especially at lower spending levels.</li>
+<li><strong>Graduation rates are heavily concentrated between 85%–100%</strong>, suggesting that <strong>factors beyond spending</strong> likely drive performance.</li>
+</ul>
+</div>
+</section>
+<section id="linear-regression-model" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-model">3.1.2 Linear Regression Model</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Simple Linear Regression Coefficients</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">term</th>
-<th style="text-align: right;">estimate</th>
-<th style="text-align: right;">std.error</th>
-<th style="text-align: right;">statistic</th>
-<th style="text-align: right;">p.value</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">85.5807</td>
-<td style="text-align: right;">1.5843</td>
-<td style="text-align: right;">54.0173</td>
-<td style="text-align: right;">0e+00</td>
+<td style="text-align: right;">87.8329</td>
+<td style="text-align: right;">0.5214</td>
+<td style="text-align: right;">168.4560</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total_Expenditures_Per_Pupil</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">6.9988</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Model Summary Statistics</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">r.squared</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adj.r.squared</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.0134</td>
+<td style="text-align: right;">0.0132</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="blockquote">
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li>The <strong>intercept (87.83)</strong> indicates that districts with zero reported per-pupil expenditure would have a predicted graduation rate of about <strong>87.8%</strong>, although such extrapolation is not practically meaningful.</li>
+<li>The <strong>coefficient for per-pupil spending (0.0002)</strong> implies that <strong>each additional $10,000 investment per pupil</strong> is associated with an approximately <strong>2.0 percentage point increase</strong> in graduation rates.</li>
+<li><strong>Both the intercept and the spending coefficient are highly statistically significant</strong> (p &lt; 0.01), suggesting that the observed associations are unlikely due to random chance.</li>
+<li>However, the <strong>R-squared value is extremely low (1.34%)</strong>, indicating that <strong>per-pupil spending explains only a very small portion</strong> of the variance in graduation rates across districts.</li>
+<li><strong>Conclusion:</strong> While there is a statistically detectable relationship, <strong>spending alone is far from sufficient</strong> to account for differences in student outcomes.</li>
+</ul>
+</div>
+</section>
+<section id="regression-by-majority-race-group" class="level3">
+<h3 class="anchored" data-anchor-id="regression-by-majority-race-group">3.1.3 Regression by Majority Race Group</h3>
+<p>Separate regression models are estimated for school districts grouped by their majority racial composition to assess whether the impact of spending differs across demographic contexts.</p>
+<div class="blockquote">
+<p>Only Majority White, Black, and Hispanic groups are shown here due to sufficient sample sizes. Other groups are omitted to ensure stable regression estimates.</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Regression Results by Majority Race Group</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">majority_race</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">r.squared</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Majority White</td>
+<td style="text-align: right;">0.0281</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Majority Black</td>
+<td style="text-align: right;">0.1497</td>
+<td style="text-align: left;">0.0125</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Majority Hispanic</td>
+<td style="text-align: right;">0.1696</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="blockquote">
+<p><strong>Interpretation:</strong></p>
+<p>Although all three groups show statistically significant relationships (p &lt; 0.05), the strength of association differs:</p>
+<ul>
+<li><strong>Majority Hispanic</strong> districts have the highest R-squared (0.1696), suggesting a stronger link between spending and graduation rates.</li>
+<li><strong>Majority Black</strong> districts also show a notable relationship (R-squared = 0.1497).</li>
+<li><strong>Majority White</strong> districts have a much weaker association (R-squared = 0.0281).</li>
+</ul>
+<p>These results imply that <strong>increased spending may have a greater marginal impact</strong> in districts serving historically underserved racial groups.</p>
+</div>
+</section>
+</section>
+<section id="simple-regression-low-income-percentage-and-graduation-rates" class="level2">
+<h2 class="anchored" data-anchor-id="simple-regression-low-income-percentage-and-graduation-rates">3.2 Simple Regression: Low-Income Percentage and Graduation Rates</h2>
+<p>A simple linear regression estimates the association between the percentage of low-income students and graduation rates across Massachusetts districts.</p>
+<section id="scatterplot-and-regression-line-1" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-and-regression-line-1">3.2.1 Scatterplot and Regression Line</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="blockquote">
+<p><strong>Interpretation:</strong></p>
+<p>Higher percentages of low-income students are associated with noticeably lower graduation rates. The negative slope of the regression line suggests that as low-income concentration increases, graduation outcomes decline. The relationship appears stronger than in the previous spending model, with a clearer downward trend.</p>
+</div>
+</section>
+<section id="linear-regression-model-1" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-model-1">3.2.2 Linear Regression Model</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Simple Linear Regression Coefficients</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">101.0230</td>
+<td style="text-align: right;">0.1490</td>
+<td style="text-align: right;">677.9374</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Low_Income_Percent</td>
+<td style="text-align: right;">-0.2947</td>
+<td style="text-align: right;">0.0039</td>
+<td style="text-align: right;">-75.7425</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Model Summary Statistics</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">r.squared</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adj.r.squared</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.6145</td>
+<td style="text-align: right;">0.6144</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="blockquote">
+<p><strong>Interpretation:</strong></p>
+<p>The regression analysis shows a strong negative relationship between the percentage of low-income students and graduation rates. For every 1 percentage point increase in low-income concentration, the graduation rate declines by about 0.29 points. The relationship is highly statistically significant (p &lt; 0.01). The model explains around 61% of the variation in graduation rates (R² = 0.6145), suggesting that socioeconomic disadvantage is a major driver of educational outcomes across districts.</p>
+</div>
+</section>
+<section id="regression-by-majority-race-group-1" class="level3">
+<h3 class="anchored" data-anchor-id="regression-by-majority-race-group-1">3.2.3 Regression by Majority Race Group</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   Majority Black Majority Hispanic    Majority White 
+               41               141              3419 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Regression Results by Majority Race Group (Low-Income Model)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">majority_race</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">r.squared</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Majority White</td>
+<td style="text-align: right;">0.5713</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Majority Black</td>
+<td style="text-align: right;">0.2029</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Majority Hispanic</td>
+<td style="text-align: right;">0.3929</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+</section>
+<section id="multiple-regression-comprehensive-model" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-regression-comprehensive-model">4. Multiple Regression: Comprehensive Model</h2>
+<p>A multiple linear regression is used to estimate the association between several district characteristics and graduation rates across Massachusetts.</p>
+</section>
+<section id="multiple-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-regression-model">4.1 Multiple Regression Model</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Multiple Regression Coefficients</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">91.9047</td>
+<td style="text-align: right;">1.3673</td>
+<td style="text-align: right;">67.2165</td>
+<td style="text-align: left;">&lt;0.01</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Total_Expenditures_Per_Pupil</td>
 <td style="text-align: right;">0.0003</td>
 <td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">14.1711</td>
-<td style="text-align: right;">0e+00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Percent_White</td>
-<td style="text-align: right;">-0.1057</td>
-<td style="text-align: right;">0.0263</td>
-<td style="text-align: right;">-4.0124</td>
-<td style="text-align: right;">1e-04</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Percent_Black</td>
-<td style="text-align: right;">-0.1781</td>
-<td style="text-align: right;">0.0284</td>
-<td style="text-align: right;">-6.2634</td>
-<td style="text-align: right;">0e+00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Percent_Hispanic</td>
-<td style="text-align: right;">-0.1954</td>
-<td style="text-align: right;">0.0262</td>
-<td style="text-align: right;">-7.4527</td>
-<td style="text-align: right;">0e+00</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Percent_Asian</td>
-<td style="text-align: right;">-0.1207</td>
-<td style="text-align: right;">0.0307</td>
-<td style="text-align: right;">-3.9308</td>
-<td style="text-align: right;">1e-04</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Percent_Female</td>
-<td style="text-align: right;">0.1719</td>
-<td style="text-align: right;">0.0494</td>
-<td style="text-align: right;">3.4791</td>
-<td style="text-align: right;">5e-04</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Student_Teacher_Ratio</td>
-<td style="text-align: right;">0.4627</td>
-<td style="text-align: right;">0.0404</td>
-<td style="text-align: right;">11.4514</td>
-<td style="text-align: right;">0e+00</td>
+<td style="text-align: right;">12.5677</td>
+<td style="text-align: left;">&lt;0.01</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Low_Income_Percent</td>
-<td style="text-align: right;">-0.2275</td>
-<td style="text-align: right;">0.0060</td>
-<td style="text-align: right;">-37.8863</td>
-<td style="text-align: right;">0e+00</td>
+<td style="text-align: right;">-0.2516</td>
+<td style="text-align: right;">0.0056</td>
+<td style="text-align: right;">-44.6624</td>
+<td style="text-align: left;">&lt;0.01</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SAT_Reading_Writing_Mean_Score</td>
-<td style="text-align: right;">-0.0015</td>
-<td style="text-align: right;">0.0004</td>
-<td style="text-align: right;">-4.2336</td>
-<td style="text-align: right;">0e+00</td>
+<td style="text-align: left;">Percent_White</td>
+<td style="text-align: right;">-0.0237</td>
+<td style="text-align: right;">0.0114</td>
+<td style="text-align: right;">-2.0724</td>
+<td style="text-align: left;">0.0383</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SAT_Math_Mean_Score</td>
-<td style="text-align: right;">0.0118</td>
-<td style="text-align: right;">0.0016</td>
-<td style="text-align: right;">7.2490</td>
-<td style="text-align: right;">0e+00</td>
+<td style="text-align: left;">Percent_Black</td>
+<td style="text-align: right;">-0.0928</td>
+<td style="text-align: right;">0.0174</td>
+<td style="text-align: right;">-5.3415</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percent_Hispanic</td>
+<td style="text-align: right;">-0.1037</td>
+<td style="text-align: right;">0.0133</td>
+<td style="text-align: right;">-7.7763</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Percent_Asian</td>
+<td style="text-align: right;">-0.0106</td>
+<td style="text-align: right;">0.0189</td>
+<td style="text-align: right;">-0.5625</td>
+<td style="text-align: left;">0.5738</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percent_American_Indian</td>
+<td style="text-align: right;">-0.2427</td>
+<td style="text-align: right;">0.1565</td>
+<td style="text-align: right;">-1.5510</td>
+<td style="text-align: left;">0.121</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Percent_Pacific_Islander</td>
+<td style="text-align: right;">0.8602</td>
+<td style="text-align: right;">0.3170</td>
+<td style="text-align: right;">2.7132</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percent_Multi_Race</td>
+<td style="text-align: right;">0.2300</td>
+<td style="text-align: right;">0.0507</td>
+<td style="text-align: right;">4.5331</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Student_Teacher_Ratio</td>
+<td style="text-align: right;">0.4930</td>
+<td style="text-align: right;">0.0409</td>
+<td style="text-align: right;">12.0422</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cohort_Size</td>
+<td style="text-align: right;">-0.0009</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">-2.6395</td>
+<td style="text-align: left;">&lt;0.01</td>
 </tr>
 </tbody>
 </table>
+
+
 </div>
-</div>
-<ul>
-<li>After controlling for race, income, academic preparedness, and class size, <strong>model fit improves dramatically</strong> (R² ~ 67%).</li>
-<li>Racial composition, income, and SAT scores are strong additional predictors.</li>
-</ul>
-</section>
-<section id="log-log-regression-elasticity-interpretation" class="level2">
-<h2 class="anchored" data-anchor-id="log-log-regression-elasticity-interpretation">4.3 Log-Log Regression: Elasticity Interpretation</h2>
-<hr>
-<div class="cell">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Log-Log Regression Results</caption>
-<colgroup>
-<col style="width: 45%">
-<col style="width: 13%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 11%">
-</colgroup>
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Model Summary Statistics (Multiple Regression)</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">term</th>
-<th style="text-align: right;">estimate</th>
-<th style="text-align: right;">std.error</th>
-<th style="text-align: right;">statistic</th>
-<th style="text-align: right;">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">r.squared</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adj.r.squared</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.6666</td>
+<td style="text-align: right;">0.6656</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="blockquote">
+<p><strong>Interpretation:</strong></p>
+<p>The multiple regression model explains approximately <strong>66.6%</strong> of the variance in graduation rates, a substantial improvement compared to simpler models.</p>
+<p>Key insights:</p>
+<ul>
+<li><strong>Higher per-pupil expenditure</strong> is positively associated with graduation outcomes (p &lt; 0.01).</li>
+<li><strong>Higher low-income student concentration</strong> is strongly associated with <strong>lower graduation rates</strong>.</li>
+<li><strong>Racial composition</strong> matters: higher proportions of <strong>Black</strong> and <strong>Hispanic</strong> students correlate with lower graduation rates, reinforcing the Big Picture theme of structural inequalities.</li>
+<li><strong>Student-teacher ratio</strong> is positively related to graduation rates, potentially capturing differences in district resource allocation efficiency.</li>
+<li><strong>Cohort size</strong> shows a slight negative association.</li>
+</ul>
+<p>These results underscore that funding alone is insufficient; both socioeconomic disadvantage and racial demographics significantly shape educational outcomes, consistent with the broader structural inequality framework.</p>
+</div>
+</section>
+<section id="multiple-regression-with-interaction-term" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-regression-with-interaction-term">4.2 Multiple Regression with Interaction Term</h2>
+<p>To better understand how funding interacts with district poverty levels, we introduce an <strong>interaction term</strong> between <strong>per-pupil expenditure</strong> and <strong>low-income percentage</strong>. This allows us to assess whether the effect of spending varies across districts with different socioeconomic compositions, further connecting to our Big Picture theme of structural inequality.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Multiple Regression Coefficients with Interaction</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">3.8236</td>
-<td style="text-align: right;">0.0523</td>
-<td style="text-align: right;">73.1776</td>
-<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">97.1829</td>
+<td style="text-align: right;">1.4048</td>
+<td style="text-align: right;">69.1771</td>
+<td style="text-align: left;">&lt;0.01</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">log_expenditure</td>
-<td style="text-align: right;">0.0707</td>
-<td style="text-align: right;">0.0049</td>
-<td style="text-align: right;">14.5087</td>
+<td style="text-align: left;">Total_Expenditures_Per_Pupil</td>
+<td style="text-align: right;">-0.0001</td>
 <td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Percent_White</td>
-<td style="text-align: right;">-0.0010</td>
-<td style="text-align: right;">0.0003</td>
-<td style="text-align: right;">-2.9558</td>
-<td style="text-align: right;">0.0031</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Percent_Black</td>
-<td style="text-align: right;">-0.0018</td>
-<td style="text-align: right;">0.0004</td>
-<td style="text-align: right;">-5.0211</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Percent_Hispanic</td>
-<td style="text-align: right;">-0.0024</td>
-<td style="text-align: right;">0.0003</td>
-<td style="text-align: right;">-7.2911</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Percent_Asian</td>
-<td style="text-align: right;">-0.0012</td>
-<td style="text-align: right;">0.0004</td>
-<td style="text-align: right;">-3.0346</td>
-<td style="text-align: right;">0.0024</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Percent_Female</td>
-<td style="text-align: right;">0.0015</td>
-<td style="text-align: right;">0.0006</td>
-<td style="text-align: right;">2.4172</td>
-<td style="text-align: right;">0.0157</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Student_Teacher_Ratio</td>
-<td style="text-align: right;">0.0053</td>
-<td style="text-align: right;">0.0005</td>
-<td style="text-align: right;">10.4364</td>
-<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">-2.3799</td>
+<td style="text-align: left;">0.0174</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Low_Income_Percent</td>
-<td style="text-align: right;">-0.0025</td>
-<td style="text-align: right;">0.0001</td>
-<td style="text-align: right;">-33.8049</td>
-<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">-0.4523</td>
+<td style="text-align: right;">0.0171</td>
+<td style="text-align: right;">-26.4836</td>
+<td style="text-align: left;">&lt;0.01</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SAT_Reading_Writing_Mean_Score</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">-3.8114</td>
-<td style="text-align: right;">0.0001</td>
+<td style="text-align: left;">Percent_White</td>
+<td style="text-align: right;">-0.0172</td>
+<td style="text-align: right;">0.0112</td>
+<td style="text-align: right;">-1.5303</td>
+<td style="text-align: left;">0.126</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SAT_Math_Mean_Score</td>
-<td style="text-align: right;">0.0001</td>
+<td style="text-align: left;">Percent_Black</td>
+<td style="text-align: right;">-0.1019</td>
+<td style="text-align: right;">0.0170</td>
+<td style="text-align: right;">-5.9853</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percent_Hispanic</td>
+<td style="text-align: right;">-0.1097</td>
+<td style="text-align: right;">0.0131</td>
+<td style="text-align: right;">-8.3989</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Percent_Asian</td>
+<td style="text-align: right;">0.0325</td>
+<td style="text-align: right;">0.0188</td>
+<td style="text-align: right;">1.7256</td>
+<td style="text-align: left;">0.0845</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percent_American_Indian</td>
+<td style="text-align: right;">-0.1927</td>
+<td style="text-align: right;">0.1533</td>
+<td style="text-align: right;">-1.2573</td>
+<td style="text-align: left;">0.2087</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Percent_Pacific_Islander</td>
+<td style="text-align: right;">0.8247</td>
+<td style="text-align: right;">0.3105</td>
+<td style="text-align: right;">2.6561</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percent_Multi_Race</td>
+<td style="text-align: right;">0.2188</td>
+<td style="text-align: right;">0.0497</td>
+<td style="text-align: right;">4.4039</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Student_Teacher_Ratio</td>
+<td style="text-align: right;">0.5126</td>
+<td style="text-align: right;">0.0401</td>
+<td style="text-align: right;">12.7735</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cohort_Size</td>
+<td style="text-align: right;">-0.0012</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">-3.7394</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total_Expenditures_Per_Pupil:Low_Income_Percent</td>
 <td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">6.7773</td>
 <td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">12.4189</td>
+<td style="text-align: left;">&lt;0.01</td>
 </tr>
 </tbody>
 </table>
+
+
 </div>
-</div>
-<ul>
-<li>Results are consistent.</li>
-<li>Interpretation: A <strong>1% increase</strong> in spending predicts a <strong>small % increase</strong> in graduation rates.</li>
-</ul>
-</section>
-<section id="model-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="model-comparison">4.4 Model Comparison</h2>
-<div class="cell">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Comprehensive Model Comparison</caption>
-<colgroup>
-<col style="width: 26%">
-<col style="width: 13%">
-<col style="width: 25%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 9%">
-</colgroup>
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Model Summary Statistics (With Interaction)</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Model</th>
-<th style="text-align: right;">R_Squared</th>
-<th style="text-align: right;">Adjusted_R_Squared</th>
-<th style="text-align: right;">AIC</th>
-<th style="text-align: right;">BIC</th>
-<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">r.squared</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adj.r.squared</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p.value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Simple Regression</td>
+<td style="text-align: right;">0.6804</td>
+<td style="text-align: right;">0.6793</td>
+<td style="text-align: left;">&lt;0.01</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="blockquote">
+<p><strong>Interpretation:</strong></p>
+<p>The interaction model explains approximately <strong>68.0%</strong> of the variance in graduation rates, slightly improving model fit compared to the standard multiple regression.</p>
+<p>Key insights:</p>
+<ul>
+<li>The <strong>interaction term</strong> between per-pupil expenditure and low-income percent is <strong>positive and significant</strong> (p &lt; 0.01), suggesting that additional spending has a <strong>larger positive effect</strong> in districts with higher poverty levels.</li>
+<li><strong>Low-income concentration</strong> remains strongly negatively associated with graduation rates.</li>
+<li>The main effect of <strong>spending</strong> becomes slightly negative when not accounting for interaction, reflecting nuanced dynamics.</li>
+<li>Other patterns regarding race and class size remain broadly consistent.</li>
+</ul>
+<p>This highlights that <strong>targeted investments</strong> in high-poverty districts may yield <strong>disproportionately larger benefits</strong> for graduation outcomes, aligning closely with our Big Picture focus on addressing structural inequities.</p>
+</div>
+</section>
+</section>
+<section id="model-comparison" class="level1">
+<h1>5. Model Comparison</h1>
+<p>We compare the performance of the four models to determine the best fit.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Model Comparison Summary</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">R_Squared</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Adjusted_R_Squared</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">AIC</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BIC</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Simple Regression (Spending Only)</td>
 <td style="text-align: right;">0.0134</td>
 <td style="text-align: right;">0.0132</td>
 <td style="text-align: right;">24666.39</td>
@@ -546,137 +963,84 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">7.4273</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Simple Regression (Low-Income Only)</td>
+<td style="text-align: right;">0.6145</td>
+<td style="text-align: right;">0.6144</td>
+<td style="text-align: right;">21282.54</td>
+<td style="text-align: right;">21301.11</td>
+<td style="text-align: right;">4.6428</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Multiple Regression</td>
-<td style="text-align: right;">0.6695</td>
-<td style="text-align: right;">0.6686</td>
-<td style="text-align: right;">20746.25</td>
-<td style="text-align: right;">20820.52</td>
-<td style="text-align: right;">4.2989</td>
+<td style="text-align: right;">0.6666</td>
+<td style="text-align: right;">0.6656</td>
+<td style="text-align: right;">20779.19</td>
+<td style="text-align: right;">20859.65</td>
+<td style="text-align: right;">4.3174</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Log-Log Regression</td>
-<td style="text-align: right;">0.6455</td>
-<td style="text-align: right;">0.6446</td>
-<td style="text-align: right;">-10788.04</td>
-<td style="text-align: right;">-10713.78</td>
-<td style="text-align: right;">0.0539</td>
+<tr class="even">
+<td style="text-align: left;">Multiple Regression + Interaction</td>
+<td style="text-align: right;">0.6804</td>
+<td style="text-align: right;">0.6793</td>
+<td style="text-align: right;">20629.63</td>
+<td style="text-align: right;">20716.28</td>
+<td style="text-align: right;">4.2275</td>
 </tr>
 </tbody>
 </table>
+
+
 </div>
 </div>
-<p>-The three models differ substantially in their explanatory power and efficiency:</p>
-<p>Simple Linear Regression: This model shows a very low R-squared (~1.3%), indicating that per-pupil expenditure alone explains very little of the variation in graduation rates. While the coefficient is statistically significant, the model’s predictive ability is poor.</p>
-<p>Multiple Linear Regression: After adding controls for race, income, SAT scores, and other district characteristics, the R-squared increases substantially (~67%). This suggests that educational outcomes are driven by a broader range of factors beyond spending. However, the increase in model complexity must be weighed against the risk of overfitting.</p>
-<p>Log-Log Regression: The log-log model achieves a slightly lower R-squared (~64%) compared to the multiple linear model but still captures a strong relationship. Log-transforming the data stabilizes variance and reduces the influence of extreme values. Additionally, interpreting elasticities (percentage changes) can provide more policy-relevant insights.</p>
-<p>Comparing AIC and BIC values also favors the multiple linear model, indicating a better fit with reasonable complexity. RMSE is lowest for the multiple regression, confirming better predictive accuracy.</p>
-<p>In short, while simple models highlight basic associations, richer models reveal that multiple factors — especially demographics and socioeconomic status — jointly shape graduation outcomes.</p>
-</section>
-</section>
-<section id="subgroup-analysis-racial-composition" class="level1">
-<h1>5. Subgroup Analysis: Racial Composition</h1>
-<p>To explore if the relationship between funding and outcomes differs across racial groups, we estimated models separately by majority racial composition.</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Subgroup Regression Results by Race</caption>
-<colgroup>
-<col style="width: 21%">
-<col style="width: 34%">
-<col style="width: 10%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 9%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">majority_race</th>
-<th style="text-align: left;">term</th>
-<th style="text-align: right;">estimate</th>
-<th style="text-align: right;">std.error</th>
-<th style="text-align: right;">statistic</th>
-<th style="text-align: right;">p.value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Majority White</td>
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">87.7644</td>
-<td style="text-align: right;">0.4540</td>
-<td style="text-align: right;">193.3087</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Majority White</td>
-<td style="text-align: left;">Total_Expenditures_Per_Pupil</td>
-<td style="text-align: right;">0.0003</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">9.9448</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Majority Black</td>
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">68.4919</td>
-<td style="text-align: right;">4.1853</td>
-<td style="text-align: right;">16.3647</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Majority Black</td>
-<td style="text-align: left;">Total_Expenditures_Per_Pupil</td>
-<td style="text-align: right;">0.0006</td>
-<td style="text-align: right;">0.0002</td>
-<td style="text-align: right;">2.6199</td>
-<td style="text-align: right;">0.0125</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Majority Hispanic</td>
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">53.1564</td>
-<td style="text-align: right;">4.4174</td>
-<td style="text-align: right;">12.0333</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Majority Hispanic</td>
-<td style="text-align: left;">Total_Expenditures_Per_Pupil</td>
-<td style="text-align: right;">0.0014</td>
-<td style="text-align: right;">0.0003</td>
-<td style="text-align: right;">5.3280</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<section id="key-findings" class="level3">
-<h3 class="anchored" data-anchor-id="key-findings">Key Findings:</h3>
+<div class="blockquote">
 <ul>
-<li><strong>Majority Hispanic districts:</strong> Strongest positive relationship between spending and graduation.</li>
-<li><strong>Majority Black districts:</strong> Moderate positive relationship.</li>
-<li><strong>Majority White districts:</strong> Positive but smaller magnitude.</li>
+<li><p><strong>Simple Regression (Spending Only):</strong><br>
+Explains only <strong>1.3%</strong> of the variation in graduation rates (<strong>R² = 0.0134</strong>). Per-pupil spending alone is a weak predictor.</p></li>
+<li><p><strong>Simple Regression (Low-Income Only):</strong><br>
+Shows significant improvement (<strong>R² = 0.6145</strong>), indicating that socioeconomic disadvantage is a major driver of graduation outcomes.</p></li>
+<li><p><strong>Multiple Regression:</strong><br>
+Adding race, student-teacher ratio, and cohort size further boosts explanatory power (<strong>R² = 0.6666</strong>), reflecting the influence of multiple district characteristics.</p></li>
+<li><p><strong>Multiple Regression + Interaction Term:</strong><br>
+The best-performing model with <strong>highest R² (0.6804)</strong>, <strong>lowest AIC</strong>, and <strong>lowest RMSE</strong>. It captures the fact that <strong>spending effects differ by poverty concentration</strong>, offering the most nuanced understanding.</p></li>
 </ul>
+<hr>
+<p><strong>Final Model Selection:</strong><br>
+The <strong>Multiple Regression with Interaction Term</strong> is selected as the final model. It best balances model fit, complexity, and practical interpretability, and aligns with the broader finding that educational outcomes are shaped by an intersection of funding and socioeconomic context.</p>
+</div>
+<section id="reflection-on-data-and-big-picture-alignment" class="level2">
+<h2 class="anchored" data-anchor-id="reflection-on-data-and-big-picture-alignment">6. Reflection on Data and Big Picture Alignment</h2>
+<p>This analysis directly supports our Big Picture research question:</p>
 <blockquote class="blockquote">
-<p>➔ Targeted funding could have greater returns in historically underserved communities.</p>
+<p><strong>How do funding and structural inequalities together shape graduation outcomes across school districts?</strong></p>
 </blockquote>
-</section>
-</section>
-<section id="limitations" class="level1">
-<h1>5. Limitations</h1>
+<p>The findings reveal that:</p>
 <ul>
-<li><strong>Causality:</strong> Observational data limits causal inference.</li>
-<li><strong>Omitted Variables:</strong> Factors like school leadership and parental involvement are not included.</li>
-<li><strong>Measurement Error:</strong> Graduation rates and expenditures may be reported with inaccuracies.</li>
-<li><strong>Cross-Sectional Data:</strong> No dynamic effects are captured.</li>
+<li>Funding <strong>alone</strong> explains very little.</li>
+<li><strong>Socioeconomic disadvantage</strong> (low-income percentage) is a much stronger predictor.</li>
+<li><strong>Structural factors</strong> such as race, cohort size, and class size further influence graduation outcomes.</li>
+<li><strong>The interaction between funding and poverty</strong> matters — indicating that investments may have different impacts depending on district demographics.</li>
 </ul>
+<p>Thus, achieving educational equity requires not just more spending, but <strong>targeted strategies that address broader systemic disparities</strong>.</p>
 </section>
-<section id="conclusion" class="level1">
-<h1>6. Conclusion</h1>
-<p>Spending is positively associated with graduation outcomes, with stronger effects in minority-majority districts. However, many factors beyond funding shape educational success. Future research should adopt causal designs and investigate targeted interventions.</p>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">7. Limitations</h2>
+<p>While the results are insightful, several limitations should be noted:</p>
+<ul>
+<li><strong>Observational Data:</strong> Causal inference cannot be definitively claimed; unobserved confounders may influence results.</li>
+<li><strong>Data Period:</strong> The analysis covers 2006–2013; more recent trends are not captured.</li>
+<li><strong>Omitted Variables:</strong> Factors such as school leadership quality, curriculum rigor, or community support are not included.</li>
+<li><strong>Simplified Racial Categorization:</strong> Majority race grouping may oversimplify the diversity within districts.</li>
+</ul>
+<p>Future research could expand with more granular, longitudinal, and qualitative data.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">8. Conclusion</h2>
+<p>This project underscores that graduation outcomes are not determined by funding levels alone. Instead, they reflect the intertwined effects of <strong>economic disadvantage</strong>, <strong>racial composition</strong>, and <strong>structural resource disparities</strong>.</p>
+<p>Our best-performing model — multiple regression with an interaction term — highlights that the benefit of educational investment depends critically on the existing social and economic context.</p>
+<p>Meaningful educational equity efforts must therefore <strong>combine adequate funding with targeted interventions</strong> that address the broader social determinants of student success.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
