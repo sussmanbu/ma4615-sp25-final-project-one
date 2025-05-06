@@ -6,12 +6,15 @@ library(scales)
 library(sf)
 library(stringr)
 
+# === Optional: Increase max file size if needed ===
+options(shiny.maxRequestSize = 30 * 1024^2)  # 30 MB
+
 # === Load Data ===
-shapefile_path <- here::here("dataset_for_shiny", "schooldistricts", "SCHOOLDISTRICTS_POLY.shp")
+shapefile_path <- "dataset_for_shiny/schooldistricts/SCHOOLDISTRICTS_POLY.shp"
 ma_district_shapes <- st_read(shapefile_path) %>%
   mutate(District_Name_Upper = toupper(DISTRICT_N))
 
-mass_data <- readRDS(here::here("dataset", "massachusetts_district_data.rds")) %>%
+mass_data <- readRDS("dataset/massachusetts_district_data.rds") %>%
   mutate(
     Year = as.integer(Year),
     Percent_Graduated = as.numeric(Percent_Graduated),
@@ -20,6 +23,7 @@ mass_data <- readRDS(here::here("dataset", "massachusetts_district_data.rds")) %
     SAT_Reading_Writing_Mean_Score = as.numeric(SAT_Reading_Writing_Mean_Score),
     District_Name_Upper = toupper(`District Name`)
   )
+
 
 # === UI ===
 ui <- fluidPage(
@@ -40,14 +44,14 @@ ui <- fluidPage(
     ),
     mainPanel(
       tabsetPanel(id = "tabselected",
-                  tabPanel("Income vs Graduation", 
-                           plotlyOutput("incomePlot", height = "700px"),
-                           br(),
-                           uiOutput("districtInfo")),
-                  tabPanel("Graduation Heatmap", 
-                           plotlyOutput("heatmapPlot", height = "700px"),
-                           br(),
-                           uiOutput("districtInfo"))
+        tabPanel("Income vs Graduation", 
+                 plotlyOutput("incomePlot", height = "700px"),
+                 br(),
+                 uiOutput("districtInfo")),
+        tabPanel("Graduation Heatmap", 
+                 plotlyOutput("heatmapPlot", height = "700px"),
+                 br(),
+                 uiOutput("districtInfo"))
       )
     )
   )
@@ -75,8 +79,8 @@ server <- function(input, output) {
     df
   })
   
-  
   output$incomePlot <- renderPlotly({
+    req(input$year, input$district)
     data <- getFilteredData()
     selected <- input$district
     
@@ -104,7 +108,11 @@ server <- function(input, output) {
   })
   
   output$heatmapPlot <- renderPlotly({
+    req(input$year, input$district)
+    
     edu_data <- getFilteredData()
+    req(nrow(edu_data) > 0)
+    
     merged_data <- left_join(ma_district_shapes, edu_data, by = "District_Name_Upper")
     selected_upper <- toupper(input$district)
     
@@ -130,6 +138,7 @@ server <- function(input, output) {
   })
   
   output$districtInfo <- renderUI({
+    req(input$year, input$district)
     df <- mass_data %>% filter(Year == input$year, `District Name` == input$district)
     if (nrow(df) == 0) return(NULL)
     
