@@ -25,16 +25,16 @@ df <- readRDS("dataset/Combined_District_Data.rds")
 
 Educational outcomes are significantly influenced by a complex interplay of racial demographics, socioeconomic factors, and financial investments. In Massachusetts, public school districts exhibit varied graduation rates and SAT performances.
 
-### Research Questions
+**Research Questions**
 - How do financial investments per student correlate with graduation rates?
 - How do racial composition and income levels affect educational outcomes?
 - What models best explain the observed variations?
 
-### Guiding Question
+**Guiding Question**
 > **How do funding and structural inequalities together shape graduation outcomes across school districts?**
 
 
-# 2. General Information Analysis
+# 2. General Analysis
 
 ### Summary Statistics
 
@@ -533,7 +533,7 @@ kable(group_results_lowincome[, c("majority_race", "r.squared", "p.value")],
   kable_styling(full_width = F)
 ```
 
-## 4. Multiple Regression: Comprehensive Model
+# 4. Multiple Regression
 
 
 A multiple linear regression is used to estimate the association between several district characteristics and graduation rates across Massachusetts.
@@ -714,7 +714,7 @@ The **Multiple Regression with Interaction Term** is selected as the final model
 :::
 
 
-## 6. Reflection on Data and Big Picture Alignment
+# 6. Reflection
 
 This analysis directly supports our Big Picture research question: 
 
@@ -730,7 +730,7 @@ The findings reveal that:
 Thus, achieving educational equity requires not just more spending, but **targeted strategies that address broader systemic disparities**.
 
 
-## 7. Limitations
+# 7. Limitations
 
 
 Several limitations of this project should be acknowledged:
@@ -755,7 +755,7 @@ Several limitations of this project should be acknowledged:
 Future research could strengthen these findings by incorporating longitudinal tracking, qualitative measures, and updated post-pandemic datasets to better understand evolving educational disparities.
 
 
-## 8. Conclusion
+# 8. Conclusion
 
 
 This project provides three key insights into the factors shaping graduation outcomes across Massachusetts districts:
