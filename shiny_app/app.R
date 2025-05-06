@@ -7,11 +7,11 @@ library(sf)
 library(stringr)
 
 # === Load Data ===
-shapefile_path <- "../dataset_for_shiny/schooldistricts/SCHOOLDISTRICTS_POLY.shp"
+shapefile_path <- here::here("dataset_for_shiny", "schooldistricts", "SCHOOLDISTRICTS_POLY.shp")
 ma_district_shapes <- st_read(shapefile_path) %>%
   mutate(District_Name_Upper = toupper(DISTRICT_N))
 
-mass_data <- readRDS("../dataset/massachusetts_district_data.rds") %>%
+mass_data <- readRDS(her::here("dataset", "massachusetts_district_data.rds")) %>%
   mutate(
     Year = as.integer(Year),
     Percent_Graduated = as.numeric(Percent_Graduated),

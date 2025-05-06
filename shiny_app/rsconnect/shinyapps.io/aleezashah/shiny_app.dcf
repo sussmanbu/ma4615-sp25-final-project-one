@@ -5,7 +5,7 @@ account: aleezashah
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 14589094
-bundleId: 10162329
+bundleId: 10236726
 url: https://aleezashah.shinyapps.io/shiny_app/
 version: 1
 asMultiple: FALSE
