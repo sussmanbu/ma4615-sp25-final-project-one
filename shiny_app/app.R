@@ -35,11 +35,7 @@ ui <- fluidPage(
                            choices = c("Race Demographics" = "race", 
                                        "Gender" = "gender", 
                                        "Show Only Districts with SAT Data" = "sat"),
-                           selected = NULL),
-        checkboxGroupInput("demographics_overlay", "Overlay Demographics:",
-                           choices = c("White", "Black", "Hispanic", "Asian", 
-                                       "American Indian", "Multi Race", "Pacific Islander",
-                                       "Female", "Male"))
+                           selected = NULL)
       )
     ),
     mainPanel(
@@ -129,17 +125,6 @@ server <- function(input, output) {
       scale_fill_viridis_c(option = "magma", na.value = "grey90", name = "Grad Rate %") +
       labs(title = paste("Graduation Heatmap -", input$year)) +
       theme_minimal()
-    
-    # === Demographic Overlays ===
-    overlay_vars <- input$demographics_overlay
-    for (var in overlay_vars) {
-      col_name <- paste0("Percent_", gsub(" ", "_", var))
-      if (col_name %in% colnames(merged_data)) {
-        p <- p +
-          geom_sf(data = merged_data, aes_string(alpha = col_name), fill = "blue", color = NA) +
-          scale_alpha_continuous(range = c(0, 0.4), guide = "none")
-      }
-    }
     
     ggplotly(p, tooltip = "text")
   })
