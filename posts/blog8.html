@@ -94,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../big_picture.html"> 
-<span class="menu-text">Does Excellence Equal Equity?</span></a>
+<span class="menu-text">Big Picture</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../analysis.html"> 
@@ -244,7 +244,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/sussmanbu\.github\.io\/ma4615-sp25-final-project-one\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -25,7 +25,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "This comes from the file about.qmd.\nThis is a website for the final project for MA[46]15 Data Science with R by Team One. The members of this team are below."
+    "text": "This is a website for the final project for MA[46]15 Data Science with R by Team One. The members of this team are below."
   },
   {
     "objectID": "about.html#aini-zhou",
@@ -140,13 +140,6 @@
     "text": "3.2 Simple Regression: Low-Income Percentage and Graduation Rates\nA simple linear regression estimates the association between the percentage of low-income students and graduation rates across Massachusetts districts.\n\n3.2.1 Scatterplot and Regression Line\n\n\n\n\n\n\n\n\n\n\nInterpretation:\nHigher percentages of low-income students are associated with noticeably lower graduation rates. The negative slope of the regression line suggests that as low-income concentration increases, graduation outcomes decline. The relationship appears stronger than in the previous spending model, with a clearer downward trend.\n\n\n\n3.2.2 Linear Regression Model\n\n\n\nSimple Linear Regression Coefficients\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n101.0230\n0.1490\n677.9374\n&lt;0.01\n\n\nLow_Income_Percent\n-0.2947\n0.0039\n-75.7425\n&lt;0.01\n\n\n\n\n\n\n\n\nModel Summary Statistics\n\n\nr.squared\nadj.r.squared\np.value\n\n\n\n\n0.6145\n0.6144\n&lt;0.01\n\n\n\n\n\n\n\n\nInterpretation:\nThe regression analysis shows a strong negative relationship between the percentage of low-income students and graduation rates. For every 1 percentage point increase in low-income concentration, the graduation rate declines by about 0.29 points. The relationship is highly statistically significant (p &lt; 0.01). The model explains around 61% of the variation in graduation rates (R² = 0.6145), suggesting that socioeconomic disadvantage is a major driver of educational outcomes across districts.\n\n\n\n3.2.3 Regression by Majority Race Group\n\n\n\n   Majority Black Majority Hispanic    Majority White \n               41               141              3419 \n\n\n\n\n\nRegression Results by Majority Race Group (Low-Income Model)\n\n\nmajority_race\nr.squared\np.value\n\n\n\n\nMajority White\n0.5713\n&lt;0.01\n\n\nMajority Black\n0.2029\n&lt;0.01\n\n\nMajority Hispanic\n0.3929\n&lt;0.01"
   },
   {
-    "objectID": "analysis.html#multiple-regression-comprehensive-model",
-    "href": "analysis.html#multiple-regression-comprehensive-model",
-    "title": "Analysis",
-    "section": "4. Multiple Regression: Comprehensive Model",
-    "text": "4. Multiple Regression: Comprehensive Model\nA multiple linear regression is used to estimate the association between several district characteristics and graduation rates across Massachusetts."
-  },
-  {
     "objectID": "analysis.html#multiple-regression-model",
     "href": "analysis.html#multiple-regression-model",
     "title": "Analysis",
@@ -159,27 +152,6 @@
     "title": "Analysis",
     "section": "4.2 Multiple Regression with Interaction Term",
     "text": "4.2 Multiple Regression with Interaction Term\nTo better understand how funding interacts with district poverty levels, we introduce an interaction term between per-pupil expenditure and low-income percentage. This allows us to assess whether the effect of spending varies across districts with different socioeconomic compositions, further connecting to our Big Picture theme of structural inequality.\n\n\n\nMultiple Regression Coefficients with Interaction\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n97.1829\n1.4048\n69.1771\n&lt;0.01\n\n\nTotal_Expenditures_Per_Pupil\n-0.0001\n0.0000\n-2.3799\n0.0174\n\n\nLow_Income_Percent\n-0.4523\n0.0171\n-26.4836\n&lt;0.01\n\n\nPercent_White\n-0.0172\n0.0112\n-1.5303\n0.126\n\n\nPercent_Black\n-0.1019\n0.0170\n-5.9853\n&lt;0.01\n\n\nPercent_Hispanic\n-0.1097\n0.0131\n-8.3989\n&lt;0.01\n\n\nPercent_Asian\n0.0325\n0.0188\n1.7256\n0.0845\n\n\nPercent_American_Indian\n-0.1927\n0.1533\n-1.2573\n0.2087\n\n\nPercent_Pacific_Islander\n0.8247\n0.3105\n2.6561\n&lt;0.01\n\n\nPercent_Multi_Race\n0.2188\n0.0497\n4.4039\n&lt;0.01\n\n\nStudent_Teacher_Ratio\n0.5126\n0.0401\n12.7735\n&lt;0.01\n\n\nCohort_Size\n-0.0012\n0.0003\n-3.7394\n&lt;0.01\n\n\nTotal_Expenditures_Per_Pupil:Low_Income_Percent\n0.0000\n0.0000\n12.4189\n&lt;0.01\n\n\n\n\n\n\n\n\nModel Summary Statistics (With Interaction)\n\n\nr.squared\nadj.r.squared\np.value\n\n\n\n\n0.6804\n0.6793\n&lt;0.01\n\n\n\n\n\n\n\n\nInterpretation:\nThe interaction model explains approximately 68.0% of the variance in graduation rates, slightly improving model fit compared to the standard multiple regression.\nKey insights:\n\nThe interaction term between per-pupil expenditure and low-income percent is positive and significant (p &lt; 0.01), suggesting that additional spending has a larger positive effect in districts with higher poverty levels.\nLow-income concentration remains strongly negatively associated with graduation rates.\nThe main effect of spending becomes slightly negative when not accounting for interaction, reflecting nuanced dynamics.\nOther patterns regarding race and class size remain broadly consistent.\n\nThis highlights that targeted investments in high-poverty districts may yield disproportionately larger benefits for graduation outcomes, aligning closely with our Big Picture focus on addressing structural inequities."
-  },
-  {
-    "objectID": "analysis.html#reflection-on-data-and-big-picture-alignment",
-    "href": "analysis.html#reflection-on-data-and-big-picture-alignment",
-    "title": "Analysis",
-    "section": "6. Reflection on Data and Big Picture Alignment",
-    "text": "6. Reflection on Data and Big Picture Alignment\nThis analysis directly supports our Big Picture research question:\n\nHow do funding and structural inequalities together shape graduation outcomes across school districts?\n\nThe findings reveal that:\n\nFunding alone explains very little.\nSocioeconomic disadvantage (low-income percentage) is a much stronger predictor.\nStructural factors such as race, cohort size, and class size further influence graduation outcomes.\nThe interaction between funding and poverty matters — indicating that investments may have different impacts depending on district demographics.\n\nThus, achieving educational equity requires not just more spending, but targeted strategies that address broader systemic disparities."
-  },
-  {
-    "objectID": "analysis.html#limitations",
-    "href": "analysis.html#limitations",
-    "title": "Analysis",
-    "section": "7. Limitations",
-    "text": "7. Limitations\nSeveral limitations of this project should be acknowledged:\n\nObservational Data and Causality:\nAll models are based on observational data. While associations are identified, causal relationships cannot be definitively established due to the potential for unobserved confounding variables.\nData Timeframe (2008–2023):\nAlthough the data covers a long span, it does not fully capture the potential impacts of recent major events, such as the COVID-19 pandemic and subsequent shifts in educational policy.\nOmitted Variables:\nKey factors like school leadership quality, community engagement, extracurricular offerings, and localized policy initiatives were not included, which could influence graduation outcomes.\nSimplified Racial Groupings:\nGrouping districts by majority race provides broad patterns but may overlook important nuances within racially diverse or multi-ethnic districts.\n\n\nFuture Work:\nFuture research could strengthen these findings by incorporating longitudinal tracking, qualitative measures, and updated post-pandemic datasets to better understand evolving educational disparities."
-  },
-  {
-    "objectID": "analysis.html#conclusion",
-    "href": "analysis.html#conclusion",
-    "title": "Analysis",
-    "section": "8. Conclusion",
-    "text": "8. Conclusion\nThis project provides three key insights into the factors shaping graduation outcomes across Massachusetts districts:\n\nFunding Matters, But Is Not Sufficient:\nWhile per-pupil spending has a positive association with graduation rates, its explanatory power alone is limited. More money without addressing other barriers will not close achievement gaps.\nEconomic and Demographic Context Are Critical:\nLow-income concentration and racial composition significantly influence graduation rates. Districts serving historically underserved communities face systemic challenges beyond funding alone.\nInteracting Factors Compound Inequality:\nOur best-performing model — the multiple regression with an interaction term — demonstrates that the impact of funding varies by socioeconomic context. Investments yield different results depending on who the students are and the challenges they face.\n\n\nPolicy Implication:\nAchieving meaningful educational equity requires more than increasing budgets.\nIt demands targeted interventions that recognize and address the structural disadvantages embedded within communities."
   },
   {
     "objectID": "data.html#datasources",
