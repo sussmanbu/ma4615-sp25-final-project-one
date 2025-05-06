@@ -3,76 +3,103 @@ library(tidyverse)
 library(ggplot2)
 library(plotly)
 library(scales)
+library(sf)
+library(stringr)
 
-# Load dataset
-mass_data <- readRDS("../dataset/massachusetts_district_data.rds")
+# === Load Data ===
+shapefile_path <- "../dataset_for_shiny/schooldistricts/SCHOOLDISTRICTS_POLY.shp"
+ma_district_shapes <- st_read(shapefile_path) %>%
+  mutate(District_Name_Upper = toupper(DISTRICT_N))
 
-# UI
+mass_data <- readRDS("../dataset/massachusetts_district_data.rds") %>%
+  mutate(
+    Year = as.integer(Year),
+    Percent_Graduated = as.numeric(Percent_Graduated),
+    Low_Income_Percent = as.numeric(Low_Income_Percent),
+    SAT_Math_Mean_Score = as.numeric(SAT_Math_Mean_Score),
+    SAT_Reading_Writing_Mean_Score = as.numeric(SAT_Reading_Writing_Mean_Score),
+    District_Name_Upper = toupper(`District Name`)
+  )
+
+# === UI ===
 ui <- fluidPage(
-  titlePanel("🎓 Massachusetts Graduation Dashboard"),
+  titlePanel("Massachusetts Graduation Equity Explorer"),
   sidebarLayout(
     sidebarPanel(
-      selectInput("district", "Choose a District:", choices = unique(mass_data$`District Name`)),
-      sliderInput("year", "Select Year:", min = 2006, max = 2023, value = 2023, step = 1),
-      br(),
-      h5("Hover over the bars to see exact statistics.")
+      selectInput("district", "Choose a District:", choices = sort(unique(mass_data$`District Name`))),
+      sliderInput("year", "Select Year:", min = min(mass_data$Year), max = max(mass_data$Year), value = 2023),
+      
+      conditionalPanel(
+        condition = "input.tabselected == 'Graduation Heatmap'",
+        checkboxGroupInput("filters", "Filter Map by:", 
+                           choices = c("Race Demographics" = "race", 
+                                       "Gender" = "gender", 
+                                       "Show Only Districts with SAT Data" = "sat"),
+                           selected = NULL),
+        checkboxGroupInput("demographics_overlay", "Overlay Demographics:",
+                           choices = c("White", "Black", "Hispanic", "Asian", 
+                                       "American Indian", "Multi Race", "Pacific Islander",
+                                       "Female", "Male"))
+      )
     ),
     mainPanel(
-      tabsetPanel(
-        tabPanel("Graduation Overview", plotlyOutput("gradPlot")),
-        tabPanel("Grad vs Dropout", plotlyOutput("gradDropPlot")),
-        tabPanel("Income vs Graduation", plotlyOutput("incomePlot")),
-        tabPanel("Demographics", plotlyOutput("demographicPlot")),
-        tabPanel("SAT Scores", plotlyOutput("satPlot")),
+      tabsetPanel(id = "tabselected",
+                  tabPanel("Income vs Graduation", 
+                           plotlyOutput("incomePlot", height = "700px"),
+                           br(),
+                           uiOutput("districtInfo")),
+                  tabPanel("Graduation Heatmap", 
+                           plotlyOutput("heatmapPlot", height = "700px"),
+                           br(),
+                           uiOutput("districtInfo"))
       )
     )
   )
 )
 
-# Server
+# === Server ===
 server <- function(input, output) {
   
-  # Graduation Line Chart
-  output$gradPlot <- renderPlotly({
-    data <- mass_data %>%
-      filter(`District Name` == input$district) %>%
-      arrange(Year) %>%
-      select(Year, Percent_Graduated)
+  getFilteredData <- reactive({
+    df <- mass_data %>% filter(Year == input$year)
     
-    p <- ggplot(data, aes(x = Year, y = Percent_Graduated)) +
-      geom_line(color = "#0A9396", size = 1.2) +
-      geom_point(size = 2) +
-      labs(title = paste("Graduation Rate Trend in", input$district),
-           x = "Year", y = "Graduation Rate (%)") +
-      theme_minimal()
+    if ("sat" %in% input$filters) {
+      df <- df %>%
+        filter(!is.na(SAT_Math_Mean_Score) & !is.na(SAT_Reading_Writing_Mean_Score))
+    }
+    if ("race" %in% input$filters) {
+      df <- df %>%
+        filter_at(vars(Percent_White, Percent_Black, Percent_Hispanic, Percent_Asian), any_vars(!is.na(.)))
+    }
+    if ("gender" %in% input$filters) {
+      df <- df %>%
+        filter(!is.na(Percent_Female) & !is.na(Percent_Male))
+    }
     
-    ggplotly(p)
+    df
   })
   
-  # Grad vs Dropout
-  output$gradDropPlot <- renderPlotly({
-    filtered <- mass_data %>%
-      filter(`District Name` == input$district, Year == input$year) %>%
-      select(Percent_Graduated, Percent_Dropped_Out) %>%
-      pivot_longer(cols = everything(), names_to = "Status", values_to = "Percent")
-    
-    p <- ggplot(filtered, aes(x = Status, y = Percent, fill = Status)) +
-      geom_col(width = 0.5) +
-      scale_fill_manual(values = c("Percent_Graduated" = "#0A9396", "Percent_Dropped_Out" = "#AE2012")) +
-      labs(title = paste("Graduation vs Dropout Rate in", input$district, input$year),
-           x = NULL, y = "Percent") +
-      theme_minimal()
-    
-    ggplotly(p)
-  })
   
-  # Income vs Graduation
   output$incomePlot <- renderPlotly({
-    data <- mass_data %>% filter(Year == input$year)
+    data <- getFilteredData()
+    selected <- input$district
     
-    p <- ggplot(data, aes(x = Low_Income_Percent, y = Percent_Graduated,
-                          text = paste("District:", `District Name`))) +
-      geom_point(color = "#277DA1", alpha = 0.7) +
+    data <- data %>%
+      mutate(
+        is_selected = ifelse(`District Name` == selected, TRUE, FALSE),
+        hover_text = paste0(
+          "District: ", `District Name`, "<br>",
+          "Graduation Rate: ", Percent_Graduated, "%<br>",
+          "Low Income: ", Low_Income_Percent, "%"
+        )
+      )
+    
+    p <- ggplot(data, aes(x = Low_Income_Percent, y = Percent_Graduated)) +
+      geom_point(aes(text = hover_text), alpha = 0.6, color = "#219EBC", size = 2.5) +
+      geom_point(data = data %>% filter(is_selected),
+                 aes(x = Low_Income_Percent, y = Percent_Graduated),
+                 color = "red", size = 4) +
+      geom_smooth(method = "lm", se = FALSE, color = "gray30", linetype = "dashed") +
       labs(title = paste("Income vs Graduation Rate -", input$year),
            x = "Low Income %", y = "Graduation Rate %") +
       theme_minimal()
@@ -80,53 +107,63 @@ server <- function(input, output) {
     ggplotly(p, tooltip = "text")
   })
   
-  # Demographics
-  output$demographicPlot <- renderPlotly({
-    data <- mass_data %>%
-      filter(`District Name` == input$district, Year == input$year) %>%
-      mutate(across(
-        c(Percent_American_Indian, Percent_Asian, Percent_Black,
-          Percent_Hispanic, Percent_Multi_Race, Percent_Pacific_Islander,
-          Percent_White, Percent_Female, Percent_Male),
-        ~ as.numeric(str_replace(.x, "%", ""))
-      )) %>%
-      pivot_longer(cols = starts_with("Percent_"), names_to = "Group", values_to = "Value") %>%
-      filter(!is.na(Value))
+  output$heatmapPlot <- renderPlotly({
+    edu_data <- getFilteredData()
+    merged_data <- left_join(ma_district_shapes, edu_data, by = "District_Name_Upper")
+    selected_upper <- toupper(input$district)
     
-    data$Group <- str_replace_all(data$Group, "Percent_", "")
-    data$Group <- str_replace_all(data$Group, "_", " ")
+    merged_data$highlight <- ifelse(merged_data$District_Name_Upper == selected_upper, "selected", "other")
+    merged_data <- merged_data %>%
+      mutate(
+        SAT_Avg = round((SAT_Math_Mean_Score + SAT_Reading_Writing_Mean_Score) / 2, 1),
+        hover_text = paste0(DISTRICT_N, "\n",
+                            "Graduation Rate: ", Percent_Graduated, "%\n",
+                            "Low Income: ", Low_Income_Percent, "%\n",
+                            "SAT Avg: ", SAT_Avg)
+      )
     
-    p <- ggplot(data, aes(x = reorder(Group, Value), y = Value, fill = Group)) +
-      geom_col(show.legend = FALSE) +
-      coord_flip() +
-      labs(title = paste("Demographics in", input$district, input$year),
-           x = NULL, y = "Percent (%)") +
+    p <- ggplot(merged_data) +
+      geom_sf(aes(fill = Percent_Graduated, text = hover_text), color = "white", size = 0.2) +
+      geom_sf(data = merged_data %>% filter(highlight == "selected"), 
+              fill = NA, color = "red", size = 1.5) +
+      scale_fill_viridis_c(option = "magma", na.value = "grey90", name = "Grad Rate %") +
+      labs(title = paste("Graduation Heatmap -", input$year)) +
       theme_minimal()
     
-    ggplotly(p)
+    # === Demographic Overlays ===
+    overlay_vars <- input$demographics_overlay
+    for (var in overlay_vars) {
+      col_name <- paste0("Percent_", gsub(" ", "_", var))
+      if (col_name %in% colnames(merged_data)) {
+        p <- p +
+          geom_sf(data = merged_data, aes_string(alpha = col_name), fill = "blue", color = NA) +
+          scale_alpha_continuous(range = c(0, 0.4), guide = "none")
+      }
+    }
+    
+    ggplotly(p, tooltip = "text")
   })
   
-  # SAT Plot
-  output$satPlot <- renderPlotly({
-    filtered <- mass_data %>%
-      filter(`District Name` == input$district, Year == input$year)
+  output$districtInfo <- renderUI({
+    df <- mass_data %>% filter(Year == input$year, `District Name` == input$district)
+    if (nrow(df) == 0) return(NULL)
     
-    sat_data <- tibble(
-      Subject = c("Reading/Writing", "Math"),
-      Score = c(as.numeric(filtered$SAT_Reading_Writing_Mean_Score),
-                as.numeric(filtered$SAT_Math_Mean_Score))
+    tagList(
+      h4(paste("Details for", input$district, "-", input$year)),
+      tags$ul(
+        tags$li(strong("Graduation Rate:"), paste0(df$Percent_Graduated, "%")),
+        tags$li(strong("Low Income %:"), paste0(df$Low_Income_Percent, "%")),
+        tags$li(strong("SAT Reading/Writing Avg:"), df$SAT_Reading_Writing_Mean_Score),
+        tags$li(strong("SAT Math Avg:"), df$SAT_Math_Mean_Score),
+        tags$li(strong("Gender:"), paste0("Female: ", df$Percent_Female, "% | Male: ", df$Percent_Male, "%")),
+        tags$li(strong("Race:"), paste("White:", df$Percent_White, "% |",
+                                       "Black:", df$Percent_Black, "% |",
+                                       "Hispanic:", df$Percent_Hispanic, "% |",
+                                       "Asian:", df$Percent_Asian, "%"))
+      )
     )
-    
-    p <- ggplot(sat_data, aes(x = Subject, y = Score, fill = Subject)) +
-      geom_col(width = 0.5) +
-      scale_fill_manual(values = c("Reading/Writing" = "#90BE6D", "Math" = "#F8961E")) +
-      labs(title = paste("SAT Scores in", input$district, input$year),
-           x = NULL, y = "Mean Score") +
-      theme_minimal()
-    
-    ggplotly(p)
   })
 }
 
-# Run App
+# === Launch ===
 shinyApp(ui = ui, server = server)
