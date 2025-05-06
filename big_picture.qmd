@@ -15,8 +15,6 @@ Massachusetts is often praised as a national leader in education. With some of t
 
 Behind the state's reputation for academic excellence lie long-standing structural disparities. Race, geography, and income continue to shape student experiences across districts. This project uses state-level education data to explore how those disparities appear in measurable outcomes like graduation rates and support services. The goal is not to undermine Massachusetts' accomplishments, but to examine **whether excellence is equitably shared.**
 
-
-
 This visualization highlights persistent disparities in graduation outcomes across districts categorized by their majority racial composition. It adds additional context to the findings discussed in the big picture section.
 
 ### Why This Topic Matters
@@ -24,6 +22,16 @@ This visualization highlights persistent disparities in graduation outcomes acro
 Education is one of the most powerful tools for mobility in the United States. When educational access and success differ by race, it reinforces inequality across generations. Although Massachusetts has made significant strides in public schooling, historical legacies of segregation, unequal funding, and uneven access to support persist.
 
 Understanding these patterns is crucial for shaping policy that doesn’t just raise averages, but improves outcomes for all students — especially those historically underserved. If racial gaps remain hidden beneath strong overall performance, meaningful progress toward educational equity becomes harder to achieve.
+
+### Massachusetts Graduation Equity Explorer
+
+To complement our analysis, we created an interactive Shiny dashboard that visualizes graduation rates, income, SAT scores, and demographic patterns across school districts in Massachusetts.
+
+The first tab compares income levels to graduation rates using a scatter plot with a highlighted district and trend line, making it easy to explore relationships between socioeconomic factors and outcomes.
+
+The second tab features a dynamic heatmap, allowing users to view graduation rates by district and apply demographic overlays like race and gender distributions. When a district is selected, additional info appears below the map to give more context.
+
+[Explore the Dashboard on ShinyApps.io](https://aleezashah.shinyapps.io/shiny_app/)
 
 ### Thesis
 
@@ -40,5 +48,3 @@ This visualization highlights persistent disparities in graduation outcomes acro
 The data shows that increasing funding alone may not be enough. Districts with majority Hispanic or Black populations appear to gain more from marginal increases in spending or income — suggesting that targeted investments could be more impactful than uniform approaches. Future research should explore how resources are allocated across districts and whether programs focused on multilingual learners and students with disabilities are equitably distributed.
 
 From a policy perspective, equity audits at the district level, more transparent reporting, and flexible funding that prioritizes need over uniformity could help close the gaps revealed in this project.
-
-
